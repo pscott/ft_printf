@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/26 13:16:18 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:23:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ void	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (!(specs = create_specs(format)))
+			if (!(specs = create_specs((char **)&format)))
 				return ;
 			parse_struct(specs, va_arg(int_arg_pointer, int));
 			free(specs);
 		}
-		else
-			ft_putchar(*format);
+		ft_putchar(*format);
 		format++;
 	}
 	va_end(int_arg_pointer);
@@ -60,8 +59,8 @@ void	ft_printf(const char *format, ...)
 int	main(void)
 {
 	/*printf("\n 10 + 20 = %d ", addingNumbers(2, 10, 20));*/
-	ft_printf("%5d, %5d, %5d\n", -12, -13, 154);
-	printf("%5d, %5d, %5d\n", -12, -13, 154);
+	ft_printf("%05d, %05d, %05d\n", -12, -13, 154);
+	printf("%05d, %05d, %05d\n", -12, -13, 154);
 	return (0);
 }
 

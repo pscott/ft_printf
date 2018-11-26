@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:50:57 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/26 13:18:25 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:28:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,18 @@ void	print_int(t_arg *specs, int value)
 	len = get_len(value);
 	width = specs->width;
 	fill = specs->fill;
+	if (value < 0)
+		ft_putchar('-');
 	while (len < width)
 	{
 		ft_putchar(fill);
 		width--;
 	}
-	ft_putnbr(value);
+	if (value == -2147483648)
+	{
+		ft_putchar('2');
+		ft_putnbr(147483648);
+	}
+	else
+		value < 0 ? ft_putnbr(-value) : ft_putnbr(value);
 }

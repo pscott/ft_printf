@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/26 13:17:32 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:17:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_arg
 	char	fill;
 }					t_arg;
 
-t_arg		*create_specs(const char *format);
+t_arg		*create_specs(char **format);
 void		parse_struct(t_arg *specs, int value);
 void		print_int(t_arg *specs, int value);
 int			ft_atoi_move(char **src);
