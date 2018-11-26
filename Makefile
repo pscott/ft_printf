@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/11/26 13:31:00 by pscott           ###   ########.fr        #
+#    Updated: 2018/11/26 18:30:49 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS	:= -Wall -Wextra -Werror $(INCLDIR)
 LDFLAGS	:= -L$(LIBDIR) -lft
 ARFLAGS	:=
 
-SRCS	:= ft_printf.c convert.c specs.c printing.c ft_atoi_move.c
+SRCS	:= ft_printf.c convert.c specs.c print_int.c ft_atoi_move.c exit.c
 SRCS	:= $(addprefix $(SRCDIR)/, $(SRCS))
 OBJS	:= $(patsubst %.c,%.o,$(SRCS))
 DEPS	:= Makefile includes/ft_printf.h

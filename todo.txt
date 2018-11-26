@@ -1,2 +1,3 @@
 x ou X : "abcdef" ou "ABCDEF" (toupper?)
 cas d'erreur : string vide, arg vide, arg mauvais type, string null;
+%% et \%
