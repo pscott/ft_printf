@@ -1,3 +1,6 @@
 x ou X : "abcdef" ou "ABCDEF" (toupper?)
 cas d'erreur : string vide, arg vide, arg mauvais type, string null;
 %% et \%
+n$ pour utiliser n fois le parametre ?
+chopper bon ft_strlen, memcpy, memset, ft_strnew.
+modifier ft_putstr pour aller vite.

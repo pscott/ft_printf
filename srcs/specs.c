@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/26 18:43:23 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/27 20:04:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,18 +73,50 @@ int		get_len(int value)
 	return (len == 0 ? 1 : len);
 }
 
-void	parse_struct(t_arg *specs, int value)
+void	get_l(char **format, t_arg *specs)
 {
-	if (specs->type == 'd')
-		print_int(specs, value);
-	else
-		ft_putstr("not int");
-	return ;
+		if (**format == 'h')
+		{
+			specs->h = 1;
+			(*format)++;
+		}
+		if (**format == 'h')
+		{
+			specs->hh = 1;
+			(*format)++;
+		}
+}
+
+void	get_h(char **format, t_arg *specs)
+{
+		if (**format == 'l')
+		{
+			specs->l = 1;
+			(*format)++;
+		}
+		if (**format == 'l')
+		{
+			specs->ll = 1;
+			(*format)++;
+		}
+}
+
+int		is_valid_type(char c)
+{
+	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'i' || c == 'x' \
+			 || c == 'X')
+		return (1);
+	return (0);
 }
 
 void	get_type(char **format, t_arg *specs)
 {
-	specs->type = **format;
+	int i;
+
+	get_l(format, specs);
+	get_h(format, specs);
+	if (!is_valid_type(**format))
+		specs->error = 1;
 	(*format)++;
 }
 

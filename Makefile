@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/11/26 18:30:49 by pscott           ###   ########.fr        #
+#    Updated: 2018/11/27 19:14:58 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,12 @@ SRCDIR	:= srcs
 INCLDIR := -I libft/includes -I includes/
 LIBDIR	:= libft/
 
-CFLAGS	:= -Wall -Wextra -Werror $(INCLDIR)
+CFLAGS	:= -Wall -Wextra $(INCLDIR)
 LDFLAGS	:= -L$(LIBDIR) -lft
 ARFLAGS	:=
 
-SRCS	:= ft_printf.c convert.c specs.c print_int.c ft_atoi_move.c exit.c
+SRCS	:= ft_printf.c convert.c specs.c print_int.c ft_atoi_move.c exit.c get_next_line.c \
+	parse_struct.c
 SRCS	:= $(addprefix $(SRCDIR)/, $(SRCS))
 OBJS	:= $(patsubst %.c,%.o,$(SRCS))
 DEPS	:= Makefile includes/ft_printf.h
