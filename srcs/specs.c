@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 17:22:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 18:23:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ void	get_fill(char **format, t_arg *specs)
 		(*format)++;
 }
 
-int		get_len(int value)
+int		get_len(LL value)
 {
 	int len;
 
 	len = 0;
-	if (value == -2147483648)
-		return (11);
 	if (value < 0)
 	{
 		len++;
@@ -129,7 +127,7 @@ void	init_specs(t_arg *specs)
 	specs->l = 0;
 	specs->h = 0;
 	specs->u = 0;
-	specs->string = ft_strnew(100);
+	specs->origin = specs->string;
 	specs->error = 0;
 }
 
@@ -143,7 +141,8 @@ t_arg	*create_specs(char **format, t_arg *specs)
 {
 	if (!specs)
 	{
-		if (!(specs = (t_arg *)malloc(sizeof(t_arg))))
+		if (!(specs = (t_arg *)malloc(sizeof(t_arg)))\
+				|| !(specs->string = ft_strnew(100)))
 			return (NULL);
 	}
 	init_specs(specs);

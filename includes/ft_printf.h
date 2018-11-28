@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 17:16:45 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 18:24:03 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef struct		s_arg
 	int				l;
 	int				h;
 	int				u;
-	int				len;
+	int				str_len;
+	int				nb_len;
 	char			*string;
+	char			*origin;
 	int				error;
 }					t_arg;
 
@@ -47,9 +49,11 @@ typedef struct		s_arg
 /* parse_struct.c */
 void		parse_struct(t_arg *specs, ULL value);
 
+/* format_int.c */
+void	format_int(t_arg *specs, LL value);
 /* specs.c */
 t_arg		*create_specs(char **format, t_arg *specs);
-int			get_len(int value);
+int			get_len(LL value);
 
 /* printing.c */
 void		print_spec(t_arg *specs);

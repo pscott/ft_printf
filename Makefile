@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/11/28 17:20:21 by pscott           ###   ########.fr        #
+#    Updated: 2018/11/28 18:19:43 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ CFLAGS	:= -Wall -Wextra $(INCLDIR)
 LDFLAGS	:= -L$(LIBDIR) -lft
 ARFLAGS	:=
 
-SRCS	:= ft_printf.c convert.c specs.c print_int.c ft_atoi_move.c exit.c \
-			get_next_line.c parse_struct.c ft_strcat_free.c
+SRCS	:= ft_printf.c convert.c specs.c ft_atoi_move.c exit.c \
+			get_next_line.c parse_struct.c ft_strcat_free.c format_int.c
 SRCS	:= $(addprefix $(SRCDIR)/, $(SRCS))
 OBJS	:= $(patsubst %.c,%.o,$(SRCS))
 DEPS	:= Makefile includes/ft_printf.h
@@ -38,7 +38,7 @@ $(LIB):
 	$(MAKE) -C libft/
 
 $(NAME): $(LIB) $(OBJS)
-	$(LD) $(LDFLAGS) -o $(NAME) $(OBJS) -fsanitize=address -g3
+	$(LD) $(LDFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@

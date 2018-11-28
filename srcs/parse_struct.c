@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 17:22:41 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 18:20:19 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*unsigned_itoa(t_arg *specs, ULL value)
 	return (res);
 }
 
-char	*ft_itoa_spec(t_arg *specs, long long int value, size_t *len)
+char	*ft_itoa_spec(t_arg *specs, long long int value)
 {
 	char *res;
 
@@ -43,21 +43,21 @@ char	*ft_itoa_spec(t_arg *specs, long long int value, size_t *len)
 		res = ft_itoa((short int)value);
 	else
 		res = ft_itoa((int)value);
-	*len = ft_strlen(res);
 	return (res);
 }
 
 void	parse_struct(t_arg *specs, unsigned long long int value)
 {
-	size_t len;
 	char *tmp;
 
 	/*why 50?? ==> len max(width, actual_len)*/
-	len = 0;
 	if (specs->type == 'u')
-		tmp = ft_itoa_spec(specs, (ULL)value, &len);
+		tmp = ft_itoa_spec(specs, (ULL)value);
 	if (specs->type == 'd' || specs->type == 'i')
-		tmp = ft_itoa_spec(specs, (LL)value, &len);
+	{
+		format_int(specs, (LL)value);
+		tmp = ft_itoa_spec(specs, (LL)value);
+	}
 	ft_strcat(specs->string, tmp);
 	ft_putstr(tmp);
 	free(tmp);

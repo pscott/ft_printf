@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 17:22:24 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 18:23:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_printf(const char *format, ...)
 		}
 	}
 	va_end(int_arg_pointer);
-	//free(specs);
+	free(specs);
 	/* return value not good*/
 	return (1);
 }
@@ -58,10 +58,9 @@ int	main(void)
 	i = 245;
 	i = (int)i;
 
-	printf("\n%lu\n", sizeof(i));
-	str = ":%d:\t%d!\n";
+	str = ":%d:\n";
 	ft_printf(str, i, i + 3);
-	printf(str, i, i + 3);
+	   printf(str, i , i + 3);
 	return (0);
 }
 
@@ -73,4 +72,6 @@ int	main(void)
  * Si +, value > 0, len += 1
  * Si +, value < 0: len.
  * Si -, padding gauche, peu importe
+ *
+ * Il faut gerer le re-alloc
  */
