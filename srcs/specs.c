@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/27 20:04:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 17:22:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ int		valid_info(char **format)
 
 void	get_info(char **format, t_arg *specs)
 {
-	specs->left = 0;
-	specs->plus = 0;
-	specs->perc = 0;
-	specs->hash = 0;
 	while (valid_info(format))
 	{
 		if (**format == '-')
@@ -73,51 +69,68 @@ int		get_len(int value)
 	return (len == 0 ? 1 : len);
 }
 
-void	get_l(char **format, t_arg *specs)
+int		max(int a, int b)
 {
-		if (**format == 'h')
-		{
-			specs->h = 1;
-			(*format)++;
-		}
-		if (**format == 'h')
-		{
-			specs->hh = 1;
-			(*format)++;
-		}
+	return (a < b ? b : a);
 }
 
-void	get_h(char **format, t_arg *specs)
+void	set_lh(char **format, t_arg *specs)
 {
-		if (**format == 'l')
-		{
-			specs->l = 1;
-			(*format)++;
-		}
-		if (**format == 'l')
-		{
-			specs->ll = 1;
-			(*format)++;
-		}
+	int i;
+
+	i = 0;
+	if (**format == 'u')
+	{
+		specs->u = 1;
+		(*format)++;
+	}
+	while (i < 2)
+	{
+		if ((*format)[i] == 'h')
+			specs->h++;
+		else if ((*format)[i] == 'l')
+			specs->l++;
+		i++;
+	}
+	/* gerer les cas d'erreur pls */
+	if (specs->h && specs->l)
+		specs->error = 1;
+	(*format) = (*format) + max(specs->h, specs->l) + specs->u;
 }
 
 int		is_valid_type(char c)
 {
 	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'i' || c == 'x' \
-			 || c == 'X')
+			|| c == 'X' || c == 'u')
 		return (1);
 	return (0);
 }
 
 void	get_type(char **format, t_arg *specs)
 {
-	int i;
-
-	get_l(format, specs);
-	get_h(format, specs);
+	set_lh(format, specs);
+	/*gerer les cas d'erreur pls */
 	if (!is_valid_type(**format))
 		specs->error = 1;
+	specs->type = **format;
 	(*format)++;
+}
+
+void	init_specs(t_arg *specs)
+{
+	specs->type = 0;
+	specs->width = 0;
+	specs->precision = 0;
+	specs->fill = 0;
+	specs->left = 0;
+	specs->plus = 0;
+	specs->hash = 0;
+	specs->perc = 0;
+	specs->l = 0;
+	specs->h = 0;
+	specs->u = 0;
+	specs->string = ft_strnew(100);
+	specs->error = 0;
 }
 
 void	print_spec(t_arg *specs)
@@ -126,18 +139,19 @@ void	print_spec(t_arg *specs)
 	return ;
 }
 
-t_arg	*create_specs(char **format)
+t_arg	*create_specs(char **format, t_arg *specs)
 {
-	t_arg	*specs;
-
-	if (!(specs = (t_arg *)malloc(sizeof(t_arg))))
-		clean_exit(NULL, specs);
+	if (!specs)
+	{
+		if (!(specs = (t_arg *)malloc(sizeof(t_arg))))
+			return (NULL);
+	}
+	init_specs(specs);
 	get_fill(format, specs);
 	//print_spec(specs);
 	if (specs->perc)
 		return (specs);
 	specs->width = ft_atoi_move(format);
-	specs->precision = 0;
 	get_type(format, specs);
 	//print_spec(specs);
 	return (specs);

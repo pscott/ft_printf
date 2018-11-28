@@ -6,59 +6,62 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/27 20:49:14 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/28 17:22:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 //NEED RESTRICT ON PRINTF;
-void	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list	int_arg_pointer;
 	t_arg	*specs;
 
+	specs = NULL;
 	va_start(int_arg_pointer, format);
 	if (!format)
-		return ;
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			format++;
 			/* if specs doesn't exist, create ; else do not create */
-			if (!(specs = create_specs((char **)&format)))
-				return ;
+			if (!(specs = create_specs((char **)&format, specs)))
+				return (-1);
 			if (specs->perc)
 				ft_putchar('%');
 			else
-				parse_struct(specs, va_arg(int_arg_pointer, long long int));
-			free(specs);
+				parse_struct(specs, va_arg(int_arg_pointer, ULL));
 		}
 		else
 		{
 			ft_putchar(*format);
-			/* str_len++ */
+			/* specs->srting++ */
 			format++;
 		}
 	}
 	va_end(int_arg_pointer);
+	//free(specs);
+	/* return value not good*/
+	return (1);
 }
 
 int	main(void)
 {
 	unsigned char c;
-	long long int i;
+	ULL i;
 	char *str;
 
 	c = 'A';
-	i = 125;
+	i = 245;
 	i = (int)i;
 
 	printf("\n%lu\n", sizeof(i));
-	str = ":%d:\n";
-	ft_printf(str, i);
-	   printf(str, i);
+	str = ":%d:\t%d!\n";
+	ft_printf(str, i, i + 3);
+	printf(str, i, i + 3);
 	return (0);
 }
 
