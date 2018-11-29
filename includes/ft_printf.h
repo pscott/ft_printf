@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 17:37:36 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 19:40:12 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FT_PRINTF_H
 // stdio && gnl
 # include <stdio.h>
-# include "get_next_line.h"
 
 # include <stdlib.h>
+# include <unistd.h>
 # include <stdarg.h>
 # include "libft.h"
 # define ULL unsigned long long int
@@ -48,7 +48,7 @@ typedef struct		s_arg
 int			ft_printf(const char *format, ...);
 
 /* parse_struct.c */
-void		parse_struct(t_arg *specs, ULL value);
+int			parse_struct(t_arg *specs, ULL value);
 char		*ft_itoa_spec(t_arg *specs, LL value);
 char		*unsigned_itoa(t_arg *specs, ULL value);
 

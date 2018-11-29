@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 14:49:39 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 20:42:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,9 @@ void	print_spec(t_arg *specs)
 
 t_arg	*create_specs(char **format, t_arg *specs)
 {
+	/* need **format++ mais pas ici */
+	/*create get_info that only retrives info and init_specs
+	 * create create_specs that mallocs stuff*/
 	if (!specs)
 	{
 		if (!(specs = (t_arg *)malloc(sizeof(t_arg)))\
@@ -153,6 +156,7 @@ t_arg	*create_specs(char **format, t_arg *specs)
 	specs->width = ft_atoi_move(format);
 	get_prec(format, specs);
 	get_type(format, specs);
+	/* GERER LE CAS OU ON A specs->PERC */
 	//print_spec(specs);
 	return (specs);
 	/*

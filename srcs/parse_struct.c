@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 14:49:38 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 20:42:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ char	*ft_itoa_spec(t_arg *specs, long long int value)
 	return (res);
 }
 
-void	parse_struct(t_arg *specs, unsigned long long int value)
+int		parse_struct(t_arg *specs, unsigned long long int value)
 {
 	/*why 50?? ==> len max(width, actual_len)*/
 	/*if (specs->type == 'u')
 		tmp = ft_itoa_spec(specs, (ULL)value);*/
 	if (specs->type == 'd' || specs->type == 'i')
 		format_int(specs, (LL)value);
-	ft_putstr(specs->string);
-	free(specs->string);
+	printf("\nAddress: %p\n", specs->origin);
+	printf("!%c!", specs->type);
+	return (2);
 }

@@ -6,3 +6,4 @@ chopper bon ft_strlen, memcpy, memset, ft_strnew.
 modifier ft_putstr pour aller vite.
 return negative value if problem ; else return num of char printed
 "%.s" printf -> pas de segf
+Makefile : regle d, regle fsanitize, regle valgrind
