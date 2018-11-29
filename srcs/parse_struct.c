@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 18:20:19 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 10:35:27 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	parse_struct(t_arg *specs, unsigned long long int value)
 		tmp = ft_itoa_spec(specs, (LL)value);
 	}
 	ft_strcat(specs->string, tmp);
-	ft_putstr(tmp);
+	ft_putstr(specs->string);
 	free(tmp);
 	free(specs->string);
 }

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/28 18:24:03 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 10:35:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_arg
 	int				l;
 	int				h;
 	int				u;
-	int				str_len;
+	int				total_len;
 	int				nb_len;
 	char			*string;
 	char			*origin;
@@ -54,6 +54,7 @@ void	format_int(t_arg *specs, LL value);
 /* specs.c */
 t_arg		*create_specs(char **format, t_arg *specs);
 int			get_len(LL value);
+int			max(int a, int b);
 
 /* printing.c */
 void		print_spec(t_arg *specs);

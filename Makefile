@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/11/28 18:19:43 by pscott           ###   ########.fr        #
+#    Updated: 2018/11/29 10:13:34 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(LIB):
 	$(MAKE) -C libft/
 
 $(NAME): $(LIB) $(OBJS)
-	$(LD) $(LDFLAGS) -o $(NAME) $(OBJS)
+	$(LD) $(LDFLAGS) -o $(NAME) $(OBJS) -fsanitize=address -g3
 
 %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c $< -o $@
