@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 12:37:52 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:37:36 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_arg
 }					t_arg;
 
 /* ft_printf */
+int			ft_printf(const char *format, ...);
 
 /* parse_struct.c */
 void		parse_struct(t_arg *specs, ULL value);
