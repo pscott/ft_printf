@@ -6,47 +6,41 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 10:35:43 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 14:49:39 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		valid_info(char **format)
+int		valid_flags(char **format)
 {
-	if (**format == '-' || **format == '+' || **format == '#' \
-			|| **format == '#' || **format == '%')
+	char c;
+
+	c = **format;
+	if (c == '-' || c == '+' || c == '#' || c == '0' || c == '%' || c == ' ')
 		return (1);
 	return (0);
 }
 
-void	get_info(char **format, t_arg *specs)
+void	get_flags(char **format, t_arg *specs)
 {
-	while (valid_info(format))
-	{
-		if (**format == '-')
-			specs->left = 1;
-		else if (**format == '+')
-			specs->plus = 1;
-		else if (**format == '#')
-			specs->hash= 1;
-		else if (**format == '%')
-			specs->perc = 1;
-		(*format)++;
-	}
-}
+	char c;
 
-void	get_fill(char **format, t_arg *specs)
-{
-	get_info(format, specs);
-	specs->fill = ' ';
-	if (**format == '0')
+	while (valid_flags(format))
 	{
-		specs->fill = '0';
+		c = **format;
+		if (c == '-')
+			specs->left = 1;
+		else if (c == '+')
+			specs->plus = 1;
+		else if (c == '#')
+			specs->hash= 1;
+		else if (c == '%')
+			specs->perc = 1;
+		else if (c == '0')
+			specs->fill = '0';
 		(*format)++;
 	}
-	else if (**format == ' ')
-		(*format)++;
 }
 
 int		get_len(LL value)
@@ -114,12 +108,19 @@ void	get_type(char **format, t_arg *specs)
 	(*format)++;
 }
 
+void	get_prec(char **format, t_arg *specs)
+{
+	if (**format == '.')
+		(*format)++;
+	specs->precision = ft_atoi_move(format);
+}
+
 void	init_specs(t_arg *specs)
 {
 	specs->type = 0;
 	specs->width = 0;
 	specs->precision = 0;
-	specs->fill = 0;
+	specs->fill = ' ';
 	specs->left = 0;
 	specs->plus = 0;
 	specs->hash = 0;
@@ -146,11 +147,11 @@ t_arg	*create_specs(char **format, t_arg *specs)
 			return (NULL);
 	}
 	init_specs(specs);
-	get_fill(format, specs);
-	//print_spec(specs);
+	get_flags(format, specs);
 	if (specs->perc)
 		return (specs);
 	specs->width = ft_atoi_move(format);
+	get_prec(format, specs);
 	get_type(format, specs);
 	//print_spec(specs);
 	return (specs);

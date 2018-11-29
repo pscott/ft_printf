@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 12:37:49 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 14:48:19 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ void	fill_blanks(int perc_len, t_arg *specs, LL value)
 	}
 	if (specs->fill == ' ')
 	{
-		*specs->string = sign;
+		if (specs->plus || value < 0)
+		{
+			*specs->string = sign;
+			specs->string++;
+		}
 	}
 	nb = ft_itoa_spec(specs, value);
 	ft_strcat(specs->string, nb);
