@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 10:35:42 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/29 12:37:52 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ typedef struct		s_arg
 
 /* parse_struct.c */
 void		parse_struct(t_arg *specs, ULL value);
+char		*ft_itoa_spec(t_arg *specs, LL value);
+char		*unsigned_itoa(t_arg *specs, ULL value);
 
 /* format_int.c */
 void	format_int(t_arg *specs, LL value);
+
 /* specs.c */
 t_arg		*create_specs(char **format, t_arg *specs);
 int			get_len(LL value);
