@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_char.c                                      :+:      :+:    :+:   */
+/*   format_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 14:45:26 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 16:29:33 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/30 16:23:51 by pscott            #+#    #+#             */
+/*   Updated: 2018/11/30 17:10:50 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_char(int perc_len, t_arg *specs, char value)
+void	fill_string(int perc_len, t_arg *specs, char *value)
 {
 	int		data_l;
 	char	fill;
 
-	data_l = specs->data_len;
+	data_l = specs->data_len > specs->precision_len ? specs->precision_len : specs->data_len;
 	fill = specs->fill;
 	while (data_l < perc_len)
 	{
@@ -25,19 +25,19 @@ void	fill_char(int perc_len, t_arg *specs, char value)
 		perc_len--;
 		specs->string++;
 	}
-	*(specs->string) = value;
-	specs->string++;
+	ft_strncpy(specs->string, value, data_l);
+	specs->string += data_l;
 }
 
-void	fill_char_left(int perc_len, t_arg *specs, char value)
+void	fill_string_left(int perc_len, t_arg *specs, char *value)
 {
 	int		data_l;
 	char	fill;
 
-	data_l = specs->data_len;
+	data_l = specs->data_len > specs->precision_len ? specs->precision_len : specs->data_len;
+	ft_strncpy(specs->string, value, data_l);
+	specs->string += data_l;
 	fill = specs->fill;
-	*(specs->string) = value;
-	specs->string++;
 	while (data_l < perc_len)
 	{
 		*specs->string = fill;
@@ -46,17 +46,15 @@ void	fill_char_left(int perc_len, t_arg *specs, char value)
 	}
 }
 
-void	format_char(t_arg *specs, char value)
+void	format_string(t_arg *specs, char *value)
 {
 	int perc_len;
 
-	specs->type = 'c';
-	set_data_len(specs, value);
-	perc_len = specs->width > 1 ? specs->width : 1;
+	perc_len = specs->width > specs->data_len ? specs->width : 1;
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
-		fill_char_left(perc_len, specs, value);
+		fill_string_left(perc_len, specs, value);
 	else
-		fill_char(perc_len, specs, value);
+		fill_string(perc_len, specs, value);
 }

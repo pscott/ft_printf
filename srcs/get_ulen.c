@@ -1,27 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_ulen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:10:54 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/30 16:45:55 by pscott            #+#    #+#             */
+/*   Updated: 2018/11/30 16:48:14 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int		get_ulen(unsigned int value)
 {
-	ULL i;
-	char *str;
-	char *c;
+	int ulen;
 
-	str = ":%12-24-2s:\n";
-	i = (unsigned long long int)2147483647;
-	c = "azerty";
+	ulen = 0;
+	while (value > 0)
+	{
+		ulen++;
+		value /= 10;
+	}
+	return (ulen == 0 ? 1 : ulen);
+}
 
-	ft_printf(str, c);
-	printf(str, c);
+int		get_ulllen(ULL value)
+{
+	int ulen;
+
+	ulen = 0;
+	while (value > 0)
+	{
+		ulen++;
+		value /= 10;
+	}
+	return (ulen == 0 ? 1 : ulen);
+}
+
+int		get_ullen(UL value)
+{
+	int ulen;
+
+	ulen = 0;
+	while (value > 0)
+	{
+		ulen++;
+		value /= 10;
+	}
+	return (ulen == 0 ? 1 : ulen);
 }

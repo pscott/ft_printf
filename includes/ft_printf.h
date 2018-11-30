@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 15:57:44 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 17:10:52 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ int			max(int a, int b);
 void		init_specs(t_arg *specs);
 t_arg		*create_specs(t_arg *specs);
 
+/* get_ulen.c */
+int			get_ulllen(ULL value);
+int			get_ullen(UL value);
+int			get_ulen(unsigned int value);
+
 /* get_len.c */
 int			get_lllen(LL value);
 int			get_llen(L value);
@@ -91,6 +96,11 @@ int			unsigned_len(t_arg *spec, ULL value);
 void		format_char(t_arg *specs, char value);
 void		fill_char(int perc_len, t_arg *specs, char value);
 void		fill_char_left(int perc_len, t_arg *specs, char value);
+
+/* format_string.c */
+void		format_string(t_arg *specs, char *value);
+void		fill_string(int perc_len, t_arg *specs, char *value);
+void		fill_string_left(int perc_len, t_arg *specs, char *value);
 
 /* misc */
 void		clean_exit(char *str, t_arg *specs);

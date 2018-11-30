@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 15:57:40 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 16:52:02 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,72 +14,39 @@
 
 void	fill_unsigned_left(int perc_len, t_arg *specs, ULL value)
 {
-	char	sign;
 	char	*nb;
+	int		data_l;
 
-	sign = '+';
-	if (specs->plus)
-	{
-		printf("ah\n");
-		*specs->string = sign;
-		specs->string++;
-		specs->data_len--;
-		perc_len--;
-	}
 	nb = ft_itoa_spec(specs, value);
 	ft_strcat(specs->string, nb);
 	specs->string += specs->data_len;
-	while (specs->data_len < perc_len)
-	{
-		*specs->string = ' ';
-		perc_len--;
-		specs->string++;
-	}
-	free(nb);
-}
-
-int		unsigned_len(t_arg *specs, ULL value)
-{
-	if (specs->plus)
-		return (1);
-	return (0);
-}
-
-void	fill_unsigned(int perc_len, t_arg *specs, ULL value)
-{
-	char	sign;
-	char	*nb;
-
-	sign = value >= 0 ? '+' : '-';
-	if (specs->fill == '0')
-	{
-		if (specs->plus)
-		{
-			*specs->string = sign;
-			specs->string++;
-		}
-	}
+	data_l = specs->data_len;
 	while (specs->data_len < perc_len)
 	{
 		*specs->string = specs->fill;
 		perc_len--;
 		specs->string++;
 	}
-	if (specs->fill == ' ')
-	{
-		if (specs->plus)
-		{
-			*specs->string = sign;
-			specs->string++;
-		}
-	}
-	nb = ft_itoa_spec(specs, value);
-	ft_strcat(specs->string, nb);
-	specs->string += specs->data_len - sign_len(specs, value);
 	free(nb);
 }
 
+void	fill_unsigned(int perc_len, t_arg *specs, ULL value)
+{
+	char	*nb;
+	int		data_l;
 
+	data_l = specs->data_len;
+	while (data_l < perc_len)
+	{
+		*specs->string = specs->fill;
+		perc_len--;
+		specs->string++;
+	}
+	nb = ft_itoa_spec(specs, value);
+	ft_strcat(specs->string, nb);
+	specs->string += specs->data_len;
+	free(nb);
+}
 
 void	format_unsigned(t_arg *specs, ULL value)
 {
@@ -87,8 +54,6 @@ void	format_unsigned(t_arg *specs, ULL value)
 
 	set_data_len(specs, value);
 	perc_len = max(specs->data_len, specs->width);
-	if (specs->plus && value >= 0)
-		specs->data_len++;
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)

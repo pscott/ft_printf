@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 14:45:22 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 17:10:49 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ void	get_lh(char **format, t_arg *specs)
 	int i;
 
 	i = 0;
-	if (**format == 'u')
-	{
-		specs->u = 1;
-		(*format)++;
-	}
 	while (i < 2)
 	{
 		if ((*format)[i] == 'h')
@@ -59,7 +54,9 @@ void	get_lh(char **format, t_arg *specs)
 
 void	get_type(char **format, t_arg *specs)
 {
+	ft_putchar(specs->type);
 	get_lh(format, specs);
+	ft_putchar(specs->type);
 	/*gerer les cas d'erreur pls */
 	if (!is_valid_type(**format))
 		specs->error = 1;
@@ -70,6 +67,10 @@ void	get_type(char **format, t_arg *specs)
 void	get_preci(char **format, t_arg *specs)
 {
 	if (**format == '.')
+	{
 		(*format)++;
-	specs->precision = ft_atoi_move(format);
+		specs->precision = 1;
+		if (ft_isdigit(**format))
+			specs->precision_len = ft_atoi_move(format);
+	}
 }
