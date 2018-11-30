@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:45:26 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 16:29:33 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 18:26:25 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	format_char(t_arg *specs, char value)
 
 	specs->type = 'c';
 	set_data_len(specs, value);
-	perc_len = specs->width > 1 ? specs->width : 1;
+	perc_len = specs->width > specs->data_len ? specs->width : specs->data_len;
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
