@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 15:57:41 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/30 14:15:28 by pscott            #+#    #+#             */
+/*   Updated: 2018/11/30 14:40:33 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int		valid_flags(char **format)
 {
-	ULL i;
-	char *str;
 	char c;
 
-	str = ":%c:\n";
-	i = 124;
-	i = (long long int)i;
-	c = 'a';
+	c = **format;
+	if (c == '-' || c == '+' || c == '#' || c == '0' || c == ' ')
+		return (1);
+	return (0);
+}
 
-	ft_printf(str, c);
-	printf(str, c);
+int		is_valid_type(char c)
+{
+	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'i' || c == 'x' \
+			|| c == 'X' || c == 'u' || c == '%')
+		return (1);
+	return (0);
+}
+
+int		max(int a, int b)
+{
+	return (a < b ? b : a);
 }

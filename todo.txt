@@ -7,3 +7,6 @@ modifier ft_putstr pour aller vite.
 return negative value if problem ; else return num of char printed
 "%.s" printf -> pas de segf
 Makefile : regle d, regle fsanitize, regle valgrind
+re-alloc
+x, X, float, int min/max pour tous les types.
+"%5c", NULL;

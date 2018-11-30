@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 12:50:14 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 15:53:40 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		handle_perc(char **format, t_arg *specs, ULL value)
 	init_specs(specs);
 	get_flags(format, specs);
 	specs->width = ft_atoi_move(format);
-	get_prec(format, specs);
+	get_preci(format, specs);
 	get_type(format, specs);
 	return (parse_struct(specs, value));
 }
@@ -68,15 +68,45 @@ int		sum_struct(t_arg *specs)
 	return (res);
 }
 
+void	set_data_len(t_arg *specs, LL value)
+{
+	if (specs->type == 'd' || specs->type == 'i')
+	{
+		if (specs->l == 2)
+			specs->data_len = get_lllen((LL) value);
+		else if (specs->l == 1)
+			specs->data_len = get_llen((L) value);
+		else if (specs->l == 0)
+			specs->data_len = get_len((int) value);
+	}
+	else if (specs->type == 'c')
+		specs->data_len = 1;
+	else if (specs->type == 's')
+		specs->type = ft_strlen((char *) value);
+}
+
+int		invalid_type(void)
+{
+	/*TODO: think about what happens when types are invalid*/
+	return (-1);
+}
+
 int		parse_struct(t_arg *specs, ULL value)
 {
+	if (specs->type == '%')
+		format_char(specs, '%');
+	else if (specs->type == 'c')
+		format_char(specs, (char) value);
 	/*tous les differents types*/
 	/*realloc si necessaire*/
 	/*why 100?? ==> len max(width, actual_len)*/
 	/*if (specs->type == 'u')
 		tmp = ft_itoa_spec(specs, (ULL)value);*/
-	if (specs->type == 'd' || specs->type == 'i')
+	else if (specs->type == 'u')
+		format_unsigned(specs, (ULL) value);
+	else if (specs->type == 'd' || specs->type == 'i')
 		format_int(specs, (LL)value);
-	printf("Origin before sum_struct: (%s)\n", specs->origin);
+	else
+		return (invalid_type());
 	return (sum_struct(specs));
 }

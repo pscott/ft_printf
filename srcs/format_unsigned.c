@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_int.c                                       :+:      :+:    :+:   */
+/*   format_unsigned.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 15:53:40 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 15:57:40 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_int_left(int perc_len, t_arg *specs, LL value)
+void	fill_unsigned_left(int perc_len, t_arg *specs, ULL value)
 {
 	char	sign;
 	char	*nb;
 
-	sign = value >= 0 ? '+' : '-';
-	if (specs->plus || value < 0)
+	sign = '+';
+	if (specs->plus)
 	{
 		printf("ah\n");
 		*specs->string = sign;
@@ -38,16 +38,14 @@ void	fill_int_left(int perc_len, t_arg *specs, LL value)
 	free(nb);
 }
 
-int		sign_len(t_arg *specs, LL value)
+int		unsigned_len(t_arg *specs, ULL value)
 {
 	if (specs->plus)
-		return (1);
-	if (value < 0)
 		return (1);
 	return (0);
 }
 
-void	fill_int(int perc_len, t_arg *specs, LL value)
+void	fill_unsigned(int perc_len, t_arg *specs, ULL value)
 {
 	char	sign;
 	char	*nb;
@@ -55,7 +53,7 @@ void	fill_int(int perc_len, t_arg *specs, LL value)
 	sign = value >= 0 ? '+' : '-';
 	if (specs->fill == '0')
 	{
-		if (specs->plus || value < 0)
+		if (specs->plus)
 		{
 			*specs->string = sign;
 			specs->string++;
@@ -69,7 +67,7 @@ void	fill_int(int perc_len, t_arg *specs, LL value)
 	}
 	if (specs->fill == ' ')
 	{
-		if (specs->plus || value < 0)
+		if (specs->plus)
 		{
 			*specs->string = sign;
 			specs->string++;
@@ -83,7 +81,7 @@ void	fill_int(int perc_len, t_arg *specs, LL value)
 
 
 
-void	format_int(t_arg *specs, LL value)
+void	format_unsigned(t_arg *specs, ULL value)
 {
 	int		 perc_len;
 
@@ -94,7 +92,7 @@ void	format_int(t_arg *specs, LL value)
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
-		fill_int_left(perc_len, specs, value);
+		fill_unsigned_left(perc_len, specs, value);
 	else
-		fill_int(perc_len, specs, value);
+		fill_unsigned(perc_len, specs, value);
 }
