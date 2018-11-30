@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstappend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/11 17:00:23 by pscott            #+#    #+#             */
+/*   Updated: 2018/11/11 17:18:47 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstappend(t_list **lst, t_list *new)
 {
-	ULL i;
-	char *str;
-	char *c;
-
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	if (lst == NULL || *lst == NULL)
+		return ;
+	while ((*lst)->next)
+		*lst = (*lst)->next;
+	(*lst)->next = new;
 }

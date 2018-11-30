@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/08 15:01:12 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/13 15:55:48 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+int		ft_strnequ(const char *s1, const char *s2, size_t n)
 {
-	ULL i;
-	char *str;
-	char *c;
-
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	if (n == 0)
+		return (1);
+	return ((s1 && s2) ? (ft_strncmp(s1, s2, n) == 0) : 0);
 }

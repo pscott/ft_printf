@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/08 17:59:59 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/10 15:44:31 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_putstr(const char *s)
 {
-	ULL i;
-	char *str;
-	char *c;
-
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	ft_putstr_fd(s, 1);
 }

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/06 19:26:16 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/06 19:29:44 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	ULL i;
-	char *str;
-	char *c;
-
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	ft_memcpy(dst, src, ft_strlen(src) + 1);
+	return (dst);
 }

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/08 14:45:31 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/13 15:26:56 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	ULL i;
-	char *str;
-	char *c;
+	int n;
 
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	if (!s || !f)
+		return ;
+	n = ft_strlen(s);
+	while (n--)
+		f(n, s + n);
 }

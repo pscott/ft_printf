@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 16:29:47 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 17:40:50 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	fill_int_left(int perc_len, t_arg *specs, LL value)
 	sign = value >= 0 ? '+' : '-';
 	if (specs->plus || value < 0)
 	{
-		printf("ah\n");
 		*specs->string = sign;
 		specs->string++;
 		specs->data_len--;

@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/08 14:56:12 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/12 12:09:04 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	ULL i;
-	char *str;
-	char *c;
+	int		n;
+	char	*fresh;
 
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	n = (s) ? ft_strlen(s) : 0;
+	if (!(fresh = ft_strnew(n)))
+		return (NULL);
+	while (n--)
+		fresh[n] = f(n, *(s + n));
+	return (fresh);
 }

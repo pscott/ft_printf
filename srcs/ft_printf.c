@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 14:28:55 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 17:47:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int		ft_printf(const char *restrict f, ...)
 	while (*f)
 	{
 		if (*f == '%')
-		{
 			handle_perc((char **)&f, specs, va_arg(arg, ULL));
-		}
 		else
 		{
 			*(specs->string) = *f;

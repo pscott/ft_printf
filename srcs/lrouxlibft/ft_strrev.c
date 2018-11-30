@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/07 13:26:36 by pscott            #+#    #+#             */
+/*   Updated: 2018/11/11 13:28:31 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strrev(const char *s)
 {
-	ULL i;
-	char *str;
-	char *c;
+	size_t	len;
+	size_t	i;
+	char	*res;
 
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	if (!s)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s);
+	res = ft_strnew(len);
+	while (len - i > 0)
+	{
+		res[i] = s[len - i - 1];
+		i++;
+	}
+	return (res);
 }

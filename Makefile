@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/11/30 16:47:32 by pscott           ###   ########.fr        #
+#    Updated: 2018/11/30 17:43:48 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ all: $(NAME)
 
 d: all
 	@gcc main.c $(INCLDIR) $(NAME)
-	@./a.out
+	@./a.out | cat -e
 
 val:
 	@gcc main.c $(INCLDIR) $(NAME)

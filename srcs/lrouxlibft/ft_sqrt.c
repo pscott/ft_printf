@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:44:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/11/22 11:04:35 by lroux             #+#    #+#             */
+/*   Updated: 2018/11/22 11:04:57 by lroux            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+unsigned int	ft_sqrt(unsigned int nb)
 {
-	ULL i;
-	char *str;
-	char *c;
+	unsigned int a;
+	unsigned int b;
 
-	str = ":%d:\n";
-	i = (int)2147483647;
-	c = "azerty";
-
-	ft_printf(str, i);
-	/*printf(str, c);*/
+	a = 0x8000;
+	b = 0x8000;
+	while (1)
+	{
+		if (b * b > nb)
+			b ^= a;
+		a >>= 1;
+		if (a == 0)
+			return (b);
+		b |= a;
+	}
 }
