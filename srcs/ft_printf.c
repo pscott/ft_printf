@@ -6,41 +6,42 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 20:42:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 13:07:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict format, ...)
+int		ft_printf(const char *restrict f, ...)
 {
-	va_list	int_arg_pointer;
+	va_list	arg;
 	t_arg	*specs;
 	int		total_len;
 
 	specs = NULL;
-	va_start(int_arg_pointer, format);
-	if (!format)
+	va_start(arg, f);
+	if (!f)
 		return (-1);
-	if (!(specs = create_specs((char **)&format, specs)))
+	if (!(specs = create_specs(specs)))
 		return (-1);
-	while (*format)
+	while (*f)
 	{
-		if (*format == '%')
-			format = format + parse_struct(specs, va_arg(int_arg_pointer, ULL));
+		if (*f == '%')
+		{
+			handle_perc((char **)&f, specs, va_arg(arg, ULL));
+		}
 		else
 		{
-			*(specs->string) = *format;
-			format++;
+			*(specs->string) = *f;
+			f++;
+			specs->string++;
 			specs->total_len++;
 		}
 	}
-	va_end(int_arg_pointer);
+	va_end(arg);
 	total_len = ft_strlen(specs->origin);
 	write(1, specs->origin, total_len);
-	printf("\nAddress: %p\n", specs->origin);
 	free(specs->origin);
 	free(specs);
-	/* return value not good*/
 	return (total_len);
 }

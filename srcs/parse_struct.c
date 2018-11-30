@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 20:42:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 12:50:14 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,37 @@ char	*ft_itoa_spec(t_arg *specs, long long int value)
 	return (res);
 }
 
-int		parse_struct(t_arg *specs, unsigned long long int value)
+int		handle_perc(char **format, t_arg *specs, ULL value)
 {
-	/*why 50?? ==> len max(width, actual_len)*/
+	(*format)++;
+	init_specs(specs);
+	get_flags(format, specs);
+	specs->width = ft_atoi_move(format);
+	get_prec(format, specs);
+	get_type(format, specs);
+	return (parse_struct(specs, value));
+}
+
+int		sum_struct(t_arg *specs)
+{
+	int res;
+
+	res = specs->type ? 1 : 0;
+	res += specs->width_len + specs->precision_len + specs->fill_len \
+		   + specs->left + specs->plus + specs->hash + specs->l + specs->h \
+		   + specs->u;
+	return (res);
+}
+
+int		parse_struct(t_arg *specs, ULL value)
+{
+	/*tous les differents types*/
+	/*realloc si necessaire*/
+	/*why 100?? ==> len max(width, actual_len)*/
 	/*if (specs->type == 'u')
 		tmp = ft_itoa_spec(specs, (ULL)value);*/
 	if (specs->type == 'd' || specs->type == 'i')
 		format_int(specs, (LL)value);
-	printf("\nAddress: %p\n", specs->origin);
-	printf("!%c!", specs->type);
-	return (2);
+	printf("Origin before sum_struct: (%s)\n", specs->origin);
+	return (sum_struct(specs));
 }

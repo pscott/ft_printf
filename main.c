@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 19:51:11 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 13:37:53 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	main(void)
 	ULL i;
 	char *str;
 
-	str = ":%d\n";
-	i = 125;
-	i = (int)i;
+	str = ":%lld:\n";
+	i = 124;
+	i = (long long int)i;
 
-	ft_printf(str, i);
-	   printf(str, i);
+	printf("%d\n", ft_printf(str, i));
+	printf("%d\n", printf(str, i));
 }

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:39:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 20:42:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 13:37:53 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,19 @@ void	get_flags(char **format, t_arg *specs)
 	{
 		c = **format;
 		if (c == '-')
-			specs->left = 1;
+			specs->left += 1;
 		else if (c == '+')
-			specs->plus = 1;
+			specs->plus += 1;
 		else if (c == '#')
-			specs->hash= 1;
+			specs->hash += 1;
 		else if (c == '%')
-			specs->perc = 1;
+			specs->perc += 1;
 		else if (c == '0')
 			specs->fill = '0';
+		if (c == '0' || c == ' ')
+			specs->fill_len += 1;
 		(*format)++;
 	}
-}
-
-int		get_len(LL value)
-{
-	int len;
-
-	len = 0;
-	if (value < 0)
-	{
-		len++;
-		value = -value;
-	}
-	while (value > 0)
-	{
-		len++;
-		value /= 10;
-	}
-	return (len == 0 ? 1 : len);
 }
 
 int		max(int a, int b)
@@ -119,8 +103,11 @@ void	init_specs(t_arg *specs)
 {
 	specs->type = 0;
 	specs->width = 0;
+	specs->width_len = 0;
 	specs->precision = 0;
+	specs->precision_len= 0;
 	specs->fill = ' ';
+	specs->fill_len = 0;
 	specs->left = 0;
 	specs->plus = 0;
 	specs->hash = 0;
@@ -128,38 +115,16 @@ void	init_specs(t_arg *specs)
 	specs->l = 0;
 	specs->h = 0;
 	specs->u = 0;
-	specs->origin = specs->string;
+	specs->nb_len = 0;
 	specs->error = 0;
 }
 
-void	print_spec(t_arg *specs)
+t_arg	*create_specs(t_arg *specs)
 {
-	printf("\nType: %c\tWidth: %d\tPrecision: %d\tFill: %c\tLeft: %i\tPlus: %i\tHash: %i\tPerc: %i\n", specs->type, specs->width, specs->precision, specs->fill, specs->left, specs->plus, specs->hash, specs->perc);
-	return ;
-}
-
-t_arg	*create_specs(char **format, t_arg *specs)
-{
-	/* need **format++ mais pas ici */
-	/*create get_info that only retrives info and init_specs
-	 * create create_specs that mallocs stuff*/
-	if (!specs)
-	{
-		if (!(specs = (t_arg *)malloc(sizeof(t_arg)))\
-				|| !(specs->string = ft_strnew(100)))
-			return (NULL);
-	}
+	if (!(specs = (t_arg *)malloc(sizeof(t_arg)))\
+			|| !(specs->string = ft_strnew(100)))
+		return (NULL);
 	init_specs(specs);
-	get_flags(format, specs);
-	if (specs->perc)
-		return (specs);
-	specs->width = ft_atoi_move(format);
-	get_prec(format, specs);
-	get_type(format, specs);
-	/* GERER LE CAS OU ON A specs->PERC */
-	//print_spec(specs);
+	specs->origin = specs->string;
 	return (specs);
-	/*
-	   get_precision(format, specs);
-	   get_type(format, specs);*/
 }
