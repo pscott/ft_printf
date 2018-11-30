@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:10:50 by pscott           ###   ########.fr       */
+/*   Updated: 2018/11/30 17:13:07 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	set_data_len(t_arg *specs, LL value)
 	else if (specs->type == 'c')
 		specs->data_len = 1;
 	else if (specs->type == 's')
-		specs->data_len = ft_strlen(value);
+		specs->data_len = ft_strlen((char *)value);
 	else if (specs->type == 'u')
 	{
 		if (specs->l == 2)
@@ -121,4 +121,4 @@ int		parse_struct(t_arg *specs, ULL value)
 	else
 		return (invalid_type());
 	return (sum_struct(specs));
-j
+}
