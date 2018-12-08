@@ -12,23 +12,16 @@
 
 #include "ft_printf.h"
 
-void	fill_string(int perc_len, t_arg *specs, char *value)
+void	fill_string(t_arg *specs, char *value)
 {
 	int		data_l;
+	int		perc_len;
 	char	fill;
 
-	if (specs->precision)
-	{
-		if (specs->data_len > specs->precision_len)
-		{
-			data_l = specs->precision_len;
-			perc_len = 0;
-		}
-		else
-			data_l = specs->data_len;
-	}
-	else
-		data_l = specs->data_len > specs->precision_len ? specs->precision_len : specs->data_len;
+	data_l = specs->precision ? specs->precision_len : specs->data_len;
+	if (*value == 0)
+		data_l = 0;
+	perc_len = specs->width ? specs->width : data_l;
 	fill = specs->fill;
 	while (data_l < perc_len)
 	{
@@ -40,23 +33,16 @@ void	fill_string(int perc_len, t_arg *specs, char *value)
 	specs->string += data_l;
 }
 
-void	fill_string_left(int perc_len, t_arg *specs, char *value)
+void	fill_string_left(t_arg *specs, char *value)
 {
 	int		data_l;
+	int		perc_len;
 	char	fill;
 
-	if (specs->precision)
-	{
-		if (specs->data_len > specs->precision_len)
-		{
-			data_l = specs->precision_len;
-			perc_len = 0;
-		}
-		else
-			data_l = specs->data_len;
-	}
-	else
-		data_l = specs->data_len;
+	data_l = specs->precision ? specs->precision_len : specs->data_len;
+	if (*value == 0)
+		data_l = 0;
+	perc_len = specs->width ? specs->width : data_l;
 	ft_strncpy(specs->string, value, data_l);
 	specs->string += data_l;
 	fill = specs->fill;
@@ -70,13 +56,19 @@ void	fill_string_left(int perc_len, t_arg *specs, char *value)
 
 void	format_string(t_arg *specs, char *value)
 {
-	int perc_len;
+	char *nil;
 
-	perc_len = specs->width > specs->data_len ? specs->width : specs->data_len;
+	nil = "(null)";
+	//perc_len = specs->width > specs->data_len ? specs->width : specs->data_len;
+	if (value == NULL)
+	{
+		value = nil;
+		specs->data_len = 6;
+	}
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
-		fill_string_left(perc_len, specs, value);
+		fill_string_left(specs, value);
 	else
-		fill_string(perc_len, specs, value);
+		fill_string(specs, value);
 }

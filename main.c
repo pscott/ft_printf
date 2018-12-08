@@ -18,9 +18,9 @@ int	main(void)
 	char *str;
 	char *c;
 
-	str = "%.s";
+	str = "Hello % set oui\n";
 	i = (int)2147483647;
-	c = "abc";
+	c = NULL;
 
 	ft_printf(str, c);
 	printf(str, c);

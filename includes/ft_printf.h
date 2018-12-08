@@ -99,8 +99,8 @@ void		fill_char_left(int perc_len, t_arg *specs, char value);
 
 /* format_string.c */
 void		format_string(t_arg *specs, char *value);
-void		fill_string(int perc_len, t_arg *specs, char *value);
-void		fill_string_left(int perc_len, t_arg *specs, char *value);
+void		fill_string(t_arg *specs, char *value);
+void		fill_string_left(t_arg *specs, char *value);
 
 /* misc */
 void		clean_exit(char *str, t_arg *specs);

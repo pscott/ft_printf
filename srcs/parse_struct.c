@@ -48,6 +48,8 @@ char	*ft_itoa_spec(t_arg *specs, long long int value)
 
 int		handle_perc(char **format, t_arg *specs, ULL value)
 {
+	char *nil;
+
 	(*format)++;
 	init_specs(specs);
 	get_flags(format, specs);

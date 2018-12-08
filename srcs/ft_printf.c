@@ -37,7 +37,7 @@ int		ft_printf(const char *restrict f, ...)
 		}
 	}
 	va_end(arg);
-	total_len = ft_strlen(specs->origin);
+	total_len = specs->string - specs->origin;
 	write(1, specs->origin, total_len);
 	free(specs->origin);
 	free(specs);
