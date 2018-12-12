@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:10:52 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/12 17:34:26 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_arg
 	char			*string;
 	char			*origin;
 	int				error;
+	int				extra;
 }					t_arg;
 
 /* ft_printf */
@@ -83,6 +84,7 @@ int			get_len(int value);
 void		get_flags(char **format, t_arg *specs);
 void		get_type(char **format, t_arg *specs);
 void		get_preci(char **format, t_arg *specs);
+void		get_extra(char **format, t_arg *specs);
 
 /* format_int.c */
 void	format_int(t_arg *specs, LL value);

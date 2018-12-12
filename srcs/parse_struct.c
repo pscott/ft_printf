@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 17:47:21 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/12 17:34:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ char	*ft_itoa_spec(t_arg *specs, long long int value)
 
 int		handle_perc(char **format, t_arg *specs, ULL value)
 {
-	char *nil;
-
 	(*format)++;
 	init_specs(specs);
 	get_flags(format, specs);
 	specs->width = ft_atoi_move(format);
 	get_preci(format, specs);
+	get_extra(format, specs);
 	get_type(format, specs);
 	set_data_len(specs, value);
 	return (parse_struct(specs, value));
