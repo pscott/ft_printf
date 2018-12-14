@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   format_num.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lroux <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:18:54 by lroux             #+#    #+#             */
-/*   Updated: 2018/11/08 14:29:27 by lroux            ###   ########.fr       */
+/*   Created: 2018/12/14 17:28:04 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/14 17:37:40 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int		ft_toupper(int c)
+void	format_num(t_arg *specs, ULL value)
 {
-	return ((ft_islower(c) ? c - 0x20 : c));
+	if (specs->l == 2)
+		format_llint(specs, value);
+	else if (specs->l == 1)
+		format_lint(specs, value);
+	else
+		format_int(specs, value);
 }

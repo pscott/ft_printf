@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:02:54 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:31:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ int	main(void)
 	char *str;
 	char *c;
 
-	str = "%d\n";
-	i = (int)-2147483649;
+	str = "%d";
+	i = 2147483648;
 	c = "salut";
 
-	ft_printf(str, i);
-	printf(str, i);
+	ft_printf(str, 2147483648);
+	ft_putchar('\n');
+	printf(str, 2147483648);
 }

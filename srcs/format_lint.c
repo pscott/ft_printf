@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_int.c                                       :+:      :+:    :+:   */
+/*   format_lint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:48:30 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/14 17:17:48 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/14 17:39:11 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_int_left(int perc_len, t_arg *specs, int value)
+void	fill_lint_left(int perc_len, t_arg *specs, L value)
 {
 	char	sign;
 	char	*nb;
@@ -37,7 +37,7 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 	free(nb);
 }
 
-int		sign_len(t_arg *specs, int value)
+int		sign_llen(t_arg *specs, L value)
 {
 	if (specs->plus)
 		return (1);
@@ -46,7 +46,7 @@ int		sign_len(t_arg *specs, int value)
 	return (0);
 }
 
-void	fill_int(int perc_len, t_arg *specs, int value)
+void	fill_lint(int perc_len, t_arg *specs, L value)
 {
 	char	sign;
 	char	*nb;
@@ -80,7 +80,7 @@ void	fill_int(int perc_len, t_arg *specs, int value)
 	free(nb);
 }
 
-void	format_int(t_arg *specs, int value)
+void	format_lint(t_arg *specs, L value)
 {
 	int		 perc_len;
 
@@ -97,7 +97,7 @@ void	format_int(t_arg *specs, int value)
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
-		fill_int_left(perc_len, specs, value);
+		fill_lint_left(perc_len, specs, value);
 	else
-		fill_int(perc_len, specs, value);
+		fill_lint(perc_len, specs, value);
 }

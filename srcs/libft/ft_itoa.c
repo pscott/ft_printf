@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:50:48 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 16:56:33 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:43:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_len(long long int n)
+static int	get_len(int n)
 {
 	int len;
 
@@ -27,7 +27,7 @@ static int	get_len(long long int n)
 	return (len + 1);
 }
 
-static void	fill_itoa(long long int n, char *src, int len)
+static void	fill_itoa(int n, char *src, int len)
 {
 	while (n > 9)
 	{
@@ -38,7 +38,7 @@ static void	fill_itoa(long long int n, char *src, int len)
 	src[0] = n + '0';
 }
 
-char		*ft_itoa(long long int n)
+char		*ft_itoa(int n)
 {
 	char	*res;
 	int		len;

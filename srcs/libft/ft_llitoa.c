@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_llitoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:50:48 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 16:56:33 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/14 17:46:44 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/14 17:47:36 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	fill_itoa(long long int n, char *src, int len)
 	src[0] = n + '0';
 }
 
-char		*ft_itoa(long long int n)
+char		*ft_llitoa(long long int n)
 {
 	char	*res;
 	int		len;

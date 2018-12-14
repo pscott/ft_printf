@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 16:46:07 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:36:05 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,23 @@ void		get_preci(char **format, t_arg *specs);
 void		get_extra(char **format, t_arg *specs);
 
 /* format_int.c */
-void	format_int(t_arg *specs, LL value);
-int		sign_len(t_arg *spec, LL value);
+void	format_int(t_arg *specs, int value);
+int		sign_len(t_arg *spec, int value);
+
+/* format_lint.c */
+void	format_lint(t_arg *specs, L value);
+int		sign_llen(t_arg *spec, L value);
+
+/* format_llint.c */
+void	format_llint(t_arg *specs, LL value);
+int		sign_lllen(t_arg *spec, LL value);
 
 /* format_unsigned.c */
 void		format_unsigned(t_arg *specs, ULL value);
 int			unsigned_len(t_arg *spec, ULL value);
+
+/* format_num.c */
+void		format_num(t_arg *specs, ULL value);
 
 /* format_char.c */
 void		format_char(t_arg *specs, char value);

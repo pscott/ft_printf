@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:34:05 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 14:33:11 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:45:31 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 char			*ft_strmap(char const *s, char (*f)(char));
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			**ft_strsplit(char const *s, char c);
-char			*ft_itoa(long long int n);
+char			*ft_itoa(int n);
+char			*ft_litoa(long int n);
+char			*ft_llitoa(long long int n);
 char			*ft_uitoa(unsigned long long int n);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);

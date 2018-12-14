@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/12 17:57:26 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:32:12 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int		parse_struct(t_arg *specs, ULL value)
 	else if (specs->type == 'u')
 		format_unsigned(specs, (ULL) value);
 	else if (specs->type == 'd' || specs->type == 'i')
-		format_int(specs, (LL)value);
+		format_num(specs, value);
 	else if (specs->type == 's')
 		format_string(specs, (char *) value);
 	else
