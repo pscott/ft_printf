@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/12 17:54:12 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 16:29:07 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ void	get_flags(char **format, t_arg *specs)
 			specs->hash += 1;
 		else if (c == '0')
 		{
-			if (specs->fill == ' ')
-				specs->extra = 1;
-			specs->fill = '0';
+			if (specs->fill != ' ')
+				specs->fill = '0';
 		}
 		else if (c == ' ')
 		{
-			if (specs->fill == '0')
-				specs->extra = 1;
-			else
-				specs->fill = ' ';
+			set_extra(c, specs);
+			specs->fill = ' ';
 		}
 		if (c == '0' || c == ' ')
 			specs->fill_len += 1;
@@ -86,10 +83,11 @@ void	get_preci(char **format, t_arg *specs)
 
 void	get_extra(char **format, t_arg *specs)
 {
-	if (**format == ' ')
+	while (**format == ' ')
 	{
 		(*format)++;
 		if (specs->fill != 0)
-			specs->extra = 1;
+			set_extra(**format, specs);
 	}
+	set_extra(**format, specs);
 }

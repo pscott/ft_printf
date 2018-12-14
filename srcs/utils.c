@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:15:28 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 16:37:59 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 16:29:07 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,17 @@ int		is_valid_type(char c)
 int		max(int a, int b)
 {
 	return (a < b ? b : a);
+}
+
+void	set_extra(char c, t_arg *specs)
+{
+	if (!specs->extra)
+	{
+		if (c == ' ' && !specs->plus)
+			specs->extra = 1;
+		else
+			specs->extra = 0;
+	}
+	else if (specs->plus || specs->fill == '0')
+		specs->extra = 0;
 }

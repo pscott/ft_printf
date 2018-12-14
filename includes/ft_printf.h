@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/12 17:34:26 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 16:01:12 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_arg		*create_specs(t_arg *specs);
 int			valid_flags(char **format);
 int			is_valid_type(char c);
 int			max(int a, int b);
+void		set_extra(char c, t_arg *specs);
 
 /* spec_init.c */
 void		init_specs(t_arg *specs);
