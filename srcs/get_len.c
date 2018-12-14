@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 12:51:01 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 12:53:02 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 16:51:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int		get_len(int value)
 	int len;
 
 	len = 0;
+	if (value == 2147483648)
+		return (10);
+	if (value == -2147483649 || value == -2147483648)
+		return (11);
 	if (value < 0)
 	{
 		len++;

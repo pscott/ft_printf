@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 16:29:06 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/14 17:02:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	main(void)
 	char *str;
 	char *c;
 
-	str = "Hello% ++d et oui\n";
-	i = (int)42;
+	str = "%d\n";
+	i = (int)-2147483649;
 	c = "salut";
 
 	ft_printf(str, i);
