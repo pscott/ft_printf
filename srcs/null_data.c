@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   null_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 20:40:46 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/15 19:48:22 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/15 20:06:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int		null_data(t_arg *specs, ULL value)
 {
-	ULL i;
-	char *str;
-	char *c;
-
-	str = "%04.3d\n";
-	i = -2147483648;
-	c = "@moulitest: %5.3d\n";
-
-	ft_printf(c, 42);
-	   printf(c, 42);
+	if (specs->precision && specs->precision_len == 0 && value == 0)
+		return (1);
+	return (0);
 }

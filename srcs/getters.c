@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 18:49:35 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 20:40:14 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,16 @@ void	get_flags(char **format, t_arg *specs)
 			set_extra(c, specs);
 			specs->fill = ' ';
 		}
-		if (c == '0' || c == ' ')
+		else if (c == '0' || c == ' ')
 			specs->fill_len += 1;
+		else if (ft_isdigit(c))
+		{
+			if ((specs->width_len = ft_atoi_move(format)))
+			{
+				specs->width = 1;
+				(*format)--;
+			}
+		}
 		(*format)++;
 	}
 }
@@ -76,8 +84,7 @@ void	get_preci(char **format, t_arg *specs)
 	{
 		(*format)++;
 		specs->precision = 1;
-		if (ft_isdigit(**format))
-			specs->precision_len = ft_atoi_move(format);
+		get_preci_flags(format, specs);
 		specs->fill = ' ';
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 18:51:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 20:21:20 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,11 @@ char		*ft_hhitoa(short int n);
 void		clean_exit(char *str, t_arg *specs);
 int			ft_atoi_move(char **src);
 char		*ft_strcat_free(char *s1, char *s2);
+
+/* null_data.c */
+int			null_data(t_arg *specs, ULL value);
+
+/* get_preci_flags */
+void		get_preci_flags(char **format, t_arg *specs);
 
 #endif
