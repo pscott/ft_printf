@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 16:29:07 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:49:35 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	get_preci(char **format, t_arg *specs)
 		specs->precision = 1;
 		if (ft_isdigit(**format))
 			specs->precision_len = ft_atoi_move(format);
+		specs->fill = ' ';
 	}
 }
 

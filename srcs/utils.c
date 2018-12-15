@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:15:28 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 16:29:07 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 17:24:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int		is_valid_type(char c)
 			|| c == 'X' || c == 'u' || c == '%')
 		return (1);
 	return (0);
+}
+
+int		min(int a, int b)
+{
+	return (a < b ? a : b);
 }
 
 int		max(int a, int b)

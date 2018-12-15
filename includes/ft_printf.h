@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:36:05 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:51:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_arg		*create_specs(t_arg *specs);
 /* utils.c */
 int			valid_flags(char **format);
 int			is_valid_type(char c);
+int			min(int a, int b);
 int			max(int a, int b);
 void		set_extra(char c, t_arg *specs);
 
@@ -115,6 +116,12 @@ void		fill_char_left(int perc_len, t_arg *specs, char value);
 void		format_string(t_arg *specs, char *value);
 void		fill_string(t_arg *specs, char *value);
 void		fill_string_left(t_arg *specs, char *value);
+
+/* ft_hitoa.c */
+char		*ft_hitoa(short int n);
+
+/* ft_hhitoa.c */
+char		*ft_hhitoa(short int n);
 
 /* misc */
 void		clean_exit(char *str, t_arg *specs);

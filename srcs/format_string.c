@@ -6,11 +6,12 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:23:51 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 18:45:52 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 17:23:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 void	fill_string(t_arg *specs, char *value)
 {
@@ -18,10 +19,10 @@ void	fill_string(t_arg *specs, char *value)
 	int		perc_len;
 	char	fill;
 
-	data_l = specs->precision ? specs->precision_len : specs->data_len;
+	data_l = specs->precision ? min(specs->precision_len, specs->data_len) : specs->data_len;
 	if (*value == 0)
 		data_l = 0;
-	perc_len = specs->width ? specs->width : data_l;
+	perc_len = max(specs->width_len, data_l);
 	fill = specs->fill;
 	while (data_l < perc_len)
 	{
@@ -39,10 +40,10 @@ void	fill_string_left(t_arg *specs, char *value)
 	int		perc_len;
 	char	fill;
 
-	data_l = specs->precision ? specs->precision_len : specs->data_len;
+	data_l = specs->precision ? min(specs->precision_len, specs->data_len) : specs->data_len;
 	if (*value == 0)
 		data_l = 0;
-	perc_len = specs->width ? specs->width : data_l;
+	perc_len = max(specs->width_len, data_l);
 	ft_strncpy(specs->string, value, data_l);
 	specs->string += data_l;
 	fill = specs->fill;

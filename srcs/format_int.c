@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:48:30 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 18:50:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 		*specs->string = sign;
 		specs->string++;
 		specs->data_len--;
+		perc_len--;
+	}
+	while (specs->precision_len > specs->data_len)
+	{
+		*specs->string = '0';
+		specs->string++;
+		specs->precision_len--;
 		perc_len--;
 	}
 	nb = ft_itoa_spec(specs, value);
@@ -50,29 +57,35 @@ void	fill_int(int perc_len, t_arg *specs, int value)
 {
 	char	sign;
 	char	*nb;
+	int		sign_put;
 
 	sign = value >= 0 ? '+' : '-';
+	sign_put = sign_len(specs, value);
 	if (specs->fill == '0')
 	{
-		if (specs->plus || value < 0)
+		if (sign_put)
 		{
 			*specs->string = sign;
+			sign_put = 0;
 			specs->string++;
 		}
 	}
-	while (specs->data_len < perc_len)
+	while (perc_len > max(specs->precision_len + sign_len(specs, value), specs->data_len))
 	{
 		*specs->string = specs->fill;
+		specs->string++;
 		perc_len--;
+	}
+	if (sign_put)
+	{
+		*specs->string = sign;
 		specs->string++;
 	}
-	if (specs->fill == ' ')
+	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
 	{
-		if (specs->plus || value < 0)
-		{
-			*specs->string = sign;
-			specs->string++;
-		}
+		*specs->string = '0';
+		specs->precision_len--;
+		specs->string++;
 	}
 	nb = ft_itoa_spec(specs, value);
 	ft_strcat(specs->string, nb);
@@ -85,7 +98,13 @@ void	format_int(t_arg *specs, int value)
 	int		 perc_len;
 
 	set_data_len(specs, value);
-	perc_len = max(specs->data_len, specs->width);
+	if (specs->precision_len > specs->width_len)
+	{
+		perc_len = max(specs->data_len, specs->precision_len);
+		specs->fill = '0';
+	}
+	else
+		perc_len = max(specs->data_len, specs->width_len);
 	if (specs->extra && value > 0)
 	{
 		*specs->string = ' ';

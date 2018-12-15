@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:36:37 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 12:55:05 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 16:35:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	format_llint(t_arg *specs, LL value)
 	int		 perc_len;
 
 	set_data_len(specs, value);
-	perc_len = max(specs->data_len, specs->width);
+	perc_len = max(specs->data_len, specs->width_len);
 	if (specs->extra && value > 0)
 	{
 		*specs->string = ' ';
