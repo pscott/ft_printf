@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:17:48 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:39:11 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 12:38:55 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	fill_lint(int perc_len, t_arg *specs, L value)
 	}
 	nb = ft_itoa_spec(specs, value);
 	ft_strcat(specs->string, nb);
-	specs->string += specs->data_len - sign_len(specs, value);
+	specs->string += specs->data_len - sign_llen(specs, value);
 	free(nb);
 }
 
@@ -84,7 +84,6 @@ void	format_lint(t_arg *specs, L value)
 {
 	int		 perc_len;
 
-	set_data_len(specs, value);
 	perc_len = max(specs->data_len, specs->width);
 	if (specs->extra && value > 0)
 	{

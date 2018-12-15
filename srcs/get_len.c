@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 12:51:01 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:17:30 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 12:56:52 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		get_len(int value)
 	int len;
 
 	len = 0;
+	if (value == -2147483648)
+		return (11);
 	if (value < 0)
 	{
 		len++;
@@ -35,6 +37,8 @@ int		get_lllen(LL value)
 	int len;
 
 	len = 0;
+	if ((ULL) value == -9223372036854775808U)
+		return (20);
 	if (value < 0)
 	{
 		len++;

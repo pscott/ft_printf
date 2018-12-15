@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:32:12 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 11:53:34 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ char	*ft_itoa_spec(t_arg *specs, long long int value)
 	char *res;
 
 	if (specs->l == 2)
-		res = ft_itoa((LL)value);
+		res = ft_llitoa((LL)value);
 	else if (specs->l == 1)
-		res = ft_itoa((L)value);
+		res = ft_litoa((L)value);
 	else if (specs->h == 2)
 		res = ft_itoa((signed char)value);
 	else if (specs->h == 1)

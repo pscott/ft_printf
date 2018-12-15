@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:50:48 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:43:42 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/15 12:12:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	get_len(int n)
 	int len;
 
 	len = 0;
+	if (n == -2147483648)
+		return (10);
 	if (n < 0)
 		n = -n;
 	while (n > 9)
@@ -38,6 +40,21 @@ static void	fill_itoa(int n, char *src, int len)
 	src[0] = n + '0';
 }
 
+static char	*int_min(char *res)
+{
+	char	*str;
+	int		i;
+	
+	str = "2147483648";
+	i = 0;
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	return (res);
+}
+
 char		*ft_itoa(int n)
 {
 	char	*res;
@@ -46,6 +63,8 @@ char		*ft_itoa(int n)
 	len = get_len(n);
 	if (!(res = ft_strnew(len)))
 		return (NULL);
+	if (n == -2147483648)
+		return (int_min(res));
 	if (n < 0)
 		n = -n;
 	fill_itoa(n, res, len);
