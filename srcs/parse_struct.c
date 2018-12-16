@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 12:44:34 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 14:10:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,34 @@ void	set_data_len(t_arg *specs, LL value)
 		else
 			specs->data_len = get_len((int) value);
 	}
+	else if (specs->type == 'x')
+	{
+		if (specs->l == 2)
+			specs->conv_val = convert((ULL) value, 16, "0123456789abcdef");
+		else if (specs->l == 1)
+			specs->conv_val = convert((UL) value, 16, "0123456789abcdef");
+		else if (specs->h == 2)
+			specs->conv_val = convert((unsigned char) value, 16, "0123456789abcdef");
+		else if (specs->h == 1)
+			specs->conv_val = convert((short unsigned int) value, 16, "0123456789abcdef");
+		else
+			specs->conv_val = convert((unsigned int) value, 16, "0123456789abcdef");
+		specs->data_len = ft_strlen(specs->conv_val);
+	}
+	else if (specs->type == 'X')
+	{
+		if (specs->l == 2)
+			specs->conv_val = convert((ULL) value, 16, "0123456789ABCDEF");
+		else if (specs->l == 1)
+			specs->conv_val = convert((UL) value, 16, "0123456789ABCDEF");
+		else if (specs->h == 2)
+			specs->conv_val = convert((unsigned char) value, 16, "0123456789ABCDEF");
+		else if (specs->h == 1)
+			specs->conv_val = convert((short unsigned int) value, 16, "0123456789ABCDEF");
+		else
+			specs->conv_val = convert((unsigned int) value, 16, "0123456789ABCDEF");
+		specs->data_len = ft_strlen(specs->conv_val);
+	}
 	else if (specs->type == 'c')
 		specs->data_len = 1;
 	else if (specs->type == 's')
@@ -138,11 +166,13 @@ int		parse_struct(t_arg *specs, ULL value)
 	/*realloc si necessaire*/
 	/*why 100?? ==> len max(width, actual_len)*/
 	/*if (specs->type == 'u')
-		tmp = ft_itoa_spec(specs, (ULL)value);*/
+	  tmp = ft_itoa_spec(specs, (ULL)value);*/
 	else if (specs->type == 'u')
 		format_unsigned(specs, (ULL) value);
 	else if (specs->type == 'd' || specs->type == 'i')
 		format_num(specs, value);
+	else if (specs->type == 'x' || specs->type == 'X')
+		format_hex(specs, specs->conv_val);
 	else if (specs->type == 's')
 		format_string(specs, (char *) value);
 	else

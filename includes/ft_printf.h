@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 13:07:04 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 14:16:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ typedef struct		s_arg
 	int				u;
 	int				total_len;
 	int				data_len;
+	char			*conv_val;
 	char			*string;
 	char			*origin;
 	int				error;
 	int				extra;
 }					t_arg;
+
+/* converters.c */
+char	*convert(ULL num, int base, char *rep);
 
 /* ft_printf */
 int			ft_printf(const char *format, ...);
@@ -114,8 +118,9 @@ void		fill_char_left(int perc_len, t_arg *specs, char value);
 
 /* format_string.c */
 void		format_string(t_arg *specs, char *value);
-void		fill_string(t_arg *specs, char *value);
-void		fill_string_left(t_arg *specs, char *value);
+
+/* format_hex.c */
+void		format_hex(t_arg *specs, char *value);
 
 /* ft_hitoa.c */
 char		*ft_hitoa(short int n);

@@ -6,22 +6,22 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:22:44 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/24 16:19:20 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 14:06:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*convert(unsigned int num, int base)
+char	*convert(ULL num, int base, char *rep)
 {
-	static char	*rep = "0123456789abcdef";
-	static char	buffer[50];
+	static char	buffer[80];
 	char		*ptr;
 
-	// buffer[50], maybe get proper length ?
-	ptr = &buffer[50];
+	ptr = &buffer[80];
 	*ptr = 0;
 	ptr--;
+	if (num == 0)
+		*ptr = rep[num&base];
 	while (num)
 	{
 		*--ptr = rep[num%base];

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_string.c                                    :+:      :+:    :+:   */
+/*   format_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 16:23:51 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 14:05:51 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/16 14:04:45 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/16 14:16:12 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ static void	fill_string(t_arg *specs, char *value)
 	int		perc_len;
 	char	fill;
 
-	data_l = specs->precision ? min(specs->precision_len, specs->data_len) : specs->data_len;
+	data_l = specs->data_len;
+	perc_len = max(specs->width_len, data_l);
 	if (*value == 0)
 		data_l = 0;
-	perc_len = max(specs->width_len, data_l);
+
 	fill = specs->fill;
 	while (data_l < perc_len)
 	{
@@ -39,7 +40,7 @@ static void	fill_string_left(t_arg *specs, char *value)
 	int		perc_len;
 	char	fill;
 
-	data_l = specs->precision ? min(specs->precision_len, specs->data_len) : specs->data_len;
+	data_l = specs->data_len;
 	if (*value == 0)
 		data_l = 0;
 	perc_len = max(specs->width_len, data_l);
@@ -54,12 +55,11 @@ static void	fill_string_left(t_arg *specs, char *value)
 	}
 }
 
-void	format_string(t_arg *specs, char *value)
+void	format_hex(t_arg *specs, char *value)
 {
 	char *nil;
 
 	nil = "(null)";
-	//perc_len = specs->width > specs->data_len ? specs->width : specs->data_len;
 	if (value == NULL)
 	{
 		value = nil;
