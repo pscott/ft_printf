@@ -6,11 +6,12 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 16:57:00 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/29 16:59:07 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 12:29:34 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	get_len(unsigned long long n)
 {

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 20:21:20 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 13:07:04 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			ft_printf(const char *format, ...);
 /* parse_struct.c */
 int			parse_struct(t_arg *specs, ULL value);
 void		set_data_len(t_arg *specs, LL value);
+char		*ft_uitoa_spec(t_arg *specs, ULL value);
 char		*ft_itoa_spec(t_arg *specs, LL value);
 char		*unsigned_itoa(t_arg *specs, ULL value);
 int			handle_perc(char **fornat, t_arg *specs, ULL value);
@@ -90,7 +91,6 @@ void		get_extra(char **format, t_arg *specs);
 
 /* format_int.c */
 void	format_int(t_arg *specs, int value);
-int		sign_len(t_arg *spec, int value);
 
 /* format_lint.c */
 void	format_lint(t_arg *specs, L value);

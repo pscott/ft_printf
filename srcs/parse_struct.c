@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 20:40:14 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 12:44:34 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,24 @@ char	*unsigned_itoa(t_arg *specs, ULL value)
 	return (res);
 }
 
-char	*ft_itoa_spec(t_arg *specs, long long int value)
+char	*ft_uitoa_spec(t_arg *specs, ULL value)
+{
+	char *res;
+
+	if (specs->l == 2)
+		res = ft_uitoa((ULL)value);
+	else if (specs->l == 1)
+		res = ft_uitoa((UL)value);
+	else if (specs->h == 2)
+		res = ft_uitoa((unsigned char)value);
+	else if (specs->h == 1)
+		res = ft_uitoa((unsigned short int)value);
+	else
+		res = ft_uitoa((unsigned int)value);
+	return (res);
+}
+
+char	*ft_itoa_spec(t_arg *specs, LL value)
 {
 	char *res;
 
@@ -79,7 +96,11 @@ void	set_data_len(t_arg *specs, LL value)
 			specs->data_len = get_lllen((LL) value);
 		else if (specs->l == 1)
 			specs->data_len = get_llen((L) value);
-		else if (specs->l == 0)
+		else if (specs->h == 2)
+			specs->data_len = get_len((signed char) value);
+		else if (specs->h == 1)
+			specs->data_len = get_len((short int) value);
+		else
 			specs->data_len = get_len((int) value);
 	}
 	else if (specs->type == 'c')
@@ -92,7 +113,11 @@ void	set_data_len(t_arg *specs, LL value)
 			specs->data_len = get_ulllen((ULL) value);
 		else if (specs->l == 1)
 			specs->data_len = get_ullen((UL) value);
-		else if (specs->l == 0)
+		else if (specs->h == 2)
+			specs->data_len = get_ulen((unsigned char) value);
+		else if (specs->h == 1)
+			specs->data_len = get_ulen((unsigned short int) value);
+		else
 			specs->data_len = get_ulen((unsigned int) value);
 	}
 }

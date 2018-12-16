@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 20:36:20 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 13:07:27 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 	free(nb);
 }
 
-int		sign_len(t_arg *specs, int value)
+static int		sign_len(t_arg *specs, int value)
 {
 	if (specs->plus)
 		return (1);
