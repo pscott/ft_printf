@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 14:16:28 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 19:15:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,8 @@ int			null_data(t_arg *specs, ULL value);
 
 /* get_preci_flags */
 void		get_preci_flags(char **format, t_arg *specs);
+
+/* hex_helper */
+char		*ox_helper(t_arg *specs);
 
 #endif

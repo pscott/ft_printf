@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 14:04:45 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 14:16:12 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/16 19:30:00 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,28 @@ static void	fill_string(t_arg *specs, char *value)
 	perc_len = max(specs->width_len, data_l);
 	if (*value == 0)
 		data_l = 0;
-
 	fill = specs->fill;
-	while (data_l < perc_len)
+	if (specs->fill == '0' && specs->hash && value[0] != '0')
+	{
+		ft_strncat(specs->string, "0x", 2);
+		specs->string += 2;
+		perc_len -= 2;
+	}
+	while (perc_len > max(specs->precision_len, specs->data_len) + (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
 	{
 		*specs->string = fill;
 		perc_len--;
+		specs->string++;
+	}
+	if (specs->fill != '0' && specs->hash && value[0] != '0')
+	{
+		ft_strncat(specs->string, ox_helper(specs), 2);
+		specs->string += 2;
+	}
+	while (specs->precision_len > specs->data_len)
+	{
+		*specs->string = '0';
+		specs->precision_len--;
 		specs->string++;
 	}
 	ft_strncat(specs->string, value, data_l);
@@ -38,18 +54,29 @@ static void	fill_string_left(t_arg *specs, char *value)
 {
 	int		data_l;
 	int		perc_len;
-	char	fill;
 
 	data_l = specs->data_len;
 	if (*value == 0)
 		data_l = 0;
 	perc_len = max(specs->width_len, data_l);
+	if (specs->hash && value[0] != '0')
+	{
+		ft_strncat(specs->string, ox_helper(specs), 2);
+		specs->string += 2;
+		perc_len -= 2;
+	}
+	while (specs->precision && perc_len > min(specs->precision_len, specs->data_len) + (specs->hash && value[0] != '0') * 2)
+	{
+		*specs->string = '0';
+		specs->string++;
+		specs->precision_len--;
+		perc_len--;
+	}
 	ft_strncat(specs->string, value, data_l);
 	specs->string += data_l;
-	fill = specs->fill;
 	while (data_l < perc_len)
 	{
-		*specs->string = fill;
+		*specs->string = ' ';
 		perc_len--;
 		specs->string++;
 	}

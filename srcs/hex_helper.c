@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hex_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 19:30:04 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/16 19:12:15 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/16 19:15:51 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+char	*ox_helper(t_arg *specs)
 {
-	ULL i;
-	char *c;
+	char *one;
 
-	i = -2147483648;
-	c = "%#08x\n";
-
-	ft_printf(c, 42);
-	   printf(c, 42);
+	if (specs->type == 'x' || specs->type == 'o')
+	{
+		one = "0x";
+		return (one);
+	}
+	else if (specs->type == 'X' || specs->type == 'O')
+	{
+		one = "0X";
+		return (one);
+	}
+	return (NULL);
 }
