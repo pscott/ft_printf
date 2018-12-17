@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 14:04:45 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 19:30:00 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/17 19:08:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static void	fill_string(t_arg *specs, char *value)
 
 	data_l = specs->data_len;
 	perc_len = max(specs->width_len, data_l);
-	if (*value == 0)
+	if (value[0] == '0' && specs->precision && specs->precision_len == 0)
 		data_l = 0;
 	fill = specs->fill;
 	if (specs->fill == '0' && specs->hash && value[0] != '0')
 	{
-		ft_strncat(specs->string, "0x", 2);
+		ft_strncat(specs->string, ox_helper(specs), 2);
 		specs->string += 2;
 		perc_len -= 2;
 	}
-	while (perc_len > max(specs->precision_len, specs->data_len) + (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
+	while ((data_l != 0 || specs->width) && perc_len > max(specs->precision_len, data_l) + (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
 	{
-		*specs->string = fill;
+		*specs->string = specs->fill;
 		perc_len--;
 		specs->string++;
 	}
@@ -40,7 +40,7 @@ static void	fill_string(t_arg *specs, char *value)
 		ft_strncat(specs->string, ox_helper(specs), 2);
 		specs->string += 2;
 	}
-	while (specs->precision_len > specs->data_len)
+	while (specs->precision_len > data_l)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
