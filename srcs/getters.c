@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:26:33 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:45:40 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	get_flags(char **format, t_arg *specs)
 {
 	char c;
 
-	while (valid_flags(format))
+	while (**format)
 	{
+		if (is_type(format, specs, 0))
+			return ;
 		c = **format;
 		if (c == '-')
 			specs->left += 1;
@@ -35,6 +37,7 @@ void	get_flags(char **format, t_arg *specs)
 			set_extra(c, specs);
 			specs->fill = ' ';
 		}
+		//???
 		else if (c == '0' || c == ' ')
 			specs->fill_len += 1;
 		else if (ft_isdigit(c))
@@ -42,7 +45,7 @@ void	get_flags(char **format, t_arg *specs)
 			if ((specs->width_len = ft_atoi_move(format, specs)))
 			{
 				specs->width = 1;
-				(*format)--;
+				increm_string(format, NULL, -1, specs);
 			}
 		}
 		increm_string(format, NULL, 1, specs);
@@ -54,28 +57,42 @@ void	get_lh(char **format, t_arg *specs)
 	int i;
 
 	i = 0;
-	while (i < 2)
+	while (**format == 'h' || **format  == 'l')
 	{
-		if ((*format)[i] == 'h')
+		if (**format == 'h')
 			specs->h++;
-		else if ((*format)[i] == 'l')
+		else if (**format == 'l')
 			specs->l++;
 		i++;
+		increm_string(format, NULL, 1, specs);
 	}
 	/* gerer les cas d'erreur pls */
 	if (specs->h && specs->l)
 		specs->error = 1;
-	(*format) = (*format) + max(specs->h, specs->l) + specs->u;
+	if (specs->h > 2)
+		specs->h = 2;
+	if (specs->l > 2)
+		specs->l = 2;
+	increm_string(format, NULL, i, specs);
 }
 
-void	get_type(char **format, t_arg *specs)
+int		is_type(char **format, t_arg *specs, int modif)
 {
+	char c;
+
+	c = **format;
 	get_lh(format, specs);
-	/*gerer les cas d'erreur pls */
-	if (!is_valid_type(**format))
-		specs->error = 1;
-	specs->type = **format;
-	increm_string(format, NULL, 1, specs);
+	if (modif == 0 && c == '.')
+		return (1);
+	if (c == 'i' || c == 'd' || c == 'p' ||
+			c == 'f' || c == 'x' || c == 'X' || c == 'o' || c == 's' || c == 'c')
+	{
+		specs->type = **format;
+		/*gerer les cas d'erreur pls */
+		increm_string(format, NULL, 1, specs);
+		return (1);
+	}
+	return (0);
 }
 
 void	get_preci(char **format, t_arg *specs)

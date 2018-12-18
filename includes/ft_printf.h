@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 14:54:16 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:45:39 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct		s_arg
 	int				hash;
 	int				l;
 	int				h;
-	int				u;
 	int				this_len;
 	int				total_len;
 	int				data_len;
@@ -91,7 +90,7 @@ int			get_len(int value);
 
 /*getters.c*/
 void		get_flags(char **format, t_arg *specs);
-void		get_type(char **format, t_arg *specs);
+int			is_type(char **format, t_arg *specs, int modif);
 void		get_preci(char **format, t_arg *specs);
 void		get_extra(char **format, t_arg *specs);
 

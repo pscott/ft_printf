@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 20:19:08 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:29:24 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:45:38 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	get_preci_flags(char **format, t_arg *specs)
 {
 	char c;
 
-	while (valid_flags(format))
+	while (**format)
 	{
+		if (is_type(format, specs, 1))
+			return ;
 		c = **format;
 		if (c == '-')
 			specs->left += 1;
@@ -35,6 +37,7 @@ void	get_preci_flags(char **format, t_arg *specs)
 			set_extra(c, specs);
 			specs->fill = ' ';
 		}
+		//????
 		else if (c == '0' || c == ' ')
 			specs->fill_len += 1;
 		else if (ft_isdigit(c))

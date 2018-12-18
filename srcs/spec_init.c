@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/12 17:37:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:10:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	init_specs(t_arg *specs)
 	specs->hash = 0;
 	specs->l = 0;
 	specs->h = 0;
-	specs->u = 0;
+	specs->total_len = 0;
 	specs->data_len = 0;
 	specs->error = 0;
+	specs->mall_len = 0;
 	specs->extra= 0;
 }
 

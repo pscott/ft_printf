@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:24:59 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 15:36:35 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int		handle_perc(char **format, t_arg *specs, ULL value)
 	get_flags(format, specs);
 	get_preci(format, specs);
 	get_extra(format, specs);
-	get_type(format, specs);
 	set_data_len(specs, value);
 	if (!specs->fill)
 		specs->fill = ' ';
@@ -83,8 +82,7 @@ int		sum_struct(t_arg *specs)
 
 	res = specs->type ? 1 : 0;
 	res += specs->width_len + specs->precision_len + specs->fill_len \
-		   + specs->left + specs->plus + specs->hash + specs->l + specs->h \
-		   + specs->u;
+		   + specs->left + specs->plus + specs->hash + specs->l + specs->h;
 	return (res);
 }
 
