@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   increm_string.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 14:53:06 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/18 12:59:19 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/18 13:32:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+void		increm_string(char **s1, char *s2, int len, t_arg *specs)
 {
-	ULL i;
-	char *c;
-
-	i = -2147483648;
-	c = "%#.o\n";
-
-
-	ft_printf(c, 0);
-	   printf(c, 0);
+	if (s1)
+		*s1 += len;
+	if (s2)
+	{
+		specs->string += len;
+		specs->this_len++;
+	}
+	specs->total_len++;
+	//if (total_len > specs->mall_len - 1) -> realloc
 }

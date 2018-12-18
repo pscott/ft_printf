@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 11:30:57 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 13:24:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 
 int		handle_perc(char **format, t_arg *specs, ULL value)
 {
-	(*format)++;
+	increm_string(format, NULL, 1, specs);
 	init_specs(specs);
 	get_flags(format, specs);
 	get_preci(format, specs);
@@ -134,15 +134,15 @@ void	set_data_len(t_arg *specs, LL value)
 	else if (specs->type == 'o')
 	{
 		if (specs->l == 2)
-			specs->conv_val = convert((ULL) value, 2, "01");
+			specs->conv_val = convert((ULL) value, 8, "012345678");
 		else if (specs->l == 1)
-			specs->conv_val = convert((UL) value, 2, "01");
+			specs->conv_val = convert((UL) value, 8, "012345678");
 		else if (specs->h == 2)
-			specs->conv_val = convert((unsigned char) value, 2, "01");
+			specs->conv_val = convert((unsigned char) value, 8, "012345678");
 		else if (specs->h == 1)
-			specs->conv_val = convert((short unsigned int) value, 2, "01");
+			specs->conv_val = convert((short unsigned int) value, 8, "012345678");
 		else
-			specs->conv_val = convert((unsigned int) value, 2, "01");
+			specs->conv_val = convert((unsigned int) value, 8, "012345678");
 		specs->data_len = ft_strlen(specs->conv_val);
 	}
 	else if (specs->type == 'c')
@@ -178,9 +178,6 @@ int		parse_struct(t_arg *specs, ULL value)
 		format_char(specs, (char) value);
 	/*tous les differents types*/
 	/*realloc si necessaire*/
-	/*why 100?? ==> len max(width, actual_len)*/
-	/*if (specs->type == 'u')
-	  tmp = ft_itoa_spec(specs, (ULL)value);*/
 	else if (specs->type == 'u')
 		format_unsigned(specs, (ULL) value);
 	else if (specs->type == 'd' || specs->type == 'i')

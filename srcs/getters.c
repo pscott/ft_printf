@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 13:20:15 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 13:26:33 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	get_flags(char **format, t_arg *specs)
 			specs->fill_len += 1;
 		else if (ft_isdigit(c))
 		{
-			if ((specs->width_len = ft_atoi_move(format)))
+			if ((specs->width_len = ft_atoi_move(format, specs)))
 			{
 				specs->width = 1;
 				(*format)--;
 			}
 		}
-		(*format)++;
+		increm_string(format, NULL, 1, specs);
 	}
 }
 
@@ -75,14 +75,14 @@ void	get_type(char **format, t_arg *specs)
 	if (!is_valid_type(**format))
 		specs->error = 1;
 	specs->type = **format;
-	(*format)++;
+	increm_string(format, NULL, 1, specs);
 }
 
 void	get_preci(char **format, t_arg *specs)
 {
 	if (**format == '.')
 	{
-		(*format)++;
+		increm_string(format, NULL, 1, specs);
 		specs->precision = 1;
 		get_preci_flags(format, specs);
 		specs->fill = ' ';
@@ -93,7 +93,7 @@ void	get_extra(char **format, t_arg *specs)
 {
 	while (**format == ' ')
 	{
-		(*format)++;
+		increm_string(format, NULL, 1, specs);
 		if (specs->fill != 0)
 			set_extra(**format, specs);
 	}

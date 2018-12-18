@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 11:27:33 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:54:16 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ typedef struct		s_arg
 	int				l;
 	int				h;
 	int				u;
+	int				this_len;
 	int				total_len;
 	int				data_len;
 	char			*conv_val;
 	char			*string;
 	char			*origin;
 	int				error;
+	int				mall_len;
 	int				extra;
 }					t_arg;
 
@@ -128,21 +130,26 @@ char		*ft_hitoa(short int n);
 /* ft_hhitoa.c */
 char		*ft_hhitoa(short int n);
 
-/* misc */
+/* ft_atoi_move.c*/
+int			ft_atoi_move(char **src, t_arg *specs);
+
+
 void		clean_exit(char *str, t_arg *specs);
-int			ft_atoi_move(char **src);
 char		*ft_strcat_free(char *s1, char *s2);
 
 /* null_data.c */
 int			null_data(t_arg *specs, ULL value);
 
-/* get_preci_flags */
+/* get_preci_flags.c */
 void		get_preci_flags(char **format, t_arg *specs);
 
-/* conv_helper */
-char		*ox_helper(t_arg *specs);
-void		check_conv_value(t_arg *specs, char *value);
+/* conv_helper.c */
 void		put_ox(t_arg *specs, char *value, int *perc_len, int modif);
+void		check_conv_value(t_arg *specs, char *value);
 void		ft_strncat_move(char *dst, char *src, int n, t_arg *specs);
+int			ox_len(t_arg *specs);
+
+/* increm_string.c */
+void		increm_string(char **s1, char *s2, int len, t_arg *specs);
 
 #endif

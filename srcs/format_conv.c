@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:27:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 11:54:44 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 14:54:10 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,26 @@ static void		fill_string(t_arg *specs, char *value)
 {
 	int		data_l;
 	int		perc_len;
-	char	fill;
 
 	check_conv_value(specs, value);
 	data_l = specs->data_len;
 	perc_len = max(specs->width_len, data_l);
-	fill = specs->fill;
 	put_ox(specs, value, &perc_len, 0);
 	while ((data_l != 0 || specs->width)
 			&& perc_len > max(specs->precision_len, data_l)
-			+ (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
+			+ (specs->fill != '0' && specs->hash && value[0] != '0')
+			* ox_len(specs))
 	{
 		*specs->string = specs->fill;
 		perc_len--;
-		specs->string++;
+		increm_string(NULL, specs->string, 1, specs);
 	}
 	put_ox(specs, value, &perc_len, 1);
 	while (specs->precision_len > data_l)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		specs->string++;
+		increm_string(NULL, specs->string, 1, specs);
 	}
 	ft_strncat_move(specs->string, value, data_l, specs);
 }
@@ -54,17 +53,18 @@ static void		fill_string_left(t_arg *specs, char *value)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		specs->string++;
+		increm_string(NULL, specs->string, 1, specs);
 		perc_len--;
 	}
 	ft_strncat_move(specs->string, value, data_l, specs);
 	while ((data_l != 0 || specs->width)
 			&& perc_len > max(specs->precision_len, data_l) +
-			(specs->fill != '0' && specs->hash && value[0] != '0') * 2)
+			(specs->fill != '0' && specs->hash && value[0] != '0')
+			* ox_len(specs))
 	{
 		*specs->string = ' ';
 		perc_len--;
-		specs->string++;
+		increm_string(NULL, specs->string, 1, specs);
 	}
 }
 
