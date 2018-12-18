@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 18:24:10 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 11:30:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,20 @@ void	set_data_len(t_arg *specs, LL value)
 			specs->conv_val = convert((unsigned int) value, 16, "0123456789ABCDEF");
 		specs->data_len = ft_strlen(specs->conv_val);
 	}
+	else if (specs->type == 'o')
+	{
+		if (specs->l == 2)
+			specs->conv_val = convert((ULL) value, 2, "01");
+		else if (specs->l == 1)
+			specs->conv_val = convert((UL) value, 2, "01");
+		else if (specs->h == 2)
+			specs->conv_val = convert((unsigned char) value, 2, "01");
+		else if (specs->h == 1)
+			specs->conv_val = convert((short unsigned int) value, 2, "01");
+		else
+			specs->conv_val = convert((unsigned int) value, 2, "01");
+		specs->data_len = ft_strlen(specs->conv_val);
+	}
 	else if (specs->type == 'c')
 		specs->data_len = 1;
 	else if (specs->type == 's')
@@ -172,7 +186,9 @@ int		parse_struct(t_arg *specs, ULL value)
 	else if (specs->type == 'd' || specs->type == 'i')
 		format_num(specs, value);
 	else if (specs->type == 'x' || specs->type == 'X')
-		format_hex(specs, specs->conv_val);
+		format_conv(specs, specs->conv_val);
+	else if (specs->type == 'o')
+		format_conv(specs, specs->conv_val);
 	else if (specs->type == 's')
 		format_string(specs, (char *) value);
 	else

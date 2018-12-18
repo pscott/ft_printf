@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/16 19:15:24 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 11:27:33 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void		fill_char_left(int perc_len, t_arg *specs, char value);
 /* format_string.c */
 void		format_string(t_arg *specs, char *value);
 
-/* format_hex.c */
-void		format_hex(t_arg *specs, char *value);
+/* format_conv.c */
+void		format_conv(t_arg *specs, char *value);
 
 /* ft_hitoa.c */
 char		*ft_hitoa(short int n);
@@ -139,7 +139,10 @@ int			null_data(t_arg *specs, ULL value);
 /* get_preci_flags */
 void		get_preci_flags(char **format, t_arg *specs);
 
-/* hex_helper */
+/* conv_helper */
 char		*ox_helper(t_arg *specs);
+void		check_conv_value(t_arg *specs, char *value);
+void		put_ox(t_arg *specs, char *value, int *perc_len, int modif);
+void		ft_strncat_move(char *dst, char *src, int n, t_arg *specs);
 
 #endif

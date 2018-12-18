@@ -1,80 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format_hex.c                                       :+:      :+:    :+:   */
+/*   format_conv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 14:04:45 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/17 19:08:28 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/18 11:27:22 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/18 11:54:44 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	fill_string(t_arg *specs, char *value)
+static void		fill_string(t_arg *specs, char *value)
 {
 	int		data_l;
 	int		perc_len;
 	char	fill;
 
+	check_conv_value(specs, value);
 	data_l = specs->data_len;
 	perc_len = max(specs->width_len, data_l);
-	if (value[0] == '0' && specs->precision && specs->precision_len == 0)
-		data_l = 0;
 	fill = specs->fill;
-	if (specs->fill == '0' && specs->hash && value[0] != '0')
-	{
-		ft_strncat(specs->string, ox_helper(specs), 2);
-		specs->string += 2;
-		perc_len -= 2;
-	}
-	while ((data_l != 0 || specs->width) && perc_len > max(specs->precision_len, data_l) + (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
+	put_ox(specs, value, &perc_len, 0);
+	while ((data_l != 0 || specs->width)
+			&& perc_len > max(specs->precision_len, data_l)
+			+ (specs->fill != '0' && specs->hash && value[0] != '0') * 2)
 	{
 		*specs->string = specs->fill;
 		perc_len--;
 		specs->string++;
 	}
-	if (specs->fill != '0' && specs->hash && value[0] != '0')
-	{
-		ft_strncat(specs->string, ox_helper(specs), 2);
-		specs->string += 2;
-	}
+	put_ox(specs, value, &perc_len, 1);
 	while (specs->precision_len > data_l)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
 		specs->string++;
 	}
-	ft_strncat(specs->string, value, data_l);
-	specs->string += data_l;
+	ft_strncat_move(specs->string, value, data_l, specs);
 }
 
-static void	fill_string_left(t_arg *specs, char *value)
+static void		fill_string_left(t_arg *specs, char *value)
 {
 	int		data_l;
 	int		perc_len;
 
+	check_conv_value(specs, value);
 	data_l = specs->data_len;
-	if (*value == 0)
-		data_l = 0;
 	perc_len = max(specs->width_len, data_l);
-	if (specs->hash && value[0] != '0')
-	{
-		ft_strncat(specs->string, ox_helper(specs), 2);
-		specs->string += 2;
-		perc_len -= 2;
-	}
-	while (specs->precision && perc_len > min(specs->precision_len, specs->data_len) + (specs->hash && value[0] != '0') * 2)
+	put_ox(specs, value, &perc_len, 2);
+	while (specs->precision_len > data_l)
 	{
 		*specs->string = '0';
-		specs->string++;
 		specs->precision_len--;
+		specs->string++;
 		perc_len--;
 	}
-	ft_strncat(specs->string, value, data_l);
-	specs->string += data_l;
-	while (data_l < perc_len)
+	ft_strncat_move(specs->string, value, data_l, specs);
+	while ((data_l != 0 || specs->width)
+			&& perc_len > max(specs->precision_len, data_l) +
+			(specs->fill != '0' && specs->hash && value[0] != '0') * 2)
 	{
 		*specs->string = ' ';
 		perc_len--;
@@ -82,7 +68,7 @@ static void	fill_string_left(t_arg *specs, char *value)
 	}
 }
 
-void	format_hex(t_arg *specs, char *value)
+void			format_conv(t_arg *specs, char *value)
 {
 	char *nil;
 

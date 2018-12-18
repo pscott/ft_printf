@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:28:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/17 19:08:22 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 11:46:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	main(void)
 	char *c;
 
 	i = -2147483648;
-	c = "@moulitest: %5.x %5.0x\n";
+	c = "@moulitest:%#-8x\n";
 
-	ft_printf(c, 0, 0);
-	   printf(c, 0, 0);
+
+	ft_printf(c, 42);
+	   printf(c, 42);
 }
