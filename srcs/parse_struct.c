@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 15:36:35 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:57:35 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,17 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 
 int		handle_perc(char **format, t_arg *specs, ULL value)
 {
-	increm_string(format, NULL, 1, specs);
+	(*format)++;
 	init_specs(specs);
-	get_flags(format, specs);
-	get_preci(format, specs);
+	if (get_flags(format, specs) == 2)
+		get_preci(format, specs);
+	//si ca return 0 ??
 	get_extra(format, specs);
 	set_data_len(specs, value);
 	if (!specs->fill)
 		specs->fill = ' ';
+	(*format)++;
 	return (parse_struct(specs, value));
-}
-
-int		sum_struct(t_arg *specs)
-{
-	int res;
-
-	res = specs->type ? 1 : 0;
-	res += specs->width_len + specs->precision_len + specs->fill_len \
-		   + specs->left + specs->plus + specs->hash + specs->l + specs->h;
-	return (res);
 }
 
 void	set_data_len(t_arg *specs, LL value)
@@ -104,43 +96,43 @@ void	set_data_len(t_arg *specs, LL value)
 	else if (specs->type == 'x')
 	{
 		if (specs->l == 2)
-			specs->conv_val = convert((ULL) value, 16, "0123456789abcdef");
+			specs->conv_val = convert((ULL) value, 16, BASE_16_low);
 		else if (specs->l == 1)
-			specs->conv_val = convert((UL) value, 16, "0123456789abcdef");
+			specs->conv_val = convert((UL) value, 16, BASE_16_low);
 		else if (specs->h == 2)
-			specs->conv_val = convert((unsigned char) value, 16, "0123456789abcdef");
+			specs->conv_val = convert((unsigned char) value, 16, BASE_16_low);
 		else if (specs->h == 1)
-			specs->conv_val = convert((short unsigned int) value, 16, "0123456789abcdef");
+			specs->conv_val = convert((short unsigned int) value, 16, BASE_16_low);
 		else
-			specs->conv_val = convert((unsigned int) value, 16, "0123456789abcdef");
+			specs->conv_val = convert((unsigned int) value, 16, BASE_16_low);
 		specs->data_len = ft_strlen(specs->conv_val);
 	}
 	else if (specs->type == 'X')
 	{
 		if (specs->l == 2)
-			specs->conv_val = convert((ULL) value, 16, "0123456789ABCDEF");
+			specs->conv_val = convert((ULL) value, 16, BASE_16_up);
 		else if (specs->l == 1)
-			specs->conv_val = convert((UL) value, 16, "0123456789ABCDEF");
+			specs->conv_val = convert((UL) value, 16, BASE_16_up);
 		else if (specs->h == 2)
-			specs->conv_val = convert((unsigned char) value, 16, "0123456789ABCDEF");
+			specs->conv_val = convert((unsigned char) value, 16, BASE_16_up);
 		else if (specs->h == 1)
-			specs->conv_val = convert((short unsigned int) value, 16, "0123456789ABCDEF");
+			specs->conv_val = convert((short unsigned int) value, 16, BASE_16_up);
 		else
-			specs->conv_val = convert((unsigned int) value, 16, "0123456789ABCDEF");
+			specs->conv_val = convert((unsigned int) value, 16, BASE_16_up);
 		specs->data_len = ft_strlen(specs->conv_val);
 	}
 	else if (specs->type == 'o')
 	{
 		if (specs->l == 2)
-			specs->conv_val = convert((ULL) value, 8, "012345678");
+			specs->conv_val = convert((ULL) value, 8, BASE_8);
 		else if (specs->l == 1)
-			specs->conv_val = convert((UL) value, 8, "012345678");
+			specs->conv_val = convert((UL) value, 8, BASE_8);
 		else if (specs->h == 2)
-			specs->conv_val = convert((unsigned char) value, 8, "012345678");
+			specs->conv_val = convert((unsigned char) value, 8, BASE_8);
 		else if (specs->h == 1)
-			specs->conv_val = convert((short unsigned int) value, 8, "012345678");
+			specs->conv_val = convert((short unsigned int) value, 8, BASE_8);
 		else
-			specs->conv_val = convert((unsigned int) value, 8, "012345678");
+			specs->conv_val = convert((unsigned int) value, 8, BASE_8);
 		specs->data_len = ft_strlen(specs->conv_val);
 	}
 	else if (specs->type == 'c')
@@ -188,5 +180,5 @@ int		parse_struct(t_arg *specs, ULL value)
 		format_string(specs, (char *) value);
 	else
 		return (invalid_type());
-	return (sum_struct(specs));
+	return (1);
 }

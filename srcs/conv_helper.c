@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:00:24 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 14:54:11 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:47:25 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ void	put_ox(t_arg *specs, char *value, int *perc_len, int modif)
 void	ft_strncat_move(char *dst, char *src, int n, t_arg *specs)
 {
 	ft_strncat(dst, src, n);
-	increm_string(NULL, specs->string, n, specs);
+	specs->string += n;
 }

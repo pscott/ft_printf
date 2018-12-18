@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 15:45:39 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:57:37 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # define UL unsigned long int
 # define LL long long int
 # define L long int
+# define BASE_8 "012345678"
+# define BASE_16_low "0123456789abcdef"
+# define BASE_16_up "0123456789ABCDEF"
 
 typedef struct		s_arg
 {
@@ -43,6 +46,7 @@ typedef struct		s_arg
 	int				data_len;
 	char			*conv_val;
 	char			*string;
+	char			*tmp;
 	char			*origin;
 	int				error;
 	int				mall_len;
@@ -89,7 +93,7 @@ int			get_llen(L value);
 int			get_len(int value);
 
 /*getters.c*/
-void		get_flags(char **format, t_arg *specs);
+int			get_flags(char **format, t_arg *specs);
 int			is_type(char **format, t_arg *specs, int modif);
 void		get_preci(char **format, t_arg *specs);
 void		get_extra(char **format, t_arg *specs);
@@ -130,7 +134,7 @@ char		*ft_hitoa(short int n);
 char		*ft_hhitoa(short int n);
 
 /* ft_atoi_move.c*/
-int			ft_atoi_move(char **src, t_arg *specs);
+int			ft_atoi_move(char **src);
 
 
 void		clean_exit(char *str, t_arg *specs);

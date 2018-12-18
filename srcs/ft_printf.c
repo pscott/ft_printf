@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:31:10 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:44:31 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		ft_printf(const char *restrict f, ...)
 		else
 		{
 			*(specs->string) = *f;
-			increm_string((char **)&f, specs->string, 1, specs);
+			f++;
+			specs->string++;
 		}
 	}
 	va_end(arg);

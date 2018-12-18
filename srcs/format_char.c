@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:45:26 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:29:53 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:30:30 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	fill_char(int perc_len, t_arg *specs, char value)
 	{
 		*specs->string = fill;
 		perc_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	*(specs->string) = value;
-	increm_string(NULL, specs->string, 1, specs);
+	specs->string++;
 }
 
 void	fill_char_left(int perc_len, t_arg *specs, char value)
@@ -37,12 +37,12 @@ void	fill_char_left(int perc_len, t_arg *specs, char value)
 	data_l = specs->data_len;
 	fill = specs->fill;
 	*(specs->string) = value;
-	increm_string(NULL, specs->string, 1, specs);
+	specs->string++;
 	while (data_l < perc_len)
 	{
 		*specs->string = fill;
 		perc_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 }
 

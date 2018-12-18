@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:21:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/18 17:42:11 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,25 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 	if (specs->plus || value < 0)
 	{
 		*specs->string = sign;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		specs->data_len--;
 		perc_len--;
 	}
 	while (specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		specs->precision_len--;
 		perc_len--;
 	}
 	nb = ft_itoa_spec(specs, value);
 	if (!null_data(specs, (ULL) value))
-	{
-		ft_strcat(specs->string, nb);
-		specs->string += specs->data_len;
-	}
+		ft_strncat_move(specs->string, nb, specs->data_len, specs);
 	while (specs->data_len < perc_len)
 	{
 		*specs->string = ' ';
 		perc_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	free(nb);
 }
@@ -70,29 +67,28 @@ void	fill_int(int perc_len, t_arg *specs, int value)
 		{
 			*specs->string = sign;
 			sign_put = 0;
-			increm_string(NULL, specs->string, 1, specs);
+			specs->string++;
 		}
 	}
 	while (perc_len > max(specs->precision_len + sign_len(specs, value), specs->data_len))
 	{
 		*specs->string = specs->fill;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		perc_len--;
 	}
 	if (sign_put)
 	{
 		*specs->string = sign;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	nb = ft_itoa_spec(specs, value);
-	ft_strncat(specs->string, nb, specs->data_len);
-	specs->string += specs->data_len - sign_len(specs, value);
+	ft_strncat_move(specs->string, nb, specs->data_len - sign_len(specs, value), specs);
 	free(nb);
 }
 
@@ -113,7 +109,7 @@ void	format_int(t_arg *specs, int value)
 	if (specs->extra && value > 0)
 	{
 		*specs->string = ' ';
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		perc_len--;
 	}
 	if (specs->plus && value >= 0 && specs->data_len)
