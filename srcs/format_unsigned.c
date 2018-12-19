@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 12:51:46 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:22:58 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 15:58:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 	while (specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		specs->precision_len--;
 		perc_len--;
 	}
@@ -33,7 +33,7 @@ void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 	{
 		*specs->string = ' ';
 		perc_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	free(nb);
 }
@@ -52,14 +52,14 @@ static void	fill_uint(int perc_len, t_arg *specs, ULL value)
 	while (perc_len > max(specs->precision_len, specs->data_len))
 	{
 		*specs->string = specs->fill;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		perc_len--;
 	}
 	while (specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	nb = ft_uitoa_spec(specs, value);
 	ft_strncat(specs->string, nb, specs->data_len);

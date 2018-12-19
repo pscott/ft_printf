@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 17:57:38 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 16:46:44 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int		get_flags(char **format, t_arg *specs)
 
 	while (**format)
 	{
-		if (is_type(format, specs, 0) == 1)
-			return (1);
-		if (is_type(format, specs, 0) == 2)
-			return (2);
 		c = **format;
+		if (c == '.')
+		{
+			increm_string(format, 1, specs);
+			specs->precision = 1;
+			specs->precision_len = ft_atoi_move(format);
+		}
+		if (is_type(format, specs))
+			return (1);
 		if (c == '-')
 			specs->left += 1;
 		else if (c == '+')
@@ -47,10 +51,10 @@ int		get_flags(char **format, t_arg *specs)
 			if ((specs->width_len = ft_atoi_move(format)))
 			{
 				specs->width = 1;
-				(*format)--;
+				increm_string(format, -1, specs);
 			}
 		}
-		(*format)++;
+		increm_string(format, 1, specs);
 	}
 	return (0);
 }
@@ -67,7 +71,7 @@ void	get_lh(char **format, t_arg *specs)
 		else if (**format == 'l')
 			specs->l++;
 		i++;
-		(*format)++;
+		increm_string(format, 1, specs);
 	}
 	/* gerer les cas d'erreur pls */
 	if (specs->h && specs->l)
@@ -76,40 +80,38 @@ void	get_lh(char **format, t_arg *specs)
 		specs->h = 2;
 	if (specs->l > 2)
 		specs->l = 2;
-	(*format) += i;
 }
 
-int		is_type(char **format, t_arg *specs, int modif)
+int		is_type(char **format, t_arg *specs)
 {
 	char c;
 
-	c = **format;
 	get_lh(format, specs);
-	if (modif == 0 && c == '.')
-		return (2);
-	if (c == 'i' || c == 'd' || c == 'p' ||
+	c = **format;
+	if (c == '%' || c == 'i' || c == 'd' || c == 'p' ||
 			c == 'f' || c == 'x' || c == 'X' || c == 'o' || c == 's' || c == 'c')
 	{
-		specs->type = **format;
-		printf("FORMAT ICI: %c\n", **format);
+		specs->type = c;
 		/*gerer les cas d'erreur pls */
 		return (1);
 	}
 	return (0);
 }
 
-void	get_preci(char **format, t_arg *specs)
+/*void	get_preci(char **format, t_arg *specs)
 {
 	if (**format == '.')
 	{
 		(*format)++;
 		specs->precision = 1;
-		get_preci_flags(format, specs);
+		specs->precision_len = ft_atoi_move(format);
+//		get_preci_flags(format, specs);
 		specs->fill = ' ';
 	}
-}
+	get_flags(format, specs);
+}*/
 
-void	get_extra(char **format, t_arg *specs)
+/*void	get_extra(char **format, t_arg *specs)
 {
 	while (**format == ' ')
 	{
@@ -118,4 +120,4 @@ void	get_extra(char **format, t_arg *specs)
 		(*format)++;
 	}
 	set_extra(**format, specs);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 17:57:37 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 17:00:50 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct		s_arg
 	int				l;
 	int				h;
 	int				this_len;
-	int				total_len;
 	int				data_len;
 	char			*conv_val;
 	char			*string;
@@ -65,7 +64,7 @@ void		set_data_len(t_arg *specs, LL value);
 char		*ft_uitoa_spec(t_arg *specs, ULL value);
 char		*ft_itoa_spec(t_arg *specs, LL value);
 char		*unsigned_itoa(t_arg *specs, ULL value);
-int			handle_perc(char **fornat, t_arg *specs, ULL value);
+int			handle_perc(char **fornat, t_arg *specs);
 
 /* spec_init.c */
 void		init_specs(t_arg *specs);
@@ -94,7 +93,7 @@ int			get_len(int value);
 
 /*getters.c*/
 int			get_flags(char **format, t_arg *specs);
-int			is_type(char **format, t_arg *specs, int modif);
+int			is_type(char **format, t_arg *specs);
 void		get_preci(char **format, t_arg *specs);
 void		get_extra(char **format, t_arg *specs);
 
@@ -153,6 +152,6 @@ void		ft_strncat_move(char *dst, char *src, int n, t_arg *specs);
 int			ox_len(t_arg *specs);
 
 /* increm_string.c */
-void		increm_string(char **s1, char *s2, int len, t_arg *specs);
+void		increm_string(char **s1, int len, t_arg *specs);
 
 #endif

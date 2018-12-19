@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 17:44:31 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 17:00:49 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int		ft_printf(const char *restrict f, ...)
 	while (*f)
 	{
 		if (*f == '%')
-			handle_perc((char **)&f, specs, va_arg(arg, ULL));
+		{
+			if (handle_perc((char **)&f, specs))
+				parse_struct(specs, va_arg(arg, ULL));
+		}
 		else
 		{
 			*(specs->string) = *f;
@@ -36,6 +39,8 @@ int		ft_printf(const char *restrict f, ...)
 		}
 	}
 	va_end(arg);
+	if (specs->origin == NULL)
+		clean_exit("\n", specs);
 	total_len = specs->string - specs->origin;
 	write(1, specs->origin, total_len);
 	free(specs->origin);

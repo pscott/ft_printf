@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 17:57:35 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 16:45:45 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,25 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 	return (res);
 }
 
-int		handle_perc(char **format, t_arg *specs, ULL value)
+int		print_perc(t_arg *specs)
 {
-	(*format)++;
-	init_specs(specs);
-	if (get_flags(format, specs) == 2)
-		get_preci(format, specs);
-	//si ca return 0 ??
-	get_extra(format, specs);
-	set_data_len(specs, value);
 	if (!specs->fill)
 		specs->fill = ' ';
+	specs->data_len = 1;
+	if (specs->type == '%')
+		format_char(specs, '%');
+	return (0);
+}
+int		handle_perc(char **format, t_arg *specs)
+{
+	increm_string(format, 1, specs);
+	init_specs(specs);
+	get_flags(format, specs);
+	//get_extra(format, specs);
 	(*format)++;
-	return (parse_struct(specs, value));
+	if (specs->type == '%')
+		return (print_perc(specs));
+	return (1);
 }
 
 void	set_data_len(t_arg *specs, LL value)
@@ -162,9 +168,10 @@ int		invalid_type(void)
 
 int		parse_struct(t_arg *specs, ULL value)
 {
-	if (specs->type == '%')
-		format_char(specs, '%');
-	else if (specs->type == 'c')
+	if (!specs->fill)
+		specs->fill = ' ';
+	set_data_len(specs, value);
+	if (specs->type == 'c')
 		format_char(specs, (char) value);
 	/*tous les differents types*/
 	/*realloc si necessaire*/

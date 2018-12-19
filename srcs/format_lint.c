@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 13:05:56 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:22:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/19 15:58:05 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	fill_lint_left(int perc_len, t_arg *specs, L value)
 	if (specs->plus || value < 0)
 	{
 		*specs->string = sign;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		specs->data_len--;
 		perc_len--;
 	}
 	while (specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		specs->precision_len--;
 		perc_len--;
 	}
@@ -42,7 +42,7 @@ void	fill_lint_left(int perc_len, t_arg *specs, L value)
 	{
 		*specs->string = ' ';
 		perc_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	free(nb);
 }
@@ -70,25 +70,25 @@ void	fill_lint(int perc_len, t_arg *specs, L value)
 		{
 			*specs->string = sign;
 			sign_put = 0;
-			increm_string(NULL, specs->string, 1, specs);
+			specs->string++;
 		}
 	}
 	while (perc_len > max(specs->precision_len + sign_len(specs, value), specs->data_len))
 	{
 		*specs->string = specs->fill;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		perc_len--;
 	}
 	if (sign_put)
 	{
 		*specs->string = sign;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 	}
 	nb = ft_itoa_spec(specs, value);
 	ft_strncat(specs->string, nb, specs->data_len);
@@ -113,7 +113,7 @@ void	format_lint(t_arg *specs, L value)
 	if (specs->extra && value > 0)
 	{
 		*specs->string = ' ';
-		increm_string(NULL, specs->string, 1, specs);
+		specs->string++;
 		perc_len--;
 	}
 	if (specs->plus && value >= 0 && specs->data_len)
