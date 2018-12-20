@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 12:20:42 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 13:16:45 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ int		get_flags(char **format, t_arg *specs)
 			set_extra(c, specs);
 			specs->fill = ' ';
 		}
-		//???
-		else if (c == '0' || c == ' ')
-			specs->fill_len += 1;
 		else if (ft_isdigit(c))
 		{
 			if ((specs->width_len = ft_atoi_move(format)))
@@ -97,14 +94,3 @@ int		is_type(char **format, t_arg *specs)
 	specs->type = '1';
 	return (0);
 }
-
-/*void	get_extra(char **format, t_arg *specs)
-  {
-  while (**format == ' ')
-  {
-  if (specs->fill != 0)
-  set_extra(**format, specs);
-  (*format)++;
-  }
-  set_extra(**format, specs);
-  }*/

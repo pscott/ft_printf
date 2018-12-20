@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 11:31:46 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 12:19:02 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 13:16:36 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 
 int		print_perc(t_arg *specs)
 {
-	if (!specs->fill)
-		specs->fill = ' ';
+	specs->fill = ' ';
 	specs->data_len = 1;
 	if (specs->type == '%')
 		format_char(specs, '%');
@@ -89,8 +88,8 @@ int		handle_perc(char **format, t_arg *specs)
 	increm_string(format, 1, specs);
 	init_specs(specs);
 	get_flags(format, specs);
-	//get_extra(format, specs);
-	(*format)++;
+	if (**format)
+		(*format)++;
 	if (specs->type == '%')
 		return (print_perc(specs));
 	return (1);

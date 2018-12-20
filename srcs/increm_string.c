@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 16:05:05 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/19 16:10:24 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 13:12:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	increm_string(char **s1, int len, t_arg *specs)
 {
-	if (s1 && *s1)
+	if (s1 && *s1 && **s1)
 	{
 		*s1 += len;
 		specs->this_len += len;
