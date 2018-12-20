@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:15:20 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 20:59:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		print_perc(t_arg *specs, char **format)
 int		handle_perc(char **format, t_arg *specs)
 {
 	increm_format(format, 1);
-	init_specs(specs);
+	reset_specs(specs);
 	if (get_flags(format, specs) == 2)
 	{
 		specs->type = '2';

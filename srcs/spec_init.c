@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:17:27 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 22:37:11 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,63 @@ void	init_specs(t_arg *specs)
 	specs->l = 0;
 	specs->h = 0;
 	specs->total_len = 0;
+	specs->mall_len = 2;
+	specs->string = NULL;
 	specs->data_len = 0;
-	specs->error = 0;
-	specs->mall_len = 0;
 	specs->extra= 0;
+}
+
+void	reset_specs(t_arg *specs)
+{
+	specs->type = 0;
+	specs->width = 0;
+	specs->width_len = 0;
+	specs->precision = 0;
+	specs->precision_len= 0;
+	specs->fill = 0;
+	specs->fill_len = 0;
+	specs->left = 0;
+	specs->plus = 0;
+	specs->hash = 0;
+	specs->l = 0;
+	specs->h = 0;
+	specs->data_len = 0;
+	specs->extra= 0;
+}
+
+void	realloc_if_necessary(t_arg *specs, int len)
+{
+	if (specs->total_len + len >= specs->mall_len - 1)
+		malloc_string(specs, len);
 }
 
 void	malloc_string(t_arg *specs, int len)
 {
 	char	*tmp;
+	int		to_cpy;
 
+	while (specs->total_len + len >= specs->mall_len - 1)
+		specs->mall_len *= 2;
 	if (!(specs->string))
 	{
-		if (!(specs->string = ft_strnew(len)))
+		if (!(specs->string = ft_strnew(specs->mall_len)))
 			return ;
 		specs->origin = specs->string;
-		specs->mall_len = len;
 	}
 	else
 	{
-		if (!(tmp = ft_strnew(len)))
+		while (*specs->string)
+		{
+			specs->string++;
+		}
+		if (!(tmp = ft_strnew(specs->mall_len)))
 			return ;
-		ft_strcpy(tmp, specs->origin);
+		to_cpy = specs->string - specs->origin;
+		ft_strncpy(tmp, specs->origin, to_cpy);
 		free(specs->origin);
 		specs->string = tmp;
 		specs->origin = tmp;
-		specs->string += specs->mall_len;
+		specs->string += to_cpy;
 	}
 }
 
@@ -60,7 +91,7 @@ t_arg	*create_specs(t_arg *specs)
 {
 	if (!(specs = (t_arg *)malloc(sizeof(t_arg))))
 		return (NULL);
-	malloc_string(specs, 1);
 	init_specs(specs);
+	malloc_string(specs, 0);
 	return (specs);
 }

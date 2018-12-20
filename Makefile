@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/12/20 18:38:55 by pscott           ###   ########.fr        #
+#    Updated: 2018/12/20 20:58:30 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,12 @@ all: $(NAME)
 d: all
 	@gcc main.c $(INCLDIR) $(NAME)
 	@./a.out | cat -e
-	@$(RM) a.out
+	@$(RM) a.out*
 
 val:
 	@gcc main.c $(INCLDIR) $(NAME)
 	@valgrind --leak-check=yes ./a.out
+	@$(RM) a.out*
 
 fsa:
 	@gcc main.c $(INCLDIR) $(NAME) -fsanitize=address -g3

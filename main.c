@@ -14,9 +14,9 @@ int	main(void)
 {
 	char *c;
 
-	c = "%120d\n";
+	c = "%s%s0123456789\n";
 
-	ft_printf(c, 256);
-	   printf(c, 256);
+	ft_printf(c, "oeqw", "peut etre");
+	   printf(c, "oeqw", "peut etre");
 	   return (0);
 }

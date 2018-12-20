@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:16:26 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 21:40:50 by pscott           ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
@@ -46,7 +46,6 @@ typedef struct		s_arg
 	char			*string;
 	char			*tmp;
 	char			*origin;
-	int				error;
 	int				mall_len;
 	int				extra;
 }					t_arg;
@@ -68,8 +67,10 @@ int			print_perc(t_arg *specs, char **value);
 
 /* spec_init.c */
 void		init_specs(t_arg *specs);
+void		reset_specs(t_arg *specs);
 t_arg		*create_specs(t_arg *specs);
 void		malloc_string(t_arg *specs, int len);
+void		realloc_if_necessary(t_arg *specs, int len);
 
 /* utils.c */
 int			valid_flags(char **format);
@@ -152,7 +153,7 @@ void		get_preci_flags(char **format, t_arg *specs);
 /* conv_helper.c */
 void		put_ox(t_arg *specs, char *value, int *perc_len, int modif);
 void		check_conv_value(t_arg *specs, char *value);
-void		ft_strncat_move(char *dst, char *src, int n, t_arg *specs);
+void		ft_strncat_move(char *src, int n, t_arg *specs);
 int			ox_len(t_arg *specs);
 
 /* increm_string.c */

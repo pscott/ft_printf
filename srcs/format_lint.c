@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 13:05:56 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 18:27:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 20:03:39 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,25 @@ void	fill_lint_left(int perc_len, t_arg *specs, L value)
 	if (specs->plus || value < 0)
 	{
 		*specs->string = sign;
-		specs->string++;
+		increm_string(specs, 1);
 		specs->data_len--;
 		perc_len--;
 	}
 	while (specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
-		specs->string++;
+		increm_string(specs, 1);
 		specs->precision_len--;
 		perc_len--;
 	}
 	nb = ft_itoa_spec(specs, value);
 	if (!null_data(specs, (ULL) value))
-	{
-		ft_strcat(specs->string, nb);
-		specs->string += specs->data_len;
-	}
+		ft_strncat_move(nb, specs->data_len, specs);
 	while (specs->data_len < perc_len)
 	{
 		*specs->string = ' ';
 		perc_len--;
-		specs->string++;
+		increm_string(specs, 1);
 	}
 	free(nb);
 }
@@ -70,29 +67,28 @@ void	fill_lint(int perc_len, t_arg *specs, L value)
 		{
 			*specs->string = sign;
 			sign_put = 0;
-			specs->string++;
+			increm_string(specs, 1);
 		}
 	}
 	while (perc_len > max(specs->precision_len + sign_len(specs, value), specs->data_len))
 	{
 		*specs->string = specs->fill;
-		specs->string++;
+		increm_string(specs, 1);
 		perc_len--;
 	}
 	if (sign_put)
 	{
 		*specs->string = sign;
-		specs->string++;
+		increm_string(specs, 1);
 	}
 	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
-		specs->string++;
+		increm_string(specs, 1);
 	}
 	nb = ft_itoa_spec(specs, value);
-	ft_strncat(specs->string, nb, specs->data_len);
-	specs->string += specs->data_len - sign_len(specs, value);
+	ft_strncat_move(nb, specs->data_len - sign_len(specs, value), specs);
 	free(nb);
 }
 
@@ -113,7 +109,7 @@ void	format_lint(t_arg *specs, L value)
 	if (specs->extra && value > 0 && !specs->plus)
 	{
 		*specs->string = ' ';
-		specs->string++;
+		increm_string(specs, 1);
 		perc_len--;
 	}
 	if (specs->plus && value >= 0 && specs->data_len)

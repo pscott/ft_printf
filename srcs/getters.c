@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:15:10 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 20:50:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,6 @@ void	get_lh(char **format, t_arg *specs)
 			specs->l++;
 		i++;
 	}
-	/* gerer les cas d'erreur pls */
-	if (specs->h && specs->l)
-		specs->error = 1;
 	if (specs->h > 2)
 		specs->h = 2;
 	if (specs->l > 2)

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:00:24 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 17:47:25 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 22:34:15 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,22 @@ void	put_ox(t_arg *specs, char *value, int *perc_len, int modif)
 		if (modif == 0 && specs->fill == '0')
 		{
 			*perc_len -= l;
-			ft_strncat_move(specs->string, ox_helper(specs), l, specs);
+			ft_strncat_move(ox_helper(specs), l, specs);
 		}
 		else if (modif == 1 && specs->fill != '0')
-			ft_strncat_move(specs->string, ox_helper(specs), l, specs);
+			ft_strncat_move(ox_helper(specs), l, specs);
 		else if (modif == 2)
 		{
 			if (specs->fill == '0')
 				*perc_len -= l;
-			ft_strncat_move(specs->string, ox_helper(specs), l, specs);
+			ft_strncat_move(ox_helper(specs), l, specs);
 		}
 	}
 }
 
-void	ft_strncat_move(char *dst, char *src, int n, t_arg *specs)
+void	ft_strncat_move(char *src, int n, t_arg *specs)
 {
-	ft_strncat(dst, src, n);
-	specs->string += n;
+	realloc_if_necessary(specs, n);
+	ft_strncat(specs->string, src, n);
+	increm_string(specs, n);
 }
