@@ -16,9 +16,9 @@ int	main(void)
 	char *c;
 
 	i = -2147483648;
-	c = "%d;\n";
+	c = "% +d\n";
 
 
-	ft_printf(c, "prout", "not");
-	   printf(c, "prout", "not");
+	ft_printf(c, 42);
+	   printf(c, 42);
 }
