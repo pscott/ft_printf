@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:23:51 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/19 16:37:57 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 11:07:30 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ void	format_string(t_arg *specs, char *value)
 	}
 	if (specs->l == 1)
 	{
-		clean_exit(NULL, specs);
+		specs->origin = NULL;
+		write(1, "\n", 1);
+		return ;
 	}
 	if (specs->left && specs->plus)
 		specs->fill = ' ';

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/19 17:00:50 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 11:04:38 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ char		*ft_hhitoa(short int n);
 int			ft_atoi_move(char **src);
 
 
-void		clean_exit(char *str, t_arg *specs);
 char		*ft_strcat_free(char *s1, char *s2);
 
 /* null_data.c */
