@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 18:25:46 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 19:15:10 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_flags(char **format, t_arg *specs)
 		c = **format;
 		if (c == '.')
 		{
-			increm_string(format, 1, specs);
+			increm_format(format, 1);
 			specs->precision = 1;
 			specs->fill = ' ';
 			specs->precision_len = ft_atoi_move(format);
@@ -58,10 +58,10 @@ int		get_flags(char **format, t_arg *specs)
 			if ((specs->width_len = ft_atoi_move(format)))
 			{
 				specs->width = 1;
-				increm_string(format, -1, specs);
+				increm_format(format, -1);
 			}
 		}
-		increm_string(format, 1, specs);
+		increm_format(format, 1);
 	}
 	return (0);
 }

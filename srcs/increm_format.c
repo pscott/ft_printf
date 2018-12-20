@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   increm_string.c                                    :+:      :+:    :+:   */
+/*   increm_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 18:39:01 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:15:36 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/20 18:38:42 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/20 19:14:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	increm_string(t_arg *specs, int len)
+void	increm_format(char **s1, int len)
 {
-	if (specs->total_len + len <= specs->mall_len - 1)
-		specs->string += len;
-	else
-	{
-		malloc_string(specs, specs->mall_len * 2);
-		specs->string++;
-	}
+	if (s1 && *s1 && **s1)
+		*s1 += len;
 }

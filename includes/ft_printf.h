@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 16:51:53 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 19:16:26 by pscott           ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
@@ -40,7 +40,7 @@ typedef struct		s_arg
 	int				hash;
 	int				l;
 	int				h;
-	int				this_len;
+	int				total_len;
 	int				data_len;
 	char			*conv_val;
 	char			*string;
@@ -69,6 +69,7 @@ int			print_perc(t_arg *specs, char **value);
 /* spec_init.c */
 void		init_specs(t_arg *specs);
 t_arg		*create_specs(t_arg *specs);
+void		malloc_string(t_arg *specs, int len);
 
 /* utils.c */
 int			valid_flags(char **format);
@@ -155,6 +156,9 @@ void		ft_strncat_move(char *dst, char *src, int n, t_arg *specs);
 int			ox_len(t_arg *specs);
 
 /* increm_string.c */
-void		increm_string(char **s1, int len, t_arg *specs);
+void		increm_string(t_arg *specs, int len);
+
+/* increm_format.c */
+void		increm_format(char **s1, int len);
 
 #endif

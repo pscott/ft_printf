@@ -14,7 +14,7 @@ int	main(void)
 {
 	char *c;
 
-	c = "%###-#0000 33...12..#0+0ld\n";
+	c = "%120d\n";
 
 	ft_printf(c, 256);
 	   printf(c, 256);
