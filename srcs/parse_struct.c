@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 11:31:46 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 13:16:36 by pscott           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse_struct.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 11:30:54 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 15:53:02 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +65,32 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 
 int		print_perc(t_arg *specs)
 {
-	specs->fill = ' ';
-	specs->data_len = 1;
-	if (specs->type == '%')
-		format_char(specs, '%');
+	specs->type = 'c';
+	parse_struct(specs, '%');
+//			format_char(specs, '%');
 	return (0);
 }
 int		handle_perc(char **format, t_arg *specs)
 {
 	increm_string(format, 1, specs);
 	init_specs(specs);
-	get_flags(format, specs);
-	if (**format)
-		(*format)++;
+	if (get_flags(format, specs) == 2)
+	{
+		specs->type = 'c';
+		parse_struct(specs, **format);
+		if (**format)
+			(*format)++;
+		return (0);
+	}
 	if (specs->type == '%')
 		return (print_perc(specs));
-	return (1);
+	if (is_valid_type(specs->type))
+	{
+		if (**format)
+			(*format)++;
+		return (1);
+	}
+	return (0);
 }
 
 void	set_data_len(t_arg *specs, LL value)

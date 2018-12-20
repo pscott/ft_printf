@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 13:16:45 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 15:28:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int		get_flags(char **format, t_arg *specs)
 {
-	char c;
+	char	c;
+	int		val;
 
 	if (!**format)
 		specs->type = '1';
-	while (**format)
+	while (isprint_special(**format))
 	{
 		c = **format;
 		if (c == '.')
@@ -28,8 +29,11 @@ int		get_flags(char **format, t_arg *specs)
 			specs->fill = ' ';
 			specs->precision_len = ft_atoi_move(format);
 		}
-		if (is_type(format, specs))
-			return (1);
+		if ((val = is_type(format, specs)))
+		{
+			specs->type = **format;
+			return (val);
+		}
 		if (c == '-')
 			specs->left += 1;
 		else if (c == '+')
@@ -61,14 +65,13 @@ void	get_lh(char **format, t_arg *specs)
 	int i;
 
 	i = 0;
-	while (**format == 'h' || **format  == 'l')
+	while (*format[i] == 'h' || *format[i]  == 'l')
 	{
-		if (**format == 'h')
+		if (*format[i] == 'h')
 			specs->h++;
-		else if (**format == 'l')
+		else if (*format[i] == 'l')
 			specs->l++;
 		i++;
-		increm_string(format, 1, specs);
 	}
 	/* gerer les cas d'erreur pls */
 	if (specs->h && specs->l)
@@ -79,12 +82,24 @@ void	get_lh(char **format, t_arg *specs)
 		specs->l = 2;
 }
 
+int		is_spec_upper(char c)
+{
+	if (c >= 'A' && c <= 'Z' && c != 'X' && c != 'F')
+		return (1);
+	return (0);
+}
+
 int		is_type(char **format, t_arg *specs)
 {
 	char c;
 
 	get_lh(format, specs);
 	c = **format;
+	if (is_spec_upper(c))
+	{
+		specs->type = '2';
+		return (2);
+	}
 	if (is_valid_type(c))
 	{
 		specs->type = c;
