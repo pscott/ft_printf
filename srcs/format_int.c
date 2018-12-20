@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 12:21:06 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 18:26:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,11 @@ void	format_int(t_arg *specs, int value)
 	int		 perc_len;
 
 	set_data_len(specs, value);
-	if (null_data(specs, (ULL) value && !specs->plus))
+	if (null_data(specs, (ULL) value) && !specs->plus)
+	{
 		specs->data_len = 0;
+		printf("OUI");
+	}
 	if (specs->precision_len > specs->width_len)
 	{
 		perc_len = max(specs->data_len, specs->precision_len);

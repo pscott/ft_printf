@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 16:54:01 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 18:23:48 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ int		invalid_type(void)
 
 int		parse_struct(t_arg *specs, ULL value)
 {
-	if (!specs->fill)
+	if (!specs->fill || specs->precision)
 		specs->fill = ' ';
 	set_data_len(specs, value);
 	if (specs->type == 'c')

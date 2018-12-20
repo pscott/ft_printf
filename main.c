@@ -14,10 +14,9 @@ int	main(void)
 {
 	char *c;
 
-	c = "%hd\n";
+	c = "%###-#0000 33...12..#0+0ld\n";
 
-
-	ft_printf(c, 4294967296);
-	   printf(c, 4294967296);
+	ft_printf(c, 256);
+	   printf(c, 256);
 	   return (0);
 }

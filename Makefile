@@ -6,12 +6,12 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/12/20 14:45:44 by pscott           ###   ########.fr        #
+#    Updated: 2018/12/20 17:34:47 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		:= gcc
-RM		:= rm -f
+RM		:= rm -rf
 
 SRCDIR	:= srcs
 LIBDIR	:= srcs/libft
@@ -35,7 +35,7 @@ all: $(NAME)
 d: all
 	@gcc main.c $(INCLDIR) $(NAME)
 	@./a.out | cat -e
-	@rm a.out
+	@$(RM) a.out
 
 val:
 	@gcc main.c $(INCLDIR) $(NAME)
@@ -44,6 +44,7 @@ val:
 fsa:
 	@gcc main.c $(INCLDIR) $(NAME) -fsanitize=address -g3
 	@./a.out
+	@$(RM) a.out*
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)

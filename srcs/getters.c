@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 17:28:37 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 18:25:46 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int		get_flags(char **format, t_arg *specs)
 {
 	char	c;
-	int		val;
 
 	if (!**format)
 		specs->type = '1';
@@ -28,11 +27,17 @@ int		get_flags(char **format, t_arg *specs)
 			specs->precision = 1;
 			specs->fill = ' ';
 			specs->precision_len = ft_atoi_move(format);
+			(*format)--;
 		}
-		if ((val = is_type(format, specs)))
+		if (is_type(format, specs))
 		{
 			specs->type = **format;
-			return (val);
+			return (1);
+		}
+		if (is_spec_upper(**format))
+		{
+			specs->type = '%';
+			return (1);
 		}
 		if (c == '-')
 			specs->left += 1;
@@ -40,12 +45,13 @@ int		get_flags(char **format, t_arg *specs)
 			specs->plus += 1;
 		else if (c == '#')
 			specs->hash += 1;
-		else if (c == '0' && specs->fill != ' ')
+		else if (c == '0')
 			specs->fill = '0';
 		else if (c == ' ')
 		{
 			set_extra(c, specs);
-			specs->fill = ' ';
+			if (specs->fill != '0')
+				specs->fill = ' ';
 		}
 		else if (ft_isdigit(c))
 		{

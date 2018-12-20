@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 13:05:56 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 11:39:19 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 18:27:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	format_lint(t_arg *specs, L value)
 	int		 perc_len;
 
 	set_data_len(specs, value);
-	if (null_data(specs, (ULL) value && !specs->plus))
+	if (null_data(specs, (ULL) value) && !specs->plus)
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)
 	{
