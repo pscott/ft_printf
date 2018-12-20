@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 16:47:43 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 17:28:37 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	get_lh(char **format, t_arg *specs)
 	int i;
 
 	i = 0;
-	while (*format[i] == 'h' || *format[i]  == 'l')
+	while ((*format)[i] == 'h' || (*format)[i]  == 'l')
 	{
-		if (*format[i] == 'h')
+		if ((*format)[i] == 'h')
 			specs->h++;
-		else if (*format[i] == 'l')
+		else if ((*format)[i] == 'l')
 			specs->l++;
 		i++;
 	}
