@@ -14,7 +14,7 @@ int	main(void)
 {
 	char *c;
 
-	c = "%s%s0123456789\n";
+	c = "%10s\n";
 
 	ft_printf(c, "oeqw", "peut etre");
 	   printf(c, "oeqw", "peut etre");
