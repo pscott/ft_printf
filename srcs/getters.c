@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 11:33:22 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 12:20:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int		get_flags(char **format, t_arg *specs)
 {
 	char c;
 
+	if (!**format)
+		specs->type = '1';
 	while (**format)
 	{
 		c = **format;
@@ -23,6 +25,7 @@ int		get_flags(char **format, t_arg *specs)
 		{
 			increm_string(format, 1, specs);
 			specs->precision = 1;
+			specs->fill = ' ';
 			specs->precision_len = ft_atoi_move(format);
 		}
 		if (is_type(format, specs))
@@ -33,11 +36,8 @@ int		get_flags(char **format, t_arg *specs)
 			specs->plus += 1;
 		else if (c == '#')
 			specs->hash += 1;
-		else if (c == '0')
-		{
-			if (specs->fill != ' ')
-				specs->fill = '0';
-		}
+		else if (c == '0' && specs->fill != ' ')
+			specs->fill = '0';
 		else if (c == ' ')
 		{
 			set_extra(c, specs);
@@ -88,36 +88,23 @@ int		is_type(char **format, t_arg *specs)
 
 	get_lh(format, specs);
 	c = **format;
-	if (c == '%' || c == 'i' || c == 'd' || c == 'p' ||
-			c == 'f' || c == 'x' || c == 'X' || c == 'o' || c == 's' || c == 'c')
+	if (is_valid_type(c))
 	{
 		specs->type = c;
 		/*gerer les cas d'erreur pls */
 		return (1);
 	}
+	specs->type = '1';
 	return (0);
 }
 
-/*void	get_preci(char **format, t_arg *specs)
-{
-	if (**format == '.')
-	{
-		(*format)++;
-		specs->precision = 1;
-		specs->precision_len = ft_atoi_move(format);
-//		get_preci_flags(format, specs);
-		specs->fill = ' ';
-	}
-	get_flags(format, specs);
-}*/
-
 /*void	get_extra(char **format, t_arg *specs)
-{
-	while (**format == ' ')
-	{
-		if (specs->fill != 0)
-			set_extra(**format, specs);
-		(*format)++;
-	}
-	set_extra(**format, specs);
-}*/
+  {
+  while (**format == ' ')
+  {
+  if (specs->fill != 0)
+  set_extra(**format, specs);
+  (*format)++;
+  }
+  set_extra(**format, specs);
+  }*/

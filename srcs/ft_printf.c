@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 11:38:02 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 12:18:18 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ int		ft_printf(const char *restrict f, ...)
 	}
 	va_end(arg);
 	total_len = specs->string - specs->origin;
-	/*if (specs->type == 0)
-		write(1, "\n", 1);*/
-	write(1, specs->origin, total_len);
-	free(specs->origin);
-	free(specs);
+	if (specs->origin)
+	{
+		if (specs->type == '1')
+		  write(1, "\n", 1);
+		else
+			write(1, specs->origin, total_len);
+		free(specs->origin);
+		free(specs);
+	}
 	return (total_len);
 }

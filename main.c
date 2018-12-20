@@ -12,13 +12,11 @@
 
 int	main(void)
 {
-	ULL i;
 	char *c;
 
-	i = -2147483648;
-	c = "% +d\n";
+	c = "% 3.2d\n";
 
 
-	ft_printf(c, 42);
-	   printf(c, 42);
+	ft_printf(c, 0);
+	   printf(c, 0);
 }
