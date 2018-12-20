@@ -16,7 +16,7 @@ int	main(void)
 	char *c;
 
 	i = -2147483648;
-	c = "%ls my name %s is Scott\n";
+	c = "%d;\n";
 
 
 	ft_printf(c, "prout", "not");
