@@ -14,8 +14,9 @@ int	main(void)
 {
 	char *c;
 
-	c = "% h";
+	c = "%";
 
 
-	ft_printf(c, "qzxcv");
+	ft_printf(c, -42);
+	   printf(c, -42);
 }

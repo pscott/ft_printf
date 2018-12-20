@@ -6,8 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 12:50:29 by pscott           ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2018/12/20 16:51:53 by pscott           ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
@@ -65,6 +64,7 @@ char		*ft_uitoa_spec(t_arg *specs, ULL value);
 char		*ft_itoa_spec(t_arg *specs, LL value);
 char		*unsigned_itoa(t_arg *specs, ULL value);
 int			handle_perc(char **fornat, t_arg *specs);
+int			print_perc(t_arg *specs, char **value);
 
 /* spec_init.c */
 void		init_specs(t_arg *specs);
@@ -94,6 +94,7 @@ int			get_len(int value);
 /*getters.c*/
 int			get_flags(char **format, t_arg *specs);
 int			is_type(char **format, t_arg *specs);
+int			is_spec_upper(char c);
 void		get_preci(char **format, t_arg *specs);
 void		get_extra(char **format, t_arg *specs);
 
@@ -140,6 +141,9 @@ char		*ft_strcat_free(char *s1, char *s2);
 
 /* null_data.c */
 int			null_data(t_arg *specs, ULL value);
+
+/* isprint_special.c */
+int			isprint_special(char c);
 
 /* get_preci_flags.c */
 void		get_preci_flags(char **format, t_arg *specs);

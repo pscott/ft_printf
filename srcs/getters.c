@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 15:28:06 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 16:47:43 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,10 @@ int		is_type(char **format, t_arg *specs)
 
 	get_lh(format, specs);
 	c = **format;
-	if (is_spec_upper(c))
-	{
-		specs->type = '2';
-		return (2);
-	}
 	if (is_valid_type(c))
 	{
 		specs->type = c;
-		/*gerer les cas d'erreur pls */
 		return (1);
 	}
-	specs->type = '1';
 	return (0);
 }

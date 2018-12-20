@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 15:53:02 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/20 16:54:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,26 @@ char	*ft_itoa_spec(t_arg *specs, LL value)
 	return (res);
 }
 
-int		print_perc(t_arg *specs)
+int		print_perc(t_arg *specs, char **format)
 {
 	specs->type = 'c';
-	parse_struct(specs, '%');
-//			format_char(specs, '%');
-	return (0);
+	parse_struct(specs, **format);
+	return (1);
 }
+
 int		handle_perc(char **format, t_arg *specs)
 {
 	increm_string(format, 1, specs);
 	init_specs(specs);
 	if (get_flags(format, specs) == 2)
 	{
-		specs->type = 'c';
-		parse_struct(specs, **format);
+		specs->type = '2';
 		if (**format)
 			(*format)++;
-		return (0);
+		return (3);
 	}
-	if (specs->type == '%')
-		return (print_perc(specs));
 	if (is_valid_type(specs->type))
-	{
-		if (**format)
-			(*format)++;
 		return (1);
-	}
 	return (0);
 }
 
