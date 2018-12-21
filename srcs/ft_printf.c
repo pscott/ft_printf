@@ -6,51 +6,45 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 16:55:18 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:30:22 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *restrict f, ...)
+static	int		write_data(t_arg *specs, int total_len)
+{
+	write(1, specs->origin, total_len);
+	free(specs->origin);
+	free(specs);
+	return (total_len);
+}
+
+int				ft_printf(const char *restrict f, ...)
 {
 	va_list	arg;
 	t_arg	*specs;
-	int		total_len;
 
 	specs = NULL;
 	va_start(arg, f);
-	if (!f)
-		return (-1);
-	if (!(specs = create_specs(specs)))
+	if (!f || !(specs = create_specs(specs)))
 		return (-1);
 	while (*f)
 	{
-		if (*f == '%')
+		if (*f == '%' && handle_perc((char **)&f, specs))
 		{
-			if (handle_perc((char **)&f, specs))
-			{
-				if (specs->type == '%')
-					print_perc(specs, (char**)&f);
-				else
-					parse_struct(specs, va_arg(arg, ULL));
-			}
-			if (*f)
-				f++;
+			if (specs->type == '%')
+				print_perc(specs, (char**)&f);
+			else
+				parse_struct(specs, va_arg(arg, ULL));
 		}
 		else if (*f)
-		{
 			ft_strncat_move((char *)f, 1, specs);
+		if (*f)
 			f++;
-		}
 	}
 	va_end(arg);
-	total_len = specs->string - specs->origin;
 	if (specs->origin)
-	{
-		write(1, specs->origin, total_len);
-		free(specs->origin);
-		free(specs);
-	}
-	return (total_len);
+		return (write_data(specs, specs->string - specs->origin));
+	return (0);
 }
