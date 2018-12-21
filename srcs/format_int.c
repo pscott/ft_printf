@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 20:01:28 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 17:43:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 	nb = ft_itoa_spec(specs, value);
 	if (!null_data(specs, (ULL) value))
 		ft_strncat_move(nb, specs->data_len, specs);
-	while (specs->data_len < perc_len)
+	ft_special_memset(specs, ' ', perc_len - specs->data_len);
+/*	while (specs->data_len < perc_len)
 	{
 		*specs->string = ' ';
 		perc_len--;
 		increm_string(specs, 1);
-	}
+	}*/
 	free(nb);
 }
 
@@ -81,12 +82,13 @@ void	fill_int(int perc_len, t_arg *specs, int value)
 		*specs->string = sign;
 		increm_string(specs, 1);
 	}
-	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
+	ft_special_memset(specs, '0', sign_len(specs, value) + specs->precision_len - specs->data_len);
+/*	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
 	{
 		*specs->string = '0';
 		specs->precision_len--;
 		increm_string(specs, 1);
-	}
+	}*/
 	nb = ft_itoa_spec(specs, value);
 	ft_strncat_move(nb, specs->data_len - sign_len(specs, value), specs);
 	free(nb);
