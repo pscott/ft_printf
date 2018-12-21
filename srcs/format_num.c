@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:28:04 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/18 13:22:38 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:09:48 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	format_num(t_arg *specs, ULL value)
 	else if (specs->l == 1)
 		format_lint(specs, value);
 	else if (specs->h == 2)
-		format_int(specs, (signed char) value);
+		format_int(specs, (signed char)value);
 	else if (specs->h == 1)
-		format_int(specs, (short int) value);
+		format_int(specs, (short int)value);
 	else
 		format_int(specs, value);
 }
