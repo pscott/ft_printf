@@ -14,9 +14,9 @@ int	main(void)
 {
 	char *c;
 
-	c = "Salut comment ca va%10.5s%-19.8d\n";
+	c = "%c%c%c\n";
 
-	ft_printf(c, "oeqw", 1265, "oui");
-	   printf(c, "oeqw", 1265, "oui");
+	ft_printf(c, 0, 0, 0); 
+	   printf(c, 0, 0, 0); 
 	   return (0);
 }

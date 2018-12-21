@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:47:14 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 21:40:50 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 16:18:34 by pscott           ###   ########.fr       */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
@@ -119,9 +119,9 @@ int			unsigned_len(t_arg *spec, ULL value);
 void		format_num(t_arg *specs, ULL value);
 
 /* format_char.c */
-void		format_char(t_arg *specs, char value);
-void		fill_char(int perc_len, t_arg *specs, char value);
-void		fill_char_left(int perc_len, t_arg *specs, char value);
+void		format_char(t_arg *specs, char *value);
+void		fill_char(int perc_len, t_arg *specs, char *value);
+void		fill_char_left(int perc_len, t_arg *specs, char *value);
 
 /* format_string.c */
 void		format_string(t_arg *specs, char *value);

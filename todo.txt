@@ -10,3 +10,4 @@ Makefile : regle d, regle fsanitize, regle valgrind
 re-alloc
 x, X, float, int min/max pour tous les types.
 "%5c", NULL;
+change realloc_size;

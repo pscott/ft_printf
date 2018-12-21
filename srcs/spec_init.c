@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 15:52:13 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 16:54:30 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	malloc_string(t_arg *specs, int len)
 		if (!(tmp = ft_strnew(specs->mall_len)))
 			return ;
 		to_cpy = specs->string - specs->origin + 1;
-		ft_strncpy(tmp, specs->origin, to_cpy);
+		ft_memcpy(tmp, specs->origin, to_cpy);
 		free(specs->origin);
 		specs->string = tmp;
 		specs->origin = tmp;

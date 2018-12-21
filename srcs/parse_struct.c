@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 15:52:38 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 16:27:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,7 @@ int		parse_struct(t_arg *specs, ULL value)
 		specs->fill = ' ';
 	set_data_len(specs, value);
 	if (specs->type == 'c')
-		format_char(specs, (char) value);
+		format_char(specs, (char*)&value);
 	/*tous les differents types*/
 	/*realloc si necessaire*/
 	else if (specs->type == 'u')
