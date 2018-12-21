@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:45:26 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 16:55:03 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 17:44:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,7 @@ void	fill_char(int perc_len, t_arg *specs, char *value)
 
 	data_l = specs->data_len;
 	fill = specs->fill;
-	while (data_l < perc_len)
-	{
-		*specs->string = fill;
-		perc_len--;
-		increm_string(specs, 1);
-	}
+	ft_special_memset(specs, fill, perc_len - data_l);
 	ft_strncat_move(value, 1, specs);
 }
 
@@ -34,12 +29,7 @@ void	fill_char_left(int perc_len, t_arg *specs, char *value)
 
 	data_l = specs->data_len;
 	ft_strncat_move(value, 1, specs);
-	while (data_l < perc_len)
-	{
-		*specs->string = ' ';
-		perc_len--;
-		increm_string(specs, 1);
-	}
+	ft_special_memset(specs, ' ', perc_len - data_l);
 }
 
 void	format_char(t_arg *specs, char *value)
@@ -47,7 +37,8 @@ void	format_char(t_arg *specs, char *value)
 	int perc_len;
 
 	specs->data_len = 1;
-	perc_len = specs->width_len > specs->data_len ? specs->width_len : specs->data_len;
+	perc_len = specs->width_len > specs->data_len
+		? specs->width_len : specs->data_len;
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
