@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 13:14:23 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 16:09:19 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:18:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*int_min(char *res)
 {
 	char	*str;
 	int		i;
-	
+
 	str = "32768";
 	i = 0;
 	while (str[i])
