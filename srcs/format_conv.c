@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:27:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:55:38 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 17:49:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,7 @@ static void		fill_string(t_arg *specs, char *value)
 		increm_string(specs, 1);
 	}
 	put_ox(specs, value, &perc_len, 1);
-	while (specs->precision_len > data_l)
-	{
-		*specs->string = '0';
-		specs->precision_len--;
-		increm_string(specs, 1);
-	}
+	ft_special_memset(specs, '0', specs->precision_len - data_l);
 	ft_strncat_move(value, data_l, specs);
 }
 
