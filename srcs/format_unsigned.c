@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 12:51:46 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 19:23:17 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 16:59:16 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 	nb = ft_uitoa_spec(specs, value);
 	if (!null_data(specs, (ULL) value))
 	{
-		ft_strcat(specs->string, nb);
-		increm_string(specs, specs->data_len);
+		ft_strncat_move(nb, specs->data_len, specs);
 	}
 	while (specs->data_len < perc_len)
 	{
@@ -62,8 +61,7 @@ static void	fill_uint(int perc_len, t_arg *specs, ULL value)
 		increm_string(specs, 1);
 	}
 	nb = ft_uitoa_spec(specs, value);
-	ft_strncat(specs->string, nb, specs->data_len);
-	increm_string(specs, specs->data_len - usign_len(specs));
+	ft_strncat_move(nb, specs->data_len - usign_len(specs), specs);
 	free(nb);
 }
 
