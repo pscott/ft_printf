@@ -14,9 +14,9 @@ int	main(void)
 {
 	char *c;
 
-	c = "%10s\n";
+	c = "Salut comment ca va%10.5s%-19.8d\n";
 
-	ft_printf(c, "oeqw", "peut etre");
-	   printf(c, "oeqw", "peut etre");
+	ft_printf(c, "oeqw", 1265, "oui");
+	   printf(c, "oeqw", 1265, "oui");
 	   return (0);
 }
