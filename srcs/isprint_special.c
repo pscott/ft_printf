@@ -6,9 +6,11 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 14:44:39 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/20 15:28:51 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:44:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int		isprint_special(char c)
 {
