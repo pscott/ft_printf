@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 16:54:30 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:45:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_specs(t_arg *specs)
 	specs->width = 0;
 	specs->width_len = 0;
 	specs->precision = 0;
-	specs->precision_len= 0;
+	specs->precision_len = 0;
 	specs->fill = 0;
 	specs->fill_len = 0;
 	specs->left = 0;
@@ -27,10 +27,10 @@ void	init_specs(t_arg *specs)
 	specs->l = 0;
 	specs->h = 0;
 	specs->total_len = 0;
-	specs->mall_len = 2;
+	specs->mall_len = 32;
 	specs->string = NULL;
 	specs->data_len = 0;
-	specs->extra= 0;
+	specs->extra = 0;
 }
 
 void	reset_specs(t_arg *specs)
@@ -39,7 +39,7 @@ void	reset_specs(t_arg *specs)
 	specs->width = 0;
 	specs->width_len = 0;
 	specs->precision = 0;
-	specs->precision_len= 0;
+	specs->precision_len = 0;
 	specs->fill = 0;
 	specs->fill_len = 0;
 	specs->left = 0;
@@ -48,7 +48,7 @@ void	reset_specs(t_arg *specs)
 	specs->l = 0;
 	specs->h = 0;
 	specs->data_len = 0;
-	specs->extra= 0;
+	specs->extra = 0;
 }
 
 void	realloc_if_necessary(t_arg *specs, int len)
