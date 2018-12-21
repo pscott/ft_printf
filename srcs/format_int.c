@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 17:43:08 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:04:09 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_int_left(int perc_len, t_arg *specs, int value)
+void			fill_int_left(int perc_len, t_arg *specs, int value)
 {
 	char	sign;
 	char	*nb;
@@ -33,15 +33,9 @@ void	fill_int_left(int perc_len, t_arg *specs, int value)
 		perc_len--;
 	}
 	nb = ft_itoa_spec(specs, value);
-	if (!null_data(specs, (ULL) value))
+	if (!null_data(specs, (ULL)value))
 		ft_strncat_move(nb, specs->data_len, specs);
 	ft_special_memset(specs, ' ', perc_len - specs->data_len);
-/*	while (specs->data_len < perc_len)
-	{
-		*specs->string = ' ';
-		perc_len--;
-		increm_string(specs, 1);
-	}*/
 	free(nb);
 }
 
@@ -54,60 +48,44 @@ static int		sign_len(t_arg *specs, int value)
 	return (0);
 }
 
-void	fill_int(int perc_len, t_arg *specs, int value)
+void			fill_int(int perc_len, t_arg *specs, int value)
 {
-	char	sign;
 	char	*nb;
 	int		sign_put;
 
-	sign = value >= 0 ? '+' : '-';
 	sign_put = sign_len(specs, value);
 	if (specs->fill == '0')
 	{
 		if (sign_put)
 		{
-			*specs->string = sign;
+			*specs->string = value >= 0 ? '+' : '-';
 			sign_put = 0;
 			increm_string(specs, 1);
 		}
 	}
-	while (perc_len > max(specs->precision_len + sign_len(specs, value), specs->data_len))
-	{
-		*specs->string = specs->fill;
-		increm_string(specs, 1);
-		perc_len--;
-	}
+	ft_special_memset(specs, specs->fill, perc_len - max(specs->precision_len
+				+ sign_len(specs, value), specs->data_len));
+	perc_len -= max(specs->precision_len
+			+ sign_len(specs, value), specs->data_len);
 	if (sign_put)
-	{
-		*specs->string = sign;
-		increm_string(specs, 1);
-	}
-	ft_special_memset(specs, '0', sign_len(specs, value) + specs->precision_len - specs->data_len);
-/*	while (sign_len(specs, value) + specs->precision_len > specs->data_len)
-	{
-		*specs->string = '0';
-		specs->precision_len--;
-		increm_string(specs, 1);
-	}*/
+		ft_special_memset(specs, value >= 0 ? '+' : '-', 1);
+	ft_special_memset(specs, '0', sign_len(specs, value)
+			+ specs->precision_len - specs->data_len);
 	nb = ft_itoa_spec(specs, value);
 	ft_strncat_move(nb, specs->data_len - sign_len(specs, value), specs);
 	free(nb);
 }
 
-void	format_int(t_arg *specs, int value)
+void			format_int(t_arg *specs, int value)
 {
-	int		 perc_len;
+	int		perc_len;
 
 	set_data_len(specs, value);
-	if (null_data(specs, (ULL) value) && !specs->plus)
+	if (null_data(specs, (ULL)value) && !specs->plus)
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)
-	{
-		perc_len = max(specs->data_len, specs->precision_len);
 		specs->fill = '0';
-	}
-	else
-		perc_len = max(specs->data_len, specs->width_len);
+	perc_len = max(specs->data_len, specs->width_len);
 	if (specs->extra && value > 0 && !specs->plus)
 	{
 		*specs->string = ' ';
