@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 12:51:46 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 16:59:16 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:16:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
+static void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 {
 	char	*nb;
 
@@ -24,16 +24,9 @@ void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 		perc_len--;
 	}
 	nb = ft_uitoa_spec(specs, value);
-	if (!null_data(specs, (ULL) value))
-	{
+	if (!null_data(specs, (ULL)value))
 		ft_strncat_move(nb, specs->data_len, specs);
-	}
-	while (specs->data_len < perc_len)
-	{
-		*specs->string = ' ';
-		perc_len--;
-		increm_string(specs, 1);
-	}
+	ft_special_memset(specs, ' ', perc_len - specs->data_len);
 	free(nb);
 }
 
@@ -54,23 +47,18 @@ static void	fill_uint(int perc_len, t_arg *specs, ULL value)
 		increm_string(specs, 1);
 		perc_len--;
 	}
-	while (specs->precision_len > specs->data_len)
-	{
-		*specs->string = '0';
-		specs->precision_len--;
-		increm_string(specs, 1);
-	}
+	ft_special_memset(specs, '0', specs->precision_len - specs->data_len);
 	nb = ft_uitoa_spec(specs, value);
 	ft_strncat_move(nb, specs->data_len - usign_len(specs), specs);
 	free(nb);
 }
 
-void	format_unsigned(t_arg *specs, ULL value)
+void		format_unsigned(t_arg *specs, ULL value)
 {
-	int		 perc_len;
+	int	perc_len;
 
 	set_data_len(specs, value);
-	if (null_data(specs, (ULL) value && !specs->plus))
+	if (null_data(specs, (ULL)value && !specs->plus))
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)
 	{
