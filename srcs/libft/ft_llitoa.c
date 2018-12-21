@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:46:44 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/15 12:53:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 19:00:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_len(long long int n)
 	int len;
 
 	len = 0;
-	if ((unsigned long long int) n == -9223372036854775808U)
+	if ((unsigned long long int)n == -9223372036854775808U)
 		return (19);
 	if (n < 0)
 		n = -n;
@@ -63,7 +63,7 @@ char		*ft_llitoa(long long int n)
 	len = get_len(n);
 	if (!(res = ft_strnew(len)))
 		return (NULL);
-	if ((unsigned long long int) n == -9223372036854775808U)
+	if ((unsigned long long int)n == -9223372036854775808U)
 		return (ll_min(res));
 	if (n < 0)
 		n = -n;

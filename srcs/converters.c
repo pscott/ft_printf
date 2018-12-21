@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:22:44 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/17 19:00:10 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 17:18:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	*convert(ULL num, int base, char *rep)
 	*ptr = 0;
 	ptr--;
 	if (num == 0)
-		*--ptr = rep[num&base];
+		*--ptr = rep[num & base];
 	while (num)
 	{
-		*--ptr = rep[num%base];
+		*--ptr = rep[num % base];
 		num /= base;
 	}
 	return (ptr);

@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:04:09 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 18:08:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			fill_int_left(int perc_len, t_arg *specs, int value)
+static void			fill_int_left(int perc_len, t_arg *specs, int value)
 {
 	char	sign;
 	char	*nb;
@@ -39,7 +39,7 @@ void			fill_int_left(int perc_len, t_arg *specs, int value)
 	free(nb);
 }
 
-static int		sign_len(t_arg *specs, int value)
+static int			sign_len(t_arg *specs, int value)
 {
 	if (specs->plus)
 		return (1);
@@ -48,7 +48,7 @@ static int		sign_len(t_arg *specs, int value)
 	return (0);
 }
 
-void			fill_int(int perc_len, t_arg *specs, int value)
+static void			fill_int(int perc_len, t_arg *specs, int value)
 {
 	char	*nb;
 	int		sign_put;
@@ -76,7 +76,7 @@ void			fill_int(int perc_len, t_arg *specs, int value)
 	free(nb);
 }
 
-void			format_int(t_arg *specs, int value)
+void				format_int(t_arg *specs, int value)
 {
 	int		perc_len;
 

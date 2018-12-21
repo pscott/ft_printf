@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:45:17 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 19:13:47 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	init_specs(t_arg *specs)
 	specs->hash = 0;
 	specs->l = 0;
 	specs->h = 0;
-	specs->total_len = 0;
 	specs->mall_len = 32;
 	specs->string = NULL;
 	specs->data_len = 0;
@@ -53,7 +52,7 @@ void	reset_specs(t_arg *specs)
 
 void	realloc_if_necessary(t_arg *specs, int len)
 {
-	if (specs->total_len + len >= specs->mall_len - 1)
+	if (specs->string - specs->origin + len >= specs->mall_len - 1)
 		malloc_string(specs, len);
 }
 
@@ -62,7 +61,7 @@ void	malloc_string(t_arg *specs, int len)
 	char	*tmp;
 	int		to_cpy;
 
-	while (specs->total_len + len >= specs->mall_len - 1)
+	while (specs->string - specs->origin + len >= specs->mall_len - 1)
 		specs->mall_len *= 2;
 	if (!(specs->string))
 	{

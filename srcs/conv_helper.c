@@ -6,13 +6,13 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:00:24 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 16:55:51 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 17:46:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*ox_helper(t_arg *specs)
+static char		*ox_helper(t_arg *specs)
 {
 	char *one;
 
@@ -27,7 +27,7 @@ static char	*ox_helper(t_arg *specs)
 	return (one);
 }
 
-void	check_conv_value(t_arg *specs, char *value)
+void			check_conv_value(t_arg *specs, char *value)
 {
 	if ((*value == '0')
 			&& (((specs->type == 'X' || specs->type == 'x')
@@ -39,7 +39,7 @@ void	check_conv_value(t_arg *specs, char *value)
 		specs->data_len = 0;
 }
 
-int		ox_len(t_arg *specs)
+int				ox_len(t_arg *specs)
 {
 	if (specs->type == 'X' || specs->type == 'x')
 		return (2);
@@ -49,7 +49,7 @@ int		ox_len(t_arg *specs)
 		return (0);
 }
 
-void	put_ox(t_arg *specs, char *value, int *perc_len, int modif)
+void			put_ox(t_arg *specs, char *value, int *perc_len, int modif)
 {
 	int l;
 
@@ -70,11 +70,4 @@ void	put_ox(t_arg *specs, char *value, int *perc_len, int modif)
 			ft_strncat_move(ox_helper(specs), l, specs);
 		}
 	}
-}
-
-void	ft_strncat_move(char *src, int n, t_arg *specs)
-{
-	realloc_if_necessary(specs, n);
-	ft_memcpy(specs->string, src, n);
-	increm_string(specs, n);
 }

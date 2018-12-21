@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 18:51:53 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:55:54 by pscott           ###   ########.fr       */
+/*   Updated: 2018/12/21 19:07:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,30 @@ void	value_d(t_arg *specs, LL value)
 void	value_x(t_arg *specs, LL value)
 {
 	if (specs->l == 2)
-		specs->conv_val = convert((ULL)value, 16, BASE_16_low);
+		specs->conv_val = convert((ULL)value, 16, BASE_16_LOW);
 	else if (specs->l == 1)
-		specs->conv_val = convert((UL)value, 16, BASE_16_low);
+		specs->conv_val = convert((UL)value, 16, BASE_16_LOW);
 	else if (specs->h == 2)
-		specs->conv_val = convert((unsigned char)value, 16, BASE_16_low);
+		specs->conv_val = convert((unsigned char)value, 16, BASE_16_LOW);
 	else if (specs->h == 1)
-		specs->conv_val = convert((short unsigned int)value, 16, BASE_16_low);
+		specs->conv_val = convert((short unsigned int)value, 16, BASE_16_LOW);
 	else
-		specs->conv_val = convert((unsigned int)value, 16, BASE_16_low);
+		specs->conv_val = convert((unsigned int)value, 16, BASE_16_LOW);
 	specs->data_len = ft_strlen(specs->conv_val);
 }
 
 void	value_xx(t_arg *specs, LL value)
 {
 	if (specs->l == 2)
-		specs->conv_val = convert((ULL)value, 16, BASE_16_up);
+		specs->conv_val = convert((ULL)value, 16, BASE_16_UP);
 	else if (specs->l == 1)
-		specs->conv_val = convert((UL)value, 16, BASE_16_up);
+		specs->conv_val = convert((UL)value, 16, BASE_16_UP);
 	else if (specs->h == 2)
-		specs->conv_val = convert((unsigned char)value, 16, BASE_16_up);
+		specs->conv_val = convert((unsigned char)value, 16, BASE_16_UP);
 	else if (specs->h == 1)
-		specs->conv_val = convert((short unsigned int)value, 16, BASE_16_up);
+		specs->conv_val = convert((short unsigned int)value, 16, BASE_16_UP);
 	else
-		specs->conv_val = convert((unsigned int)value, 16, BASE_16_up);
+		specs->conv_val = convert((unsigned int)value, 16, BASE_16_UP);
 	specs->data_len = ft_strlen(specs->conv_val);
 }
 

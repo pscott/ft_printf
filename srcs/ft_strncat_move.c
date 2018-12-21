@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   increm_string.c                                    :+:      :+:    :+:   */
+/*   ft_strncat_move.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/20 18:39:01 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 19:14:14 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/21 17:45:45 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/21 17:47:00 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	increm_string(t_arg *specs, int len)
+void	ft_strncat_move(char *src, int n, t_arg *specs)
 {
-	if (specs->string - specs->origin + len >= specs->mall_len - 1)
-		realloc_if_necessary(specs, len);
-	specs->string += len;
+	realloc_if_necessary(specs, n);
+	ft_memcpy(specs->string, src, n);
+	increm_string(specs, n);
 }
