@@ -17,9 +17,13 @@ static void		fill_string(t_arg *specs, L value)
 	int		data_l;
 	int		perc_len;
 
-	data_l = specs->data_len;
+	data_l = value ? specs->data_len : 0;
 	perc_len = max(specs->width_len, data_l);
-//	put_px(specs, value, &perc_len);
+	if (specs->fill == '0')
+	{
+		ft_strncat_move("0x", 2, specs);
+		perc_len -= 2;
+	}
 	while ((data_l != 0 || specs->width)
 			&& perc_len > max(specs->precision_len, data_l)
 			+ (specs->fill != '0' && value != '0')
@@ -29,7 +33,8 @@ static void		fill_string(t_arg *specs, L value)
 		perc_len--;
 		increm_string(specs, 1);
 	}
-	ft_strncat_move("0x", 2, specs);
+	if (specs->fill != '0')
+		ft_strncat_move("0x", 2, specs);
 	ft_special_memset(specs, '0', specs->precision_len - data_l);
 	ft_strncat_move(specs->conv_val, data_l, specs);
 }
@@ -39,7 +44,8 @@ static void		fill_string_left(t_arg *specs, L value)
 	int		data_l;
 	int		perc_len;
 
-	data_l = specs->data_len;
+	data_l = value ? specs->data_len : 0;
+	specs->fill = ' ';
 	perc_len = max(specs->width_len, data_l);
 	ft_strncat_move("0x", 2, specs);
 	while (specs->precision_len > data_l)

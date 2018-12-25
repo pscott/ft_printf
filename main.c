@@ -5,8 +5,8 @@ int	main(void)
 {
 	char *c;
 
-	c = "Salut le %0p\n";
+	c = "{%-010p}\n";
 
-	ft_printf(c, NULL);
-	   printf(c, NULL);
+	ft_printf(c, 123);
+	   printf(c, 123);
 }
