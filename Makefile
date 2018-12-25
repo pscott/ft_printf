@@ -40,7 +40,7 @@ NEWS	:= ft_printf.c converters.c ft_atoi_move.c parse_struct.c \
 	format_lint.c format_llint.c format_num.c ft_hitoa.c ft_hhitoa.c \
 	null_data.c format_conv.c conv_helper.c increm_string.c isprint_special.c \
 	increm_format.c ft_special_memset.c ft_strncat_move.c values.c \
-	set_data_len.c unsigned_helper.c
+	set_data_len.c unsigned_helper.c format_p.c
 
 LIBS	:= $(addprefix $(LIBDIR)/, $(LIBS))
 NEWS	:= $(addprefix $(SRCDIR)/, $(NEWS))

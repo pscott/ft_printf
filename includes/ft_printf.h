@@ -48,6 +48,7 @@ typedef struct	s_arg
 }				t_arg;
 
 char			*convert(ULL num, int base, char *rep);
+char			*convert_p(L num, int base, char *rep);
 int				ft_printf(const char *format, ...);
 int				parse_struct(t_arg *specs, ULL value);
 char			*ft_itoa_spec(t_arg *specs, LL value);
@@ -84,6 +85,7 @@ int				sign_llen(t_arg *spec, L value);
 void			format_llint(t_arg *specs, LL value);
 int				sign_lllen(t_arg *spec, LL value);
 void			format_unsigned(t_arg *specs, ULL value);
+void			format_p(t_arg *specs, L value);
 int				unsigned_len(t_arg *spec, ULL value);
 void			format_num(t_arg *specs, ULL value);
 void			format_char(t_arg *specs, char *value);
@@ -99,6 +101,7 @@ int				isprint_special(char c);
 void			get_preci_flags(char **format, t_arg *specs);
 void			ft_strncat_move(char *src, int n, t_arg *specs);
 void			put_ox(t_arg *specs, char *value, int *perc_len, int modif);
+void			put_px(t_arg *specs, L value, int *perc_len);
 void			check_conv_value(t_arg *specs, char *value);
 int				ox_len(t_arg *specs);
 void			ft_special_memset(t_arg *specs, char c, int len);

@@ -9,7 +9,6 @@
 /*   Updated: 2018/12/21 18:58:49 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "ft_printf.h"
 
 char	*ft_itoa_spec(t_arg *specs, LL value)
@@ -69,5 +68,7 @@ int		parse_struct(t_arg *specs, ULL value)
 		format_conv(specs, specs->conv_val);
 	else if (specs->type == 's')
 		format_string(specs, (char *)value);
+	else if (specs->type == 'p')
+		format_p(specs, (L)value);
 	return (1);
 }
