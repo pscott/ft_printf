@@ -22,14 +22,14 @@ static void		fill_string(t_arg *specs, L value)
 //	put_px(specs, value, &perc_len);
 	while ((data_l != 0 || specs->width)
 			&& perc_len > max(specs->precision_len, data_l)
-			+ (specs->fill != '0' && specs->hash && value != '0')
+			+ (specs->fill != '0' && value != '0')
 			* ox_len(specs))
 	{
 		*specs->string = specs->fill;
 		perc_len--;
 		increm_string(specs, 1);
 	}
-	put_px(specs, value, &perc_len);
+	ft_strncat_move("0x", 2, specs);
 	ft_special_memset(specs, '0', specs->precision_len - data_l);
 	ft_strncat_move(specs->conv_val, data_l, specs);
 }
@@ -41,7 +41,7 @@ static void		fill_string_left(t_arg *specs, L value)
 
 	data_l = specs->data_len;
 	perc_len = max(specs->width_len, data_l);
-	put_px(specs, value, &perc_len);
+	ft_strncat_move("0x", 2, specs);
 	while (specs->precision_len > data_l)
 	{
 		*specs->string = '0';
@@ -52,7 +52,7 @@ static void		fill_string_left(t_arg *specs, L value)
 	ft_strncat_move(specs->conv_val, data_l, specs);
 	while ((data_l != 0 || specs->width)
 			&& perc_len > max(specs->precision_len, data_l) +
-			(specs->fill != '0' && specs->hash && value != '0')
+			(specs->fill != '0' && value != '0')
 			* ox_len(specs))
 	{
 		*specs->string = ' ';

@@ -101,7 +101,6 @@ int				isprint_special(char c);
 void			get_preci_flags(char **format, t_arg *specs);
 void			ft_strncat_move(char *src, int n, t_arg *specs);
 void			put_ox(t_arg *specs, char *value, int *perc_len, int modif);
-void			put_px(t_arg *specs, L value, int *perc_len);
 void			check_conv_value(t_arg *specs, char *value);
 int				ox_len(t_arg *specs);
 void			ft_special_memset(t_arg *specs, char c, int len);

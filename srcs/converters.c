@@ -27,7 +27,6 @@ char	*convert(ULL num, int base, char *rep)
 		*--ptr = rep[num % base];
 		num /= base;
 	}
-	printf("PTR: %s\n", ptr);
 	return (ptr);
 }
 

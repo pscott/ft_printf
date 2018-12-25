@@ -41,7 +41,7 @@ void			check_conv_value(t_arg *specs, char *value)
 
 int				ox_len(t_arg *specs)
 {
-	if (specs->type == 'X' || specs->type == 'x')
+	if (specs->type == 'X' || specs->type == 'x' || specs->type == 'p')
 		return (2);
 	else if (specs->type == 'o')
 		return (1);
@@ -69,14 +69,5 @@ void			put_ox(t_arg *specs, char *value, int *perc_len, int modif)
 				*perc_len -= l;
 			ft_strncat_move(ox_helper(specs), l, specs);
 		}
-	}
-}
-
-void			put_px(t_arg *specs, L value, int *perc_len)
-{
-	if (value)
-	{
-		*perc_len -= 2;
-		ft_strncat_move("0x", 2, specs);
 	}
 }
