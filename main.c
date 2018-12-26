@@ -5,8 +5,8 @@ int	main(void)
 {
 	char *c;
 
-	c = "{%-010p}\n";
+	c = "{%.40}\n";
 
 	ft_printf(c, 123);
-	   printf(c, 123);
+	   printf(c, 122);
 }
