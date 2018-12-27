@@ -17,7 +17,9 @@ static void		fill_string(t_arg *specs, L value)
 	int		data_l;
 	int		perc_len;
 
-	data_l = value ? specs->data_len : 0;
+	data_l = value ? specs->data_len : 1;
+	if (!value && specs->precision && !specs->precision_len)
+		data_l = 0;
 	perc_len = max(specs->width_len, data_l);
 	if (specs->fill == '0')
 	{
@@ -44,7 +46,9 @@ static void		fill_string_left(t_arg *specs, L value)
 	int		data_l;
 	int		perc_len;
 
-	data_l = value ? specs->data_len : 0;
+	data_l = value ? specs->data_len : 1;
+	if (!value && specs->precision && !specs->precision_len)
+		data_l = 0;
 	specs->fill = ' ';
 	perc_len = max(specs->width_len, data_l);
 	ft_strncat_move("0x", 2, specs);
