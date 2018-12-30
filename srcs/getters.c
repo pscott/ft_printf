@@ -15,13 +15,15 @@
 void	check_if_flags(t_arg *specs, char c, char **format)
 {
 	if (c == '-')
-		specs->left += 1;
+		specs->left++;
 	else if (c == '+')
-		specs->plus += 1;
+		specs->plus++;
 	else if (c == '#')
-		specs->hash += 1;
+		specs->hash++;
 	else if (c == '0')
 		specs->fill = '0';
+	else if (c == '*')
+		specs->wc++;
 	else if (c == ' ')
 	{
 		set_extra(c, specs);

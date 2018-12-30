@@ -28,6 +28,7 @@ void	init_specs(t_arg *specs)
 	specs->h = 0;
 	specs->mall_len = 32;
 	specs->string = NULL;
+	specs->wc = 0;
 	specs->data_len = 0;
 	specs->extra = 0;
 }
@@ -48,6 +49,7 @@ void	reset_specs(t_arg *specs)
 	specs->h = 0;
 	specs->data_len = 0;
 	specs->extra = 0;
+	specs->wc = 0;
 }
 
 void	realloc_if_necessary(t_arg *specs, int len)

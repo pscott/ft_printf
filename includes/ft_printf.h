@@ -43,6 +43,7 @@ typedef struct	s_arg
 	char		*conv_val;
 	char		*string;
 	char		*origin;
+	int			wc;
 	int			mall_len;
 	int			extra;
 }				t_arg;
@@ -112,4 +113,5 @@ void			value_x(t_arg *specs, LL value);
 void			value_xx(t_arg *specs, LL value);
 void			value_o(t_arg *specs, LL value);
 void			value_u(t_arg *specs, LL value);
+void			wildcard(t_arg *specs, int value);
 #endif

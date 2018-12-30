@@ -5,8 +5,8 @@ int	main(void)
 {
 	char *c;
 
-	c = "%.p\n";
+	c = "%*d\n";
 
-	/*printf("RES: %d\n", */ft_printf(c, NULL);
-	/*printf("RES: %d\n",  */  printf(c, NULL);
+	/*printf("RES: %d\n", */ft_printf(c, -21, 20);
+	/*printf("RES: %d\n",  */  printf(c, -21, 20);
 }

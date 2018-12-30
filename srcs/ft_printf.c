@@ -36,7 +36,11 @@ int				ft_printf(const char *restrict f, ...)
 			if (specs->type == '%')
 				print_perc(specs, (char**)&f);
 			else
+			{
+				while (specs->wc > 0)
+					wildcard(specs, va_arg(arg, int));
 				parse_struct(specs, va_arg(arg, ULL));
+			}
 		}
 		else if (*f)
 			ft_strncat_move((char *)f, 1, specs);
