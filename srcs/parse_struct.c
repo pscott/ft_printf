@@ -35,11 +35,11 @@ int		print_perc(t_arg *specs, char **format)
 	return (1);
 }
 
-int		handle_perc(char **format, t_arg *specs)
+int		handle_perc(char **format, t_arg *specs, va_list *arg)
 {
 	increm_format(format, 1);
 	reset_specs(specs);
-	if (get_flags(format, specs) == 2)
+	if (get_flags(specs, format, arg) == 2)
 	{
 		specs->type = '2';
 		if (**format)

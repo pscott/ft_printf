@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	check_if_flags(t_arg *specs, char c, char **format)
+void	check_if_flags(t_arg *specs, char c, char **format, va_list *arg)
 {
 	if (c == '-')
 		specs->left++;
@@ -23,7 +23,7 @@ void	check_if_flags(t_arg *specs, char c, char **format)
 	else if (c == '0')
 		specs->fill = '0';
 	else if (c == '*')
-		specs->wc++;
+		wildcard(specs, arg, 0);
 	else if (c == ' ')
 	{
 		set_extra(c, specs);
@@ -35,13 +35,13 @@ void	check_if_flags(t_arg *specs, char c, char **format)
 		if ((specs->width_len = ft_atoi_move(format)))
 		{
 			specs->width = 1;
-			increm_format(format, -1);
+			(*format)--;
 		}
 	}
 	increm_format(format, 1);
 }
 
-int		get_flags(char **format, t_arg *specs)
+int		get_flags(t_arg *specs, char **format, va_list *arg)
 {
 	char	c;
 
@@ -54,15 +54,19 @@ int		get_flags(char **format, t_arg *specs)
 		{
 			increm_format(format, 1);
 			specs->precision = 1;
-			specs->fill = ' ';
-			specs->precision_len = ft_atoi_move(format);
-			(*format)--;
+			if (**format == '*')
+				wildcard(specs, arg, 1);
+			else
+			{
+				specs->precision_len = ft_atoi_move(format);
+				(*format)--;
+			}
 		}
 		if (is_type(format, specs))
 			return (specs->type = **format);
 		if (is_spec_upper(**format))
 			return (specs->type = '%');
-		check_if_flags(specs, c, format);
+		check_if_flags(specs, c, format, arg);
 	}
 	return (0);
 }

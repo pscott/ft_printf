@@ -31,16 +31,12 @@ int				ft_printf(const char *restrict f, ...)
 		return (-1);
 	while (*f)
 	{
-		if (*f == '%' && handle_perc((char **)&f, specs))
+		if (*f == '%' && handle_perc((char **)&f, specs, &arg))
 		{
 			if (specs->type == '%')
 				print_perc(specs, (char**)&f);
 			else
-			{
-				while (specs->wc > 0)
-					wildcard(specs, va_arg(arg, int));
 				parse_struct(specs, va_arg(arg, ULL));
-			}
 		}
 		else if (*f)
 			ft_strncat_move((char *)f, 1, specs);
