@@ -12,21 +12,6 @@
 
 #include "libft.h"
 
-static int	get_len(long int n)
-{
-	int len;
-
-	len = 0;
-	if (n < 0)
-		n = -n;
-	while (n > 9)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len + 1);
-}
-
 static void	fill_itoa(long int n, char *src, int len)
 {
 	while (n > 9)
@@ -38,14 +23,31 @@ static void	fill_itoa(long int n, char *src, int len)
 	src[0] = n + '0';
 }
 
+char		*l_min(char *res)
+{
+	char			*str;
+	long long int	i;
+
+	str = "9223372036854775808";
+	i = 0;
+	while (str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	return (res);
+}
+
 char		*ft_litoa(long int n)
 {
 	char	*res;
 	int		len;
 
-	len = get_len(n);
+	len = get_llen(n);
 	if (!(res = ft_strnew(len)))
 		return (NULL);
+	if ((unsigned long long int)n == -9223372036854775808U)
+		return (l_min(res));
 	if (n < 0)
 		n = -n;
 	fill_itoa(n, res, len);

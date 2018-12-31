@@ -12,23 +12,6 @@
 
 #include "libft.h"
 
-static int	get_len(int n)
-{
-	int len;
-
-	len = 0;
-	if (n == -2147483648)
-		return (10);
-	if (n < 0)
-		n = -n;
-	while (n > 9)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len + 1);
-}
-
 static void	fill_itoa(int n, char *src, int len)
 {
 	while (n > 9)

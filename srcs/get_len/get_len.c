@@ -38,7 +38,7 @@ int		get_lllen(LL value)
 
 	len = 0;
 	if ((ULL)value == -9223372036854775808U)
-		return (20);
+		return (19);
 	if (value < 0)
 	{
 		len++;
@@ -57,6 +57,8 @@ int		get_llen(L value)
 	int len;
 
 	len = 0;
+	if ((ULL)value == -9223372036854775808U)
+		return (19);
 	if (value < 0)
 	{
 		len++;

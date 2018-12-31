@@ -93,8 +93,6 @@ void			fill_char(int perc_len, t_arg *specs, char *value);
 void			fill_char_left(int perc_len, t_arg *specs, char *value);
 void			format_string(t_arg *specs, char *value);
 void			format_conv(t_arg *specs, char *value);
-char			*ft_hitoa(short int n);
-char			*ft_hhitoa(short int n);
 int				ft_atoi_move(char **src);
 int				null_data(t_arg *specs, ULL value);
 int				isprint_special(char c);

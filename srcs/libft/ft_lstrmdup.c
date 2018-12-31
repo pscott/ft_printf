@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	max(t_list *a, t_list *b)
+static size_t	max_list(t_list *a, t_list *b)
 {
 	if (a->content_size > b->content_size)
 		return (a->content_size);
@@ -33,7 +33,7 @@ void			ft_lstrmdup(t_list *lst)
 		l2 = l1;
 		while (l2->next != NULL)
 		{
-			if (ft_memcmp(l1->content, l2->next->content, max(l1, l2->next))
+			if (ft_memcmp(l1->content, l2->next->content, max_list(l1, l2->next))
 					== 0)
 			{
 				dup = l2->next;

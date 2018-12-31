@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	get_len(signed char n)
+static int	get_hhlen(signed char n)
 {
 	int len;
 
@@ -60,7 +60,7 @@ char		*ft_hhitoa(signed char n)
 	char	*res;
 	int		len;
 
-	len = get_len(n);
+	len = get_hhlen(n);
 	if (!(res = ft_strnew(len)))
 		return (NULL);
 	if (n == -128)

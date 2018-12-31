@@ -33,7 +33,7 @@ static void		front_back_split(t_list *src, t_list **fref, t_list **bref)
 	slow->next = NULL;
 }
 
-static	size_t	max(t_list *a, t_list *b)
+static	size_t	max_list(t_list *a, t_list *b)
 {
 	if (a->content_size > b->content_size)
 		return (a->content_size);
@@ -50,7 +50,7 @@ static	t_list	*sorted_merge(t_list *a, t_list *b)
 		return (b);
 	else if (b == NULL)
 		return (a);
-	if (ft_memcmp(a->content, b->content, max(a, b)) <= 0)
+	if (ft_memcmp(a->content, b->content, max_list(a, b)) <= 0)
 	{
 		res = a;
 		res->next = sorted_merge(a->next, b);
