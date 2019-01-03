@@ -14,6 +14,7 @@ CC		:= gcc
 RM		:= rm -rf
 
 SRCDIR		:= srcs
+ITOADIR		:= srcs/ft_itoa
 LIBDIR		:= srcs/libft
 INCLDIR		:= -I includes/
 CONVDIR		:= srcs/conversion
@@ -26,7 +27,7 @@ CFLAGS	:= -Wall -Wextra $(INCLDIR)
 ARFLAGS	:=
 
 LIBS	:= ft_atoi.c  ft_bzero.c  ft_isalnum.c  ft_isalpha.c  ft_isascii.c \
-	ft_isdigit.c  ft_isprint.c  ft_itoa.c  ft_litoa.c ft_llitoa.c ft_lstadd.c \
+	ft_isdigit.c  ft_isprint.c  ft_lstadd.c \
 	ft_lstappend.c  ft_lstdel.c  ft_lstdelone.c  ft_lstiter.c  ft_lstlen.c \
 	ft_lstmap.c  ft_lstnew.c  ft_lstrmdup.c  ft_lstsort.c  ft_memalloc.c \
 	ft_memccpy.c  ft_memchr.c  ft_memcmp.c  ft_memcpy.c  ft_memdel.c \
@@ -37,21 +38,23 @@ LIBS	:= ft_atoi.c  ft_bzero.c  ft_isalnum.c  ft_isalpha.c  ft_isascii.c \
 	ft_strjoin.c  ft_strlcat.c  ft_strlen.c  ft_strmap.c  ft_strmapi.c \
 	ft_strncat.c  ft_strncmp.c  ft_strncpy.c  ft_strnequ.c  ft_strnew.c \
 	ft_strnstr.c  ft_strrchr.c  ft_strrev.c  ft_strsplit.c  ft_strstr.c \
-	ft_strsub.c  ft_strtrim.c  ft_tolower.c  ft_toupper.c ft_uitoa.c \
-	ft_hitoa.c ft_hhitoa.c
- 
+	ft_strsub.c  ft_strtrim.c  ft_tolower.c  ft_toupper.c
+
+
+ITOA	:= ft_itoa.c  ft_litoa.c ft_llitoa.c ft_hitoa.c ft_hhitoa.c ft_uitoa.c
 CONV	:= conv_helper.c converters.c
 FORM	:= format_int.c format_char.c format_unsigned.c format_string.c \
-	format_lint.c format_llint.c format_num.c format_conv.c format_p.c
+	format_conv.c format_p.c
 GETLEN	:= get_len.c get_ulen.c
 HELPERS	:= ft_atoi_move.c null_data.c ft_special_memset.c ft_strncat_move.c \
-	utils.c values.c unsigned_helper.c 
+	utils.c values.c unsigned_helper.c choose_value.c
 INCREM	:= increm_format.c increm_string.c 
 
 PRINTF	:= ft_printf.c parse_struct.c getters.c spec_init.c \
 	isprint_special.c set_data_len.c wildcard.c
 
 CONV	:= $(addprefix $(CONVDIR)/, $(CONV))
+ITOA	:= $(addprefix $(ITOADIR)/, $(ITOA))
 FORM	:= $(addprefix $(FORMDIR)/, $(FORM))
 GETLEN	:= $(addprefix $(GETLENDIR)/, $(GETLEN))
 HELPERS	:= $(addprefix $(HELPERSDIR)/, $(HELPERS))
@@ -59,7 +62,8 @@ INCREM	:= $(addprefix $(INCREMDIR)/, $(INCREM))
 LIBS	:= $(addprefix $(LIBDIR)/, $(LIBS))
 PRINTF	:= $(addprefix $(SRCDIR)/, $(PRINTF))
 
-SRCS	:= $(LIBS) $(PRINTF) $(CONV) $(FORM) $(GETLEN) $(HELPERS) $(INCREM)
+SRCS	:= $(LIBS) $(ITOA) $(PRINTF) $(CONV) $(FORM) $(GETLEN) $(HELPERS) \
+	$(INCREM)
 OBJS	:= $(SRCS:.c=.o)
 DEPS	:= Makefile includes/ft_printf.h includes/libft.h
 NAME	:= libftprintf.a

@@ -5,51 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 17:46:44 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 19:00:21 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/14 17:46:05 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/21 18:33:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static void	fill_itoa(long long int n, char *src, int len)
+static void		ll_min(t_arg *specs)
 {
-	while (n > 9)
-	{
-		src[len - 1] = n % 10 + '0';
-		len--;
-		n = n / 10;
-	}
-	src[0] = n + '0';
-}
-
-char		*ll_min(char *res)
-{
-	char				*str;
-	long long int		i;
+	char			*str;
 
 	str = "9223372036854775808";
-	i = 0;
-	while (str[i])
+	realloc_if_necessary(specs, 19);
+	while (*str)
 	{
-		res[i] = str[i];
-		i++;
+		*(specs->string) = *str;
+		specs->string++;
+		str++;
 	}
-	return (res);
 }
 
-char		*ft_llitoa(long long int n)
+void		ft_llitoa(t_arg *specs, LL n)
 {
-	char	*res;
 	int		len;
+	int		tmp;
 
+	if ((ULL)n == 9223372036854775808U)
+		return (ll_min(specs));
 	len = get_lllen(n);
-	if (!(res = ft_strnew(len)))
-		return (NULL);
-	if ((unsigned long long int)n == -9223372036854775808U)
-		return (ll_min(res));
+	tmp = len;
+	realloc_if_necessary(specs, len);
 	if (n < 0)
 		n = -n;
-	fill_itoa(n, res, len);
-	return (res);
+	while (n > 9)
+	{
+		specs->string[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	specs->string[0] = n + '0';
+	specs->string += tmp;
 }

@@ -10,46 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static void	fill_itoa(long int n, char *src, int len)
-{
-	while (n > 9)
-	{
-		src[len - 1] = n % 10 + '0';
-		len--;
-		n = n / 10;
-	}
-	src[0] = n + '0';
-}
-
-char		*l_min(char *res)
+static void		l_min(t_arg *specs)
 {
 	char			*str;
-	long long int	i;
 
 	str = "9223372036854775808";
-	i = 0;
-	while (str[i])
+	realloc_if_necessary(specs, 19);
+	while (*str)
 	{
-		res[i] = str[i];
-		i++;
+		*(specs->string) = *str;
+		specs->string++;
+		str++;
 	}
-	return (res);
 }
 
-char		*ft_litoa(long int n)
+void		ft_litoa(t_arg *specs, L n)
 {
-	char	*res;
 	int		len;
+	int		tmp;
 
+	if ((ULL)n == 9223372036854775808U)
+		return (l_min(specs));
 	len = get_llen(n);
-	if (!(res = ft_strnew(len)))
-		return (NULL);
-	if ((unsigned long long int)n == -9223372036854775808U)
-		return (l_min(res));
+	tmp = len;
+	realloc_if_necessary(specs, len);
 	if (n < 0)
 		n = -n;
-	fill_itoa(n, res, len);
-	return (res);
+	while (n > 9)
+	{
+		specs->string[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	specs->string[0] = n + '0';
+	specs->string += tmp;
 }

@@ -50,3 +50,17 @@ int		get_ullen(UL value)
 	}
 	return (ulen == 0 ? 1 : ulen);
 }
+
+int			ulen(t_arg *specs, ULL n)
+{
+	if (specs->l == 2)
+		return (get_ulllen((ULL)n));
+	if (specs->l == 1)
+		return (get_ullen((UL)n));
+	if (specs->h == 2)
+		return (get_ulen((unsigned char)n));
+	if (specs->h == 1)
+		return (get_ulen((unsigned short int)n));
+	else
+		return (get_ulen((unsigned int)n));
+}

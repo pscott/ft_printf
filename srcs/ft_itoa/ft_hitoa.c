@@ -5,68 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/15 13:14:23 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:18:09 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/14 17:46:05 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/21 18:33:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	get_hlen(short int n)
+static void		h_min(t_arg *specs)
 {
-	int len;
-
-	len = 0;
-	if (n == -32768)
-		return (5);
-	if (n < 0)
-		n = -n;
-	while (n > 9)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len + 1);
-}
-
-static void	fill_itoa(short int n, char *src, int len)
-{
-	while (n > 9)
-	{
-		src[len - 1] = n % 10 + '0';
-		len--;
-		n = n / 10;
-	}
-	src[0] = n + '0';
-}
-
-static char	*int_min(char *res)
-{
-	char	*str;
-	int		i;
+	char			*str;
 
 	str = "32768";
-	i = 0;
-	while (str[i])
+	realloc_if_necessary(specs, 5);
+	while (*str)
 	{
-		res[i] = str[i];
-		i++;
+		*(specs->string) = *str;
+		specs->string++;
+		str++;
 	}
-	return (res);
 }
 
-char		*ft_hitoa(short int n)
+void		ft_hitoa(t_arg *specs, short int n)
 {
-	char	*res;
 	int		len;
+	int		tmp;
 
-	len = get_hlen(n);
-	if (!(res = ft_strnew(len)))
-		return (NULL);
 	if (n == -32768)
-		return (int_min(res));
+		return (h_min(specs));
+	len = get_hlen(n);
+	tmp = len;
+	realloc_if_necessary(specs, len);
 	if (n < 0)
 		n = -n;
-	fill_itoa(n, res, len);
-	return (res);
+	while (n > 9)
+	{
+		specs->string[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	specs->string[0] = n + '0';
+	specs->string += tmp;
 }

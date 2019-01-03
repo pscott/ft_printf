@@ -5,51 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:50:48 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:59:58 by pscott           ###   ########.fr       */
+/*   Created: 2018/12/14 17:46:05 by pscott            #+#    #+#             */
+/*   Updated: 2018/12/21 18:33:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static void	fill_itoa(int n, char *src, int len)
+static void		i_min(t_arg *specs)
 {
-	while (n > 9)
-	{
-		src[len - 1] = n % 10 + '0';
-		len--;
-		n = n / 10;
-	}
-	src[0] = n + '0';
-}
-
-static char	*int_min(char *res)
-{
-	char	*str;
-	int		i;
+	char			*str;
 
 	str = "2147483648";
-	i = 0;
-	while (str[i])
+	realloc_if_necessary(specs, 10);
+	while (*str)
 	{
-		res[i] = str[i];
-		i++;
+		*(specs->string) = *str;
+		specs->string++;
+		str++;
 	}
-	return (res);
 }
 
-char		*ft_itoa(int n)
+void		ft_itoa(t_arg *specs, int n)
 {
-	char	*res;
 	int		len;
+	int		tmp;
 
-	len = get_len(n);
-	if (!(res = ft_strnew(len)))
-		return (NULL);
 	if (n == -2147483648)
-		return (int_min(res));
+		return (i_min(specs));
+	len = get_len(n);
+	tmp = len;
+	realloc_if_necessary(specs, len);
 	if (n < 0)
 		n = -n;
-	fill_itoa(n, res, len);
-	return (res);
+	while (n > 9)
+	{
+		specs->string[len - 1] = n % 10 + '0';
+		n = n / 10;
+		len--;
+	}
+	specs->string[0] = n + '0';
+	specs->string += tmp;
 }

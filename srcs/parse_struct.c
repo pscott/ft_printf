@@ -11,21 +11,18 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-char	*ft_itoa_spec(t_arg *specs, LL value)
+void	ft_itoa_spec(t_arg *specs, LL value)
 {
-	char *res;
-
 	if (specs->l == 2)
-		res = ft_llitoa((LL)value);
+		ft_llitoa(specs, (LL)value);
 	else if (specs->l == 1)
-		res = ft_litoa((L)value);
+		ft_litoa(specs, (L)value);
 	else if (specs->h == 2)
-		res = ft_hhitoa((signed char)value);
+		ft_hhitoa(specs, (signed char)value);
 	else if (specs->h == 1)
-		res = ft_hitoa((short int)value);
+		ft_hitoa(specs, (short int)value);
 	else
-		res = ft_itoa((int)value);
-	return (res);
+		ft_itoa(specs, (int)value);
 }
 
 int		print_perc(t_arg *specs, char **format)
@@ -61,7 +58,7 @@ int		parse_struct(t_arg *specs, ULL value)
 	else if (specs->type == 'u')
 		format_unsigned(specs, (ULL)value);
 	else if (specs->type == 'd' || specs->type == 'i')
-		format_num(specs, value);
+		format_int(specs, value);
 	else if (specs->type == 'x' || specs->type == 'X')
 		format_conv(specs, specs->conv_val);
 	else if (specs->type == 'o')

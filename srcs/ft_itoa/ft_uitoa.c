@@ -1,6 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                                            */ /*                                                        :::      ::::::::   */
 /*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
@@ -10,27 +9,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static void	fill_uitoa(unsigned long long n, char *src, int len)
+void		ft_uitoa(t_arg *specs, unsigned long long n)
 {
+	int		len;
+	int		tmp;
+
+	len = ulen(specs, n);
+	tmp = len;
+	realloc_if_necessary(specs, len);
 	while (n > 9)
 	{
-		src[len - 1] = n % 10 + '0';
-		len--;
+		specs->string[len - 1] = n % 10 + '0';
 		n = n / 10;
+		len--;
 	}
-	src[0] = n + '0';
-}
-
-char		*ft_uitoa(unsigned long long n)
-{
-	char	*res;
-	int		len;
-
-	len = get_len(n);
-	if (!(res = ft_strnew(len)))
-		return (NULL);
-	fill_uitoa(n, res, len);
-	return (res);
+	specs->string[0] = n + '0';
+	specs->string += tmp;
 }
