@@ -50,7 +50,7 @@ int		handle_perc(char **format, t_arg *specs, va_list *arg)
 
 int		parse_struct(t_arg *specs, ULL value)
 {
-	if (!specs->fill || specs->precision)
+	if (!specs->fill || (specs->precision && specs->type != 'c' && specs->type != 's'))
 		specs->fill = ' ';
 	set_data_len(specs, value);
 	if (specs->type == 'c')

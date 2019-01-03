@@ -6,8 +6,8 @@ int	main(void)
 {
 	char *c;
 
-	c = "{% ld}\n";
+	c = "{%#.5o}\n";
 
-	/*printf("RES: %d\n", */ft_printf(c, 2147483648);
-	/*printf("RES: %d\n",  */  printf(c, 2147483648);
+	/*printf("RES: %d\n", */ft_printf(c, 2);
+	/*printf("RES: %d\n",  */  printf(c, 2);
 }

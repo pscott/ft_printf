@@ -20,8 +20,8 @@ static void	fill_uint_left(int perc_len, t_arg *specs, ULL value)
 		specs->precision_len--;
 		perc_len--;
 	}
-	ft_uitoa_spec(specs, value);
-	//if (!null_data(specs, (ULL)value))
+	if (!null_data(specs, value))
+		ft_uitoa_spec(specs, value);
 		//ft_strncat_move(nb, specs->data_len, specs);
 	ft_special_memset(specs, ' ', perc_len - specs->data_len);
 	//free(nb);
@@ -38,7 +38,8 @@ static void	fill_uint(int perc_len, t_arg *specs, ULL value)
 		perc_len--;
 	}
 	ft_special_memset(specs, '0', specs->precision_len - specs->data_len);
-	ft_uitoa_spec(specs, value);
+	if (!null_data(specs, value))
+		ft_uitoa_spec(specs, value);
 	//ft_strncat_move(nb, specs->data_len - specs->plus, specs);
 	//free(nb);
 }
@@ -47,7 +48,7 @@ void		format_unsigned(t_arg *specs, ULL value)
 {
 	int	perc_len;
 
-	if (null_data(specs, (ULL)value && !specs->plus))
+	if (null_data(specs, value && !specs->plus))
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)
 	{

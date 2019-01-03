@@ -78,7 +78,7 @@ void				format_int(t_arg *specs, LL value)
 	if (specs->precision_len > specs->width_len)
 		specs->fill = '0';
 	perc_len = max(specs->data_len, specs->width_len);
-	if (specs->extra && (choose_value(specs, value) > 0) && !specs->plus)
+	if (specs->extra && (choose_value(specs, value) >= 0) && !specs->plus)
 	{
 		*specs->string = ' ';
 		increm_string(specs, 1);
