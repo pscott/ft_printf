@@ -4,9 +4,7 @@
 
 LL	choose_value(t_arg *specs, LL value)
 {
-	if (specs->l == 2)
-		value = value;
-	else if (specs->l == 1)
+	if (specs->l == 1)
 		value = (L)value;
 	else if (specs->h == 2)
 		value = (signed char)value;

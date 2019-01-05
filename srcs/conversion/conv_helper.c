@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:00:24 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 17:46:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 12:29:58 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ static char		*ox_helper(t_arg *specs)
 	else if (specs->type == 'X')
 		one = "0X";
 	else if (specs->type == 'o')
+	{
 		one = "0";
+		if (specs->precision_len)
+			specs->precision_len--;
+	}
 	else
 		one = "";
 	return (one);
