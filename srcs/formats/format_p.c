@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:27:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 17:49:41 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 19:08:48 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void		fill_string_left(t_arg *specs, L value)
 	data_l = value ? specs->data_len : 1;
 	if (!value && specs->precision && !specs->precision_len)
 		data_l = 0;
-	specs->fill = ' ';
 	perc_len = max(specs->width_len, data_l);
 	ft_strncat_move("0x", 2, specs);
 	while (specs->precision_len > data_l)
@@ -78,7 +77,10 @@ void			format_p(t_arg *specs, L value)
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
+	{
+		specs->fill = ' ';
 		fill_string_left(specs, value);
+	}
 	else
 		fill_string(specs, value);
 }

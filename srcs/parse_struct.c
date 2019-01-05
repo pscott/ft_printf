@@ -6,9 +6,10 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:58:49 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 20:05:42 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	ft_itoa_spec(t_arg *specs, LL value)
@@ -50,7 +51,8 @@ int		handle_perc(char **format, t_arg *specs, va_list *arg)
 
 int		parse_struct(t_arg *specs, ULL value)
 {
-	if (!specs->fill || (specs->precision && specs->type != 'c' && specs->type != 's'))
+	if (!specs->fill || (specs->precision && specs->type != 'c'
+				&& specs->type != 's'))
 		specs->fill = ' ';
 	set_data_len(specs, value);
 	if (specs->type == 'c')

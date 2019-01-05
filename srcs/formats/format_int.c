@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:08:54 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 19:07:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ static void			fill_int(int perc_len, t_arg *specs, LL value)
 	}
 	ft_special_memset(specs, specs->fill, perc_len - max(specs->precision_len
 				, specs->data_len) - (sign_len(specs, value) > 0));
-	//perc_len -= max(specs->precision_len
-	//		, specs->data_len) - sign_len(specs, value);
 	if (sign_put)
 		ft_special_memset(specs, sign_put, 1);
 	ft_special_memset(specs, '0', specs->precision_len - specs->data_len);
@@ -84,8 +82,6 @@ void				format_int(t_arg *specs, LL value)
 		increm_string(specs, 1);
 		perc_len--;
 	}
-	/*if (specs->plus && value >= 0 && specs->data_len)
-	  specs->data_len++;*/
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)

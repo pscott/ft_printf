@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:45:55 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/30 16:48:14 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 19:15:00 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		get_ullen(UL value)
 	return (ulen == 0 ? 1 : ulen);
 }
 
-int			ulen(t_arg *specs, ULL n)
+int		ulen(t_arg *specs, ULL n)
 {
 	if (specs->l == 2)
 		return (get_ulllen((ULL)n));

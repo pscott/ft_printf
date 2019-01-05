@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:41:50 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 20:05:41 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ void	check_if_flags(t_arg *specs, char c, char **format, va_list *arg)
 
 int		get_flags(t_arg *specs, char **format, va_list *arg)
 {
-	char	c;
+	char *tmp ;
 
-	if (!**format)
-		specs->type = '1';
 	while (isprint_special(**format))
 	{
-		c = **format;
-		if (c == '.')
+		tmp  = *format;
+		if (*tmp == '.')
 		{
 			increm_format(format, 1);
 			specs->precision = 1;
@@ -66,23 +64,21 @@ int		get_flags(t_arg *specs, char **format, va_list *arg)
 			return (specs->type = **format);
 		if (is_spec_upper(**format))
 			return (specs->type = '%');
-		check_if_flags(specs, c, format, arg);
+		check_if_flags(specs, *tmp, format, arg);
+//		printf("!%s!\t;%s;\n", tmp, *format);
 	}
 	return (0);
 }
 
 void	get_lh(char **format, t_arg *specs)
 {
-	int i;
-
-	i = 0;
-	while ((*format)[i] == 'h' || (*format)[i] == 'l')
+	while (**format == 'h' || **format == 'l')
 	{
-		if ((*format)[i] == 'h')
+		if (**format == 'h')
 			specs->h++;
-		else if ((*format)[i] == 'l')
+		else if (**format == 'l')
 			specs->l++;
-		i++;
+		increm_format(format, 1);
 	}
 	if (specs->h > 2)
 		specs->h = 2;
@@ -105,7 +101,7 @@ int		is_type(char **format, t_arg *specs)
 	c = **format;
 	if (is_valid_type(c))
 	{
-		specs->type = c;
+		specs->type = c;//?
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/14 17:46:05 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:33:01 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 19:10:55 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		h_min(t_arg *specs)
 	}
 }
 
-void		ft_hitoa(t_arg *specs, short int n)
+void			ft_hitoa(t_arg *specs, short int n)
 {
 	int		len;
 	int		tmp;

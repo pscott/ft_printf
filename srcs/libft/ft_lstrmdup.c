@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/11 17:20:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/11/11 17:50:28 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/05 19:16:06 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void			ft_lstrmdup(t_list *lst)
 		l2 = l1;
 		while (l2->next != NULL)
 		{
-			if (ft_memcmp(l1->content, l2->next->content, max_list(l1, l2->next))
-					== 0)
+			if (ft_memcmp(l1->content, l2->next->content,
+						max_list(l1, l2->next)) == 0)
 			{
 				dup = l2->next;
 				free(dup);
