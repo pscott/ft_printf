@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 18:51:53 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 19:07:58 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:29:54 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	value_o(t_arg *specs, LL value)
 	specs->data_len = ft_strlen(specs->conv_val);
 }
 
-void	value_u(t_arg *specs, LL value)
+void	value_u(t_arg *specs, ULL value)
 {
 	if (specs->l == 2)
 		specs->data_len = get_ulllen((ULL)value);

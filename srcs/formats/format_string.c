@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 16:23:51 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:12:43 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:27:59 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void		format_string(t_arg *specs, char *value)
 	char *nil;
 
 	nil = "(null)";
+	specs->data_len = ft_strlen(value);
 	if (value == NULL)
 	{
 		value = nil;

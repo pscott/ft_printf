@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/05 20:05:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:32:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	ft_itoa_spec(t_arg *specs, LL value)
 		ft_itoa(specs, (int)value);
 }
 
-int		print_perc(t_arg *specs, char **format)
+int		print_perc(t_arg *specs, va_list *arg)
 {
 	specs->type = 'c';
-	parse_struct(specs, **format);
+	parse_struct(specs, arg);
 	return (1);
 }
 
@@ -49,25 +49,24 @@ int		handle_perc(char **format, t_arg *specs, va_list *arg)
 	return (0);
 }
 
-int		parse_struct(t_arg *specs, ULL value)
+int		parse_struct(t_arg *specs, va_list *arg)
 {
+	//printf("PRINT: %s\n", va_arg(*arg, char*));
 	if (!specs->fill || (specs->precision && specs->type != 'c'
 				&& specs->type != 's'))
 		specs->fill = ' ';
-	set_data_len(specs, value);
+//	set_data_len(specs, arg);
 	if (specs->type == 'c')
-		format_char(specs, (char*)&value);
+		format_char(specs, va_arg(*arg, char*));
 	else if (specs->type == 'u')
-		format_unsigned(specs, (ULL)value);
+		format_unsigned(specs, va_arg(*arg, ULL));
 	else if (specs->type == 'd' || specs->type == 'i')
-		format_int(specs, value);
-	else if (specs->type == 'x' || specs->type == 'X')
-		format_conv(specs, specs->conv_val);
-	else if (specs->type == 'o')
-		format_conv(specs, specs->conv_val);
+		format_int(specs, va_arg(*arg, LL));
+	else if (specs->type == 'o' || specs->type == 'x' || specs->type == 'X')
+		format_conv(specs, va_arg(*arg, LL));
 	else if (specs->type == 's')
-		format_string(specs, (char *)value);
+		format_string(specs, va_arg(*arg, char*));
 	else if (specs->type == 'p')
-		format_p(specs, (L)value);
+		format_p(specs, va_arg(*arg, L));
 	return (1);
 }

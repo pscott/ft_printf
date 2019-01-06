@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 18:11:35 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/05 19:07:21 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:27:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void				format_int(t_arg *specs, LL value)
 {
 	int		perc_len;
 
-	set_data_len(specs, value);
+	value_d(specs, value);
 	if (null_data(specs, (ULL)value) && !specs->plus)
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)

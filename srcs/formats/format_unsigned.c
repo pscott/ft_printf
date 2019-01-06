@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 19:09:57 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/05 19:09:58 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 19:28:17 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		format_unsigned(t_arg *specs, ULL value)
 {
 	int	perc_len;
 
+	value_u(specs, value);
 	if (null_data(specs, value && !specs->plus))
 		specs->data_len = 0;
 	if (specs->precision_len > specs->width_len)

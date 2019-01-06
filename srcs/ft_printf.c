@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 11:34:09 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 18:30:22 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 16:11:56 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int				ft_printf(const char *restrict f, ...)
 		if (*f == '%' && handle_perc((char **)&f, specs, &arg))
 		{
 			if (specs->type == '%')
-				print_perc(specs, (char**)&f);
+				print_perc(specs, &arg);
 			else
-				parse_struct(specs, va_arg(arg, ULL));
+				parse_struct(specs, &arg);
 		}
 		else if (*f)
 			ft_strncat_move((char *)f, 1, specs);
