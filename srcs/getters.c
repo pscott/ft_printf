@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/05 20:05:41 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/06 15:28:57 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_if_flags(t_arg *specs, char c, char **format, va_list *arg)
 		if (specs->fill != '0')
 			specs->fill = ' ';
 	}
-	else if (ft_isdigit(c))
+	else if (ft_isdigit(c) && c != '0')
 	{
 		if ((specs->width_len = ft_atoi_move(format)))
 		{
@@ -43,29 +43,26 @@ void	check_if_flags(t_arg *specs, char c, char **format, va_list *arg)
 
 int		get_flags(t_arg *specs, char **format, va_list *arg)
 {
-	char *tmp ;
-
 	while (isprint_special(**format))
 	{
-		tmp  = *format;
-		if (*tmp == '.')
+		if (**format == '.')
 		{
-			increm_format(format, 1);
+			while (**format == '.')
+				increm_format(format, 1);
 			specs->precision = 1;
 			if (**format == '*')
-				wildcard(specs, arg, 1);
-			else
 			{
-				specs->precision_len = ft_atoi_move(format);
-				(*format)--;
+				wildcard(specs, arg, 1);
+				(*format)++;
 			}
+			else
+				specs->precision_len = ft_atoi_move(format);
 		}
 		if (is_type(format, specs))
 			return (specs->type = **format);
 		if (is_spec_upper(**format))
 			return (specs->type = '%');
-		check_if_flags(specs, *tmp, format, arg);
-//		printf("!%s!\t;%s;\n", tmp, *format);
+		check_if_flags(specs, **format, format, arg);
 	}
 	return (0);
 }
@@ -95,13 +92,9 @@ int		is_spec_upper(char c)
 
 int		is_type(char **format, t_arg *specs)
 {
-	char c;
-
 	get_lh(format, specs);
-	c = **format;
-	if (is_valid_type(c))
+	if (is_valid_type(**format))
 	{
-		specs->type = c;//?
 		return (1);
 	}
 	return (0);
