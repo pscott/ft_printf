@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:45:26 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/06 19:25:42 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 13:55:28 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	fill_char_left(int perc_len, t_arg *specs, char *value)
 	ft_special_memset(specs, ' ', perc_len - data_l);
 }
 
-void	format_char(t_arg *specs, char *value)
+void	format_char(t_arg *specs, char value)
 {
 	int perc_len;
 
@@ -42,7 +42,7 @@ void	format_char(t_arg *specs, char *value)
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
 	if (specs->left)
-		fill_char_left(perc_len, specs, value);
+		fill_char_left(perc_len, specs, &value);
 	else
-		fill_char(perc_len, specs, value);
+		fill_char(perc_len, specs, &value);
 }

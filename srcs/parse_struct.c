@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/06 19:32:08 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 14:05:26 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void	ft_itoa_spec(t_arg *specs, LL value)
 		ft_itoa(specs, (int)value);
 }
 
-int		print_perc(t_arg *specs, va_list *arg)
+int		print_perc(t_arg *specs, char c)
 {
 	specs->type = 'c';
-	parse_struct(specs, arg);
+	if (!specs->fill)
+		specs->fill = ' ';
+	format_char(specs, c);
 	return (1);
 }
 
@@ -51,13 +53,11 @@ int		handle_perc(char **format, t_arg *specs, va_list *arg)
 
 int		parse_struct(t_arg *specs, va_list *arg)
 {
-	//printf("PRINT: %s\n", va_arg(*arg, char*));
 	if (!specs->fill || (specs->precision && specs->type != 'c'
 				&& specs->type != 's'))
 		specs->fill = ' ';
-//	set_data_len(specs, arg);
 	if (specs->type == 'c')
-		format_char(specs, va_arg(*arg, char*));
+		format_char(specs, va_arg(*arg, int));
 	else if (specs->type == 'u')
 		format_unsigned(specs, va_arg(*arg, ULL));
 	else if (specs->type == 'd' || specs->type == 'i')

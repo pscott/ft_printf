@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 11:27:22 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/06 19:31:52 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 13:53:33 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static void		fill_string_left(t_arg *specs, char *value)
 
 void			format_conv(t_arg *specs, LL value)
 {
-	value = 0;
 	set_data_len(specs, value);
 	if (specs->left && specs->plus)
 		specs->fill = ' ';
