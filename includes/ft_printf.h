@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 19:06:52 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/07 14:13:41 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 16:20:21 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_arg
 	int			plus;
 	int			hash;
 	int			l;
+	int			dbl;
 	int			h;
 	int			data_len;
 	char		*conv_val;
@@ -90,6 +91,7 @@ void			get_extra(char **format, t_arg *specs);
 void			format_int(t_arg *specs, LL value);
 void			format_unsigned(t_arg *specs, ULL value);
 void			format_p(t_arg *specs, L value);
+void			format_float(t_arg *specs, va_list *arg);
 int				unsigned_len(t_arg *spec, ULL value);
 void			format_char(t_arg *specs, char c);
 void			fill_char(int perc_len, t_arg *specs, char *value);
@@ -115,4 +117,5 @@ void			value_o(t_arg *specs, LL value);
 void			value_u(t_arg *specs, ULL value);
 void			wildcard(t_arg *specs, va_list *arg, int modif);
 LL				choose_value(t_arg *specs, LL value);
+int				set_i(t_arg *specs);
 #endif

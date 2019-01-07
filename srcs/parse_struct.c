@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/07 14:05:26 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 14:45:24 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,13 @@ int		parse_struct(t_arg *specs, va_list *arg)
 		format_unsigned(specs, va_arg(*arg, ULL));
 	else if (specs->type == 'd' || specs->type == 'i')
 		format_int(specs, va_arg(*arg, LL));
-	else if (specs->type == 'o' || specs->type == 'x' || specs->type == 'X')
-		format_conv(specs, va_arg(*arg, LL));
 	else if (specs->type == 's')
 		format_string(specs, va_arg(*arg, char*));
+	else if (specs->type == 'o' || specs->type == 'x' || specs->type == 'X')
+		format_conv(specs, va_arg(*arg, LL));
 	else if (specs->type == 'p')
 		format_p(specs, va_arg(*arg, L));
+	else if (specs->type == 'f')
+		format_float(specs, arg);
 	return (1);
 }

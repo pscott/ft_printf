@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2018/12/21 19:02:38 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/07 15:54:31 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,10 @@ LIBS	:= ft_atoi.c  ft_bzero.c  ft_isalnum.c  ft_isalpha.c  ft_isascii.c \
 ITOA	:= ft_itoa.c  ft_litoa.c ft_llitoa.c ft_hitoa.c ft_hhitoa.c ft_uitoa.c
 CONV	:= conv_helper.c converters.c
 FORM	:= format_int.c format_char.c format_unsigned.c format_string.c \
-	format_conv.c format_p.c
+	format_conv.c format_p.c format_float.c
 GETLEN	:= get_len.c get_ulen.c
 HELPERS	:= ft_atoi_move.c null_data.c ft_special_memset.c ft_strncat_move.c \
-	utils.c values.c unsigned_helper.c choose_value.c
+	utils.c values.c unsigned_helper.c choose_value.c float_helper.c
 INCREM	:= increm_format.c increm_string.c 
 
 PRINTF	:= ft_printf.c parse_struct.c getters.c spec_init.c \

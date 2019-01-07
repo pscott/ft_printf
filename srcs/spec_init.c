@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:14:25 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/21 19:13:47 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 14:26:12 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_specs(t_arg *specs)
 	specs->plus = 0;
 	specs->hash = 0;
 	specs->l = 0;
+	specs->dbl = 0;
 	specs->h = 0;
 	specs->mall_len = 32;
 	specs->string = NULL;
@@ -45,6 +46,7 @@ void	reset_specs(t_arg *specs)
 	specs->plus = 0;
 	specs->hash = 0;
 	specs->l = 0;
+	specs->dbl = 0;
 	specs->h = 0;
 	specs->data_len = 0;
 	specs->extra = 0;

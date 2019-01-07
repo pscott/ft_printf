@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/30 14:11:03 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/07 14:05:38 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 14:26:01 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,14 @@ int		get_flags(t_arg *specs, char **format, va_list *arg)
 
 void	get_lh(char **format, t_arg *specs)
 {
-	while (**format == 'h' || **format == 'l')
+	while (**format == 'h' || **format == 'l' || **format == 'L')
 	{
 		if (**format == 'h')
 			specs->h++;
 		else if (**format == 'l')
 			specs->l++;
+		else if (**format == 'L')
+			specs->dbl++;
 		increm_format(format, 1);
 	}
 	if (specs->h > 2)
