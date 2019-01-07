@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:34:05 by pscott            #+#    #+#             */
-/*   Updated: 2018/12/14 17:45:31 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 16:31:45 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ void			ft_lstsort(t_list **head);
 size_t			ft_lstlen(t_list **head);
 void			ft_lstappend(t_list **lst, t_list *new);
 void			ft_lstrmdup(t_list *lst);
+char			*ft_itoa(int n);
 #endif

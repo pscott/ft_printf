@@ -6,7 +6,7 @@
 #    By: pscott <pscott@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 10:29:04 by pscott            #+#    #+#              #
-#    Updated: 2019/01/07 15:54:31 by pscott           ###   ########.fr        #
+#    Updated: 2019/01/07 16:34:33 by pscott           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ LIBS	:= ft_atoi.c  ft_bzero.c  ft_isalnum.c  ft_isalpha.c  ft_isascii.c \
 	ft_strjoin.c  ft_strlcat.c  ft_strlen.c  ft_strmap.c  ft_strmapi.c \
 	ft_strncat.c  ft_strncmp.c  ft_strncpy.c  ft_strnequ.c  ft_strnew.c \
 	ft_strnstr.c  ft_strrchr.c  ft_strrev.c  ft_strsplit.c  ft_strstr.c \
-	ft_strsub.c  ft_strtrim.c  ft_tolower.c  ft_toupper.c
+	ft_strsub.c  ft_strtrim.c  ft_tolower.c  ft_toupper.c ft_itoa.c
 
 
-ITOA	:= ft_itoa.c  ft_litoa.c ft_llitoa.c ft_hitoa.c ft_hhitoa.c ft_uitoa.c
+ITOA	:= ft_nitoa.c  ft_litoa.c ft_llitoa.c ft_hitoa.c ft_hhitoa.c ft_uitoa.c
 CONV	:= conv_helper.c converters.c
 FORM	:= format_int.c format_char.c format_unsigned.c format_string.c \
 	format_conv.c format_p.c format_float.c

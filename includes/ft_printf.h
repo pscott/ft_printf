@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/21 19:06:52 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/07 16:20:21 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 16:32:08 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			ft_itoa_spec(t_arg *specs, LL value);
 int				handle_perc(char **fornat, t_arg *specs, va_list *arg);
 int				print_perc(t_arg *specs, char c);
 void			ft_uitoa_spec(t_arg *specs, ULL value);
-void			ft_itoa(t_arg *specs, int n);
+void			ft_nitoa(t_arg *specs, int n);
 void			ft_litoa(t_arg *specs, long int n);
 void			ft_llitoa(t_arg *specs, long long int n);
 void			ft_uitoa(t_arg *specs, unsigned long long int n);

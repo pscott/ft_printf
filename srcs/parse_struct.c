@@ -6,7 +6,7 @@
 /*   By: pscott <pscott@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:40:22 by pscott            #+#    #+#             */
-/*   Updated: 2019/01/07 14:45:24 by pscott           ###   ########.fr       */
+/*   Updated: 2019/01/07 16:33:26 by pscott           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_itoa_spec(t_arg *specs, LL value)
 	else if (specs->h == 1)
 		ft_hitoa(specs, (short int)value);
 	else
-		ft_itoa(specs, (int)value);
+		ft_nitoa(specs, (int)value);
 }
 
 int		print_perc(t_arg *specs, char c)
